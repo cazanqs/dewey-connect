@@ -1,0 +1,38 @@
+.accueil {
+    .banniere {
+        position: relative;
+        height: 90vh;
+
+        h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            font-size: 45px;
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+
+        div {
+            height: 100%;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(0, 0, 0, .75);
+            }
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}

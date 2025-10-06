@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{{ parent() }}{% endblock %}
+
+{% block body %}
+    <main class="accueil">
+        <div class="banniere">
+            <h1>Dewey Connect<br>Des trajets partagés, des liens renforcés</h1>
+            <div><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></div>
+        </div>
+</main>
+{% endblock %}
