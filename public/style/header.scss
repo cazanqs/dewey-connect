@@ -1,7 +1,4 @@
 header {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     width: 90%;
     display: flex;
     justify-content: space-between;
@@ -27,8 +24,33 @@ header {
         a {
             font-size: 20px;
             font-weight: bold;
-            color: white;
             text-decoration: none;
         }
+
+        .profil {
+            width: 40px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.accueil header {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    a {
+        color: white;
+    }
+}
+
+.inscription header, .connexion header {
+    margin: auto;
+
+    a {
+        color: black;
     }
 }

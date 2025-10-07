@@ -3,10 +3,22 @@
 {% block title %}Accueil{{ parent() }}{% endblock %}
 
 {% block body %}
-    <main class="accueil">
-        <div class="banniere">
-            <h1>Dewey Connect<br>Des trajets partagés, des liens renforcés</h1>
-            <div><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></div>
-        </div>
-</main>
+    <body class="accueil">
+        <header>
+            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-blanc.svg') }}" alt="Logotype Agence Dewey"></a>
+            <nav>
+                <ul>
+                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
+                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+                    <li class="profil"><a href=""><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="banniere">
+                <h1>Dewey Connect<br>Des trajets partagés, des liens renforcés</h1>
+                <div><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></div>
+            </div>
+        </main>
+    </body>
 {% endblock %}

@@ -15,21 +15,5 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
-        <header>
-            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype.png') }}" alt="Logotype Agence Dewey"></a>
-            <nav>
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-                    <li><a href=""><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-        <footer>
-        </footer>
-    </body>
+    {% block body %}{% endblock %}
 </html>

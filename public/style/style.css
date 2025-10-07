@@ -8,9 +8,6 @@ h1, h2, h3, h4, h5, h6, p, a, li {
 }
 
 header {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   width: 90%;
   display: flex;
   justify-content: space-between;
@@ -34,8 +31,29 @@ header ul {
 header ul a {
   font-size: 20px;
   font-weight: bold;
-  color: white;
   text-decoration: none;
+}
+header ul .profil {
+  width: 40px;
+}
+header ul .profil img {
+  width: 100%;
+}
+
+.accueil header {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.accueil header a {
+  color: white;
+}
+
+.inscription header, .connexion header {
+  margin: auto;
+}
+.inscription header a, .connexion header a {
+  color: black;
 }
 
 .accueil .banniere {
