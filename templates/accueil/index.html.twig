@@ -6,31 +6,157 @@
     <body class="accueil">
         <header>
             <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-blanc.svg') }}" alt="Logotype Agence Dewey"></a>
+            
             <nav>
                 <ul>
                     <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
                     <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-                    <li class="profil"><a href=""><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="profil"><a href=""><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                    {% else %}
+                        <li class="profil"><a href="{{ path('app_login') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </header>
         <main>
-            <div class="banniere">
+            <section class="banniere">
                 <h1>Dewey Connect<br>Des trajets partagés, des liens renforcés</h1>
+
                 <div><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></div>
-            </div>
-            <div id="creer-un-trajet">
+            </section>
+
+            <section id="creer-un-trajet">
                 <h2>Créer un trajet</h2>
+
                 {{ form_start(form) }}
                     {{ form_widget(form) }}
-                    <button type="submit">Créer le trajet</button>
+
+                    {% if is_granted('ROLE_USER') %}
+                        <input type="hidden" name="utilisateur" value="{{ app.user.id }}">
+                    {% endif %}
+
+                    {% if is_granted('ROLE_USER') %}
+                        <button type="submit">Créer le trajet</button>
+                    {% else %}
+                        <a href="{{ path('app_login') }}"><button type="button">Créer le trajet</button></a>
+                    {% endif %}
                 {{ form_end(form) }}
-            </div>
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
+
+                {% for message in app.flashes('success') %}
+                    <div class="alerte">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            </section>
+
+            <section class="texte-defilant">
+                <div class="animation">
+                    <div class="textes">
+                        <p>DEWEY CONNECT</p>
+                        <p>DEWEY CONNECT</p>
+                        <p>DEWEY CONNECT</p>
+                        <p>DEWEY CONNECT</p>
+                        <p>DEWEY CONNECT</p>
+                        <p>DEWEY CONNECT</p>
+                        <p>DEWEY CONNECT</p>
+                        <p>DEWEY CONNECT</p>
+                        <p>DEWEY CONNECT</p>
+                        <p>DEWEY CONNECT</p>
+                    </div>
                 </div>
-            {% endfor %}
+            </section>
+
+            <section id="voir-les-trajets-disponibles">
+                <div class="texte-defilant">
+                    <div class="animation">
+                        <div class="textes">
+                            <p>DEWEY CONNECT</p>
+                            <p>DEWEY CONNECT</p>
+                            <p>DEWEY CONNECT</p>
+                            <p>DEWEY CONNECT</p>
+                            <p>DEWEY CONNECT</p>
+                            <p>DEWEY CONNECT</p>
+                            <p>DEWEY CONNECT</p>
+                            <p>DEWEY CONNECT</p>
+                            <p>DEWEY CONNECT</p>
+                            <p>DEWEY CONNECT</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="trajets">
+                    {% for trajet in trajets %}
+                        <div class="trajet">
+                            <div class="icone">
+                                <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
+                                <div>
+                                    <p>{{ trajet.pointDeDepart }}</p>
+                                    <p>{{ trajet.destination }}</p>
+                                </div>
+                            </div>
+                            <div class="icone">
+                                <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un utilisateur">
+                                <p>{{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
+                            </div>
+                            <div class="icone">
+                                <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
+                                <p>{{ trajet.dateEtHeure|date('d/m/Y H:i') }}</p>
+                            </div>
+                            <div class="icone">
+                                <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
+                                <p>{{ trajet.siegesLibres }}</p>
+                            </div>
+                            {% if is_granted('ROLE_USER') %}
+                                <button type="button" onclick="reservation({{ trajet.id }}, {{ trajet.siegesLibres }})">Réserver</button>
+                            {% else %}
+                                <a href="{{ path('app_login') }}"><button type="button">Réserver</button></a>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <p>Aucun trajet disponible pour le moment</p>
+                    {% endfor %}
+                </div>
+            </section>
         </main>
     </body>
+
+    <script>
+        function reservation(trajetId, siegesLibres) {
+            // Créer les options du select
+            let options = '';
+            for (let i = 1; i <= siegesLibres; i++) {
+                options += `<option value="${i}">${i} place${i > 1 ? 's' : ''}</option>`;
+            }
+            
+            // Créer la pop-up
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            `;
+            
+            popup.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 10px; text-align: center;">
+                    <h3>Combien de places souhaitez-vous réserver ?</h3>
+                    <form method="POST" action="{{ path('app_reservation', {'id': '__ID__'}) }}".replace('__ID__', trajetId)>
+                        <select name="sieges_reserves" style="margin: 20px 0; padding: 10px; font-size: 16px;">
+                            ${options}
+                        </select><br>
+                        <button type="submit" style="margin: 10px; padding: 10px 20px; background: #33b698; color: white; border: none; border-radius: 5px;">Confirmer</button>
+                        <button type="button" onclick="this.closest('div').parentNode.remove()" style="margin: 10px; padding: 10px 20px; background: #ccc; color: black; border: none; border-radius: 5px;">Annuler</button>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(popup);
+        }
+    </script>
 {% endblock %}

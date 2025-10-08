@@ -20,15 +20,27 @@ final class AccueilController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $trajet->setUtilisateur($this->getUser());
+
             $entityManager->persist($trajet);
             $entityManager->flush();
+            
             $this->addFlash('success', 'Trajet créé avec succès !');
             return $this->redirectToRoute('app_accueil');
         }
 
+        $trajetsRepository = $entityManager->getRepository(Trajet::class);
+        $trajets = $trajetsRepository->createQueryBuilder('t')
+            ->where('t.date_et_heure > :now')
+            ->setParameter('now', new \DateTime())
+            ->orderBy('t.date_et_heure', 'ASC')
+            ->getQuery()
+            ->getResult();
+
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
             'form' => $form->createView(),
+            'trajets' => $trajets,
         ]);
     }
 }

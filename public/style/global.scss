@@ -1,8 +1,63 @@
+$vert: #33b698;
+
 * {
     margin: 0;
     padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, li {
+h1, h2, h3, h4, h5, h6, p, a, li, button, label, input {
     font-family: "DM Sans", sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+p, a, li, button, label, input {
+    font-size: 20px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: $vert;
+    font-weight: bold;
+    background-color: transparent;
+    border: solid 3px $vert;
+    padding: 5px 20px;
+    border-radius: 50px;
+    margin: 50px auto;
+
+    &::after {
+        content: "";
+        width: 15px;
+        height: 15px;
+        background-image: url('../images/fleche.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: transform .25s ease;
+    }
+
+    &:hover {
+        cursor: pointer;
+
+        &::after {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.alerte p {
+    color: $vert;
+    text-align: center;
 }

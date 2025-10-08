@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{{ parent() }}{% endblock %}
 
 {% block body %}
     <body class="inscription">
@@ -15,7 +15,7 @@
             </nav>
         </header>
         <main>
-            <h1>Register</h1>
+            <h1>Inscription</h1>
 
             {{ form_errors(registrationForm) }}
 

@@ -3,24 +3,30 @@
 namespace App\Form;
 
 use App\Entity\Trajet;
-use App\Entity\utilisateur;
+use App\Entity\Utilisateur;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class TrajetType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('point_de_depart')
-            ->add('destination')
-            ->add('date_et_heure')
-            ->add('sieges_libres')
-            ->add('utilsateur', EntityType::class, [
-                'class' => utilisateur::class,
-                'choice_label' => 'id',
+            ->add('point_de_depart', null, [
+                'attr' => ['placeholder' => 'Point de départ']
+            ])
+            ->add('destination', null, [
+                'attr' => ['placeholder' => 'Destination']
+            ])
+            ->add('date_et_heure', DateTimeType::class, [
+                'widget' => 'single_text',
+                'attr' => ['placeholder' => 'Date et heure']
+            ])
+            ->add('sieges_libres', null, [
+                'attr' => ['placeholder' => 'Sièges libres']
             ])
         ;
     }

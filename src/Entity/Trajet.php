@@ -29,7 +29,7 @@ class Trajet
 
     #[ORM\ManyToOne(inversedBy: 'trajets')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?utilisateur $utilsateur = null;
+    private ?utilisateur $utilisateur = null;
 
     /**
      * @var Collection<int, Reservation>
@@ -95,14 +95,14 @@ class Trajet
         return $this;
     }
 
-    public function getUtilsateur(): ?utilisateur
+    public function getUtilisateur(): ?utilisateur
     {
-        return $this->utilsateur;
+        return $this->utilisateur;
     }
 
-    public function setUtilsateur(?utilisateur $utilsateur): static
+    public function setUtilisateur(?utilisateur $utilisateur): static
     {
-        $this->utilsateur = $utilsateur;
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }

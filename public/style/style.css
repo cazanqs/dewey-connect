@@ -3,8 +3,58 @@
   padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, li {
+h1, h2, h3, h4, h5, h6, p, a, li, button, label, input {
   font-family: "DM Sans", sans-serif;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 45px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+p, a, li, button, label, input {
+  font-size: 20px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #33b698;
+  font-weight: bold;
+  background-color: transparent;
+  border: solid 3px #33b698;
+  padding: 5px 20px;
+  border-radius: 50px;
+  margin: 50px auto;
+}
+button::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url("../images/fleche.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.25s ease;
+}
+button:hover {
+  cursor: pointer;
+}
+button:hover::after {
+  transform: rotate(45deg);
+}
+
+.alerte p {
+  color: #33b698;
+  text-align: center;
 }
 
 header {
@@ -66,9 +116,7 @@ header ul .profil img {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  font-size: 45px;
   color: white;
-  text-align: center;
   z-index: 1;
 }
 .accueil .banniere div {
@@ -87,6 +135,130 @@ header ul .profil img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+.accueil #creer-un-trajet {
+  width: 90%;
+  margin: 100px auto 50px;
+}
+.accueil #creer-un-trajet h2 {
+  margin-bottom: 50px;
+}
+.accueil #creer-un-trajet #trajet {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #33b698;
+  border-radius: 50px;
+  padding: 10px;
+}
+.accueil #creer-un-trajet #trajet div {
+  width: 25%;
+}
+.accueil #creer-un-trajet #trajet div label {
+  display: none;
+}
+.accueil #creer-un-trajet #trajet div input {
+  height: 50px;
+  width: 100%;
+  border: none;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.accueil #creer-un-trajet #trajet div input:focus {
+  outline-color: #33b698;
+}
+.accueil #creer-un-trajet #trajet div:first-of-type input {
+  border-radius: 25px 0 0 25px;
+}
+.accueil #creer-un-trajet #trajet div:last-of-type input {
+  border-radius: 0 25px 25px 0;
+}
+.accueil .texte-defilant {
+  padding-top: 50px;
+  overflow: hidden;
+}
+.accueil .texte-defilant .animation {
+  display: flex;
+  animation: text-defilant 30s linear infinite;
+}
+.accueil .texte-defilant .animation .textes {
+  display: flex;
+  flex-shrink: 0;
+}
+.accueil .texte-defilant .animation .textes p {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  margin-left: 50px;
+}
+.accueil .texte-defilant .animation .textes p::after {
+  content: "";
+  display: block;
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+}
+@keyframes text-defilant {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.accueil section.texte-defilant p {
+  color: #33b698;
+}
+.accueil section.texte-defilant p::after {
+  background-color: #33b698;
+}
+.accueil #voir-les-trajets-disponibles {
+  background-color: #33b698;
+  padding-bottom: 100px;
+}
+.accueil #voir-les-trajets-disponibles .texte-defilant {
+  rotate: 180deg;
+}
+.accueil #voir-les-trajets-disponibles .texte-defilant p {
+  color: white;
+}
+.accueil #voir-les-trajets-disponibles .texte-defilant p::after {
+  background-color: white;
+}
+.accueil #voir-les-trajets-disponibles .trajets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  width: 90%;
+  margin: auto;
+}
+.accueil #voir-les-trajets-disponibles .trajets .trajet {
+  background-color: white;
+  border-radius: 25px;
+  padding: 50px 25px 0 25px;
+}
+.accueil #voir-les-trajets-disponibles .trajets .trajet .icone {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 50px;
+}
+.accueil #voir-les-trajets-disponibles .trajets .trajet .icone:last-of-type {
+  margin-bottom: 0;
+}
+.accueil #voir-les-trajets-disponibles .trajets .trajet .icone div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+}
+.accueil #voir-les-trajets-disponibles .trajets .trajet .icone img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  object-position: center;
 }
 
 /*# sourceMappingURL=style.css.map */
