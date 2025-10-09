@@ -29,7 +29,7 @@ class Trajet
 
     #[ORM\ManyToOne(inversedBy: 'trajets')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?utilisateur $utilisateur = null;
+    private ?Utilisateur $utilisateur = null;
 
     /**
      * @var Collection<int, Reservation>
