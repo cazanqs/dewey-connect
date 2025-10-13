@@ -23,6 +23,10 @@ p, a, li, button, label, input {
   font-size: 20px;
 }
 
+a {
+  text-decoration: none;
+}
+
 button {
   display: flex;
   align-items: center;
@@ -81,7 +85,6 @@ header ul {
 header ul a {
   font-size: 20px;
   font-weight: bold;
-  text-decoration: none;
 }
 header ul .profil {
   width: 40px;
@@ -259,6 +262,46 @@ header ul .profil img {
   width: 40px;
   object-fit: contain;
   object-position: center;
+}
+
+.conteneur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.conteneur .pop-up {
+  position: relative;
+  text-align: center;
+  background: white;
+  border-radius: 25px;
+  padding: 50px;
+}
+.conteneur .pop-up .croix {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+.conteneur .pop-up select {
+  text-align: center;
+  padding: 10px 25px 10px 10px;
+  margin: 25px 0;
+  appearance: none;
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+.conteneur .pop-up select:focus {
+  outline-color: #33b698;
+}
+.conteneur .pop-up button {
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -120,36 +120,27 @@
 
     <script>
         function reservation(trajetId, siegesLibres) {
-            // Créer les options du select
             let options = '';
+
             for (let i = 1; i <= siegesLibres; i++) {
                 options += `<option value="${i}">${i} place${i > 1 ? 's' : ''}</option>`;
             }
             
-            // Créer la pop-up
             const popup = document.createElement('div');
-            popup.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 1000;
-            `;
-            
+
+            popup.className = 'conteneur';
             popup.innerHTML = `
-                <div style="background: white; padding: 30px; border-radius: 10px; text-align: center;">
+                <div class="pop-up">
+                    <p class="croix" onclick="this.closest('.pop-up').parentNode.remove()">✕</p>
+
                     <h3>Combien de places souhaitez-vous réserver ?</h3>
+
                     <form method="POST" action="{{ path('app_reservation', {'id': '__ID__'}) }}".replace('__ID__', trajetId)>
-                        <select name="sieges_reserves" style="margin: 20px 0; padding: 10px; font-size: 16px;">
+                        <select name="sieges_reserves">
                             ${options}
                         </select><br>
-                        <button type="submit" style="margin: 10px; padding: 10px 20px; background: #33b698; color: white; border: none; border-radius: 5px;">Confirmer</button>
-                        <button type="button" onclick="this.closest('div').parentNode.remove()" style="margin: 10px; padding: 10px 20px; background: #ccc; color: black; border: none; border-radius: 5px;">Annuler</button>
+
+                        <button type="submit">Confirmer</button>
                     </form>
                 </div>
             `;
