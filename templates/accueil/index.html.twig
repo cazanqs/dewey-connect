@@ -102,7 +102,13 @@
                             </div>
                             <div class="icone">
                                 <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
-                                <p>{{ trajet.siegesLibres }}</p>
+                                {% if trajet.siegesLibres > 1 %}
+                                    <p>Il reste encore {{ trajet.siegesLibres }} places</p>
+                                {% elseif trajet.siegesLibres == 1 %}
+                                    <p>Il reste encore {{ trajet.siegesLibres }} place</p>
+                                {% else %}
+                                    <p>Complet</p>
+                                {% endif %}
                             </div>
                             {% if is_granted('ROLE_USER') %}
                                 <button type="button" onclick="reservation({{ trajet.id }}, {{ trajet.siegesLibres }})">Réserver</button>
@@ -135,7 +141,7 @@
 
                     <h3>Combien de places souhaitez-vous réserver ?</h3>
 
-                    <form method="POST" action="{{ path('app_reservation', {'id': '__ID__'}) }}".replace('__ID__', trajetId)>
+                    <form method="POST" action="/reservation/${trajetId}">
                         <select name="sieges_reserves">
                             ${options}
                         </select><br>

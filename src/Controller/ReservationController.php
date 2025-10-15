@@ -12,7 +12,7 @@ use App\Entity\Reservation;
 
 final class ReservationController extends AbstractController
 {
-    #[Route('/reservation/{id}', name: 'app_reservation', methods: ['POST'])]
+    #[Route('/reservation/{id}', name: 'app_reservation', methods: ['GET', 'POST'])]
     public function index(Trajet $trajet, Request $request, EntityManagerInterface $entityManager): Response
     {
         $siegesReserves = (int) $request->request->get('sieges_reserves');

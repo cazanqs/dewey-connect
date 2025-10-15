@@ -215,13 +215,12 @@ $vert: #33b698;
         }
 
         select {
-            text-align: center;
-            padding: 10px 25px 10px 10px;
-            margin: 25px 0;
             appearance: none;
-            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
+            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
             background-position: right 10px center;
-            background-size: 16px;
+            background-size: 20px;
+            padding: 10px 30px 10px 10px;
+            margin: 25px 0;
 
             &:focus {
                 outline-color: $vert;
