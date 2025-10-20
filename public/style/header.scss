@@ -3,6 +3,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: auto;
     z-index: 1;
 
     .logotype {
@@ -24,6 +25,7 @@ header {
         a {
             font-size: 20px;
             font-weight: bold;
+            color: black;
         }
 
         .profil {
@@ -43,13 +45,5 @@ header {
 
     a {
         color: white;
-    }
-}
-
-.inscription header, .connexion header {
-    margin: auto;
-
-    a {
-        color: black;
     }
 }

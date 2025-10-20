@@ -5,12 +5,12 @@
 {% block body %}
     <body class="accueil">
         <header>
-            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-blanc.svg') }}" alt="Logotype Agence Dewey"></a>
+            <a href="#" class="logotype"><img src="{{ asset('images/logotype-blanc.svg') }}" alt="Logotype Agence Dewey"></a>
             
             <nav>
                 <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+                    <li><a href="#creer-un-trajet">Créer un trajet</a></li>
+                    <li><a href="#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
                     {% if is_granted('ROLE_USER') %}
                         <li class="profil"><a href=""><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
                     {% else %}
@@ -40,12 +40,6 @@
                         <a href="{{ path('app_login') }}"><button type="button">Créer le trajet</button></a>
                     {% endif %}
                 {{ form_end(form) }}
-
-                {% for message in app.flashes('success') %}
-                    <div class="alerte">
-                        <p>{{ message }}</p>
-                    </div>
-                {% endfor %}
             </section>
 
             <section class="texte-defilant">
@@ -111,47 +105,20 @@
                                 {% endif %}
                             </div>
                             {% if is_granted('ROLE_USER') %}
-                                <button type="button" onclick="reservation({{ trajet.id }}, {{ trajet.siegesLibres }})">Réserver</button>
+                                {% if trajet.siegesLibres >= 1 %}
+                                    <a href="{{ path('app_reservation', {'id': trajet.id}) }}"><button>Réserver</button></a>
+                                {% else %}
+                                    <button class="complet">Réserver</button>
+                                {% endif %}
                             {% else %}
                                 <a href="{{ path('app_login') }}"><button type="button">Réserver</button></a>
                             {% endif %}
                         </div>
                     {% else %}
-                        <p>Aucun trajet disponible pour le moment</p>
+                        <p class="vide">Aucun trajet disponible pour le moment.</p>
                     {% endfor %}
                 </div>
             </section>
         </main>
     </body>
-
-    <script>
-        function reservation(trajetId, siegesLibres) {
-            let options = '';
-
-            for (let i = 1; i <= siegesLibres; i++) {
-                options += `<option value="${i}">${i} place${i > 1 ? 's' : ''}</option>`;
-            }
-            
-            const popup = document.createElement('div');
-
-            popup.className = 'conteneur';
-            popup.innerHTML = `
-                <div class="pop-up">
-                    <p class="croix" onclick="this.closest('.pop-up').parentNode.remove()">✕</p>
-
-                    <h3>Combien de places souhaitez-vous réserver ?</h3>
-
-                    <form method="POST" action="/reservation/${trajetId}">
-                        <select name="sieges_reserves">
-                            ${options}
-                        </select><br>
-
-                        <button type="submit">Confirmer</button>
-                    </form>
-                </div>
-            `;
-            
-            document.body.appendChild(popup);
-        }
-    </script>
 {% endblock %}

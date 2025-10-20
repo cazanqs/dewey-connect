@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réserver un trajet{{ parent() }}{% endblock %}
+
+{% block body %}
+    <body class="reserver-un-trajet">
+        <header>
+            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+            
+            <nav>
+                <ul>
+                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
+                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="profil"><a href=""><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h2>Réserver un trajet</h2>
+            
+            <div class="trajet-details">
+                <h3>{{ trajet.pointDeDepart }} → {{ trajet.destination }}</h3>
+                <p><strong>Date :</strong> {{ trajet.dateEtHeure|date('d/m/Y H:i') }}</p>
+                <p><strong>Conducteur :</strong> {{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
+                <p><strong>Places disponibles :</strong> {{ trajet.siegesLibres }}</p>
+            </div>
+
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                
+                <div class="form-actions">
+                    <button type="submit">Confirmer la réservation</button>
+                    <a href="{{ path('app_accueil') }}">Annuler</a>
+                </div>
+            {{ form_end(form) }}
+        </main>
+    </body>
+{% endblock %}

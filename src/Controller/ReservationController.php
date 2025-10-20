@@ -9,28 +9,38 @@ use App\Entity\Trajet;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Reservation;
+use App\Form\ReservationType;
 
 final class ReservationController extends AbstractController
 {
-    #[Route('/reservation/{id}', name: 'app_reservation', methods: ['GET', 'POST'])]
+    #[Route('/reservation/{id}', name: 'app_reservation')]
     public function index(Trajet $trajet, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $siegesReserves = (int) $request->request->get('sieges_reserves');
+        $reservation = new Reservation();
+        $reservation->setTrajet($trajet);
+        $reservation->setUtilisateur($this->getUser());
         
-        if ($siegesReserves > 0 && $siegesReserves <= $trajet->getSiegesLibres()) {
-            $reservation = new Reservation();
-            $reservation->setUtilisateur($this->getUser());
-            $reservation->setTrajet($trajet);
-            $reservation->setSiegesReserves($siegesReserves);
+        $form = $this->createForm(ReservationType::class, $reservation, [
+            'trajet' => $trajet
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $siegesReserves = $reservation->getSiegesReserves();
             
-            $trajet->setSiegesLibres($trajet->getSiegesLibres() - $siegesReserves);
-            
-            $entityManager->persist($reservation);
-            $entityManager->flush();
-            
-            $this->addFlash('success', 'Réservation effectuée avec succès !');
+            if ($siegesReserves > 0 && $siegesReserves <= $trajet->getSiegesLibres()) {
+                $trajet->setSiegesLibres($trajet->getSiegesLibres() - $siegesReserves);
+                
+                $entityManager->persist($reservation);
+                $entityManager->flush();
+                
+                return $this->redirectToRoute('app_accueil');
+            }
         }
-        
-        return $this->redirectToRoute('app_accueil');
+
+        return $this->render('reservation/index.html.twig', [
+            'trajet' => $trajet,
+            'form' => $form->createView(),
+        ]);
     }
 }

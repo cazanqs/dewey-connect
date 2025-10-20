@@ -184,51 +184,15 @@ $vert: #33b698;
                         object-position: center;
                     }
                 }
-            }
-        }
-    }
-}
 
-.conteneur {
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, .5);
-
-    .pop-up {
-        position: relative;
-        text-align: center;
-        background: white;
-        border-radius: 25px;
-        padding: 50px;
-
-        .croix {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            cursor: pointer;
-        }
-
-        select {
-            appearance: none;
-            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
-            background-position: right 10px center;
-            background-size: 20px;
-            padding: 10px 30px 10px 10px;
-            margin: 25px 0;
-
-            &:focus {
-                outline-color: $vert;
+                .complet {
+                    background-color: $vert;
+                }
             }
         }
 
-        button {
-            margin: 0 auto;
+        .vide {
+            color: white;
         }
     }
 }

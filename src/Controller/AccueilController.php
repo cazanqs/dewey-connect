@@ -25,7 +25,6 @@ final class AccueilController extends AbstractController
             $entityManager->persist($trajet);
             $entityManager->flush();
             
-            $this->addFlash('success', 'Trajet créé avec succès !');
             return $this->redirectToRoute('app_accueil');
         }
 

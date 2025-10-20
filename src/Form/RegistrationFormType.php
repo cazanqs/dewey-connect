@@ -25,11 +25,11 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer votre mot de passe',
+                        'message' => 'Veuillez entrer votre mot de passe.',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => "Veuillez saisir un mot de passe d'au moins {{ limit }} caractères",
+                        'minMessage' => "Veuillez saisir un mot de passe d'au moins {{ limit }} caractères.",
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
@@ -39,7 +39,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer votre prénom',
+                        'message' => 'Veuillez entrer votre prénom.',
                     ]),
                 ],
             ])
@@ -47,7 +47,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Nom de famille',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer votre nom de famille',
+                        'message' => 'Veuillez entrer votre nom de famille.',
                     ]),
                 ],
             ])
@@ -55,7 +55,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Téléphone',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer votre téléphone',
+                        'message' => 'Veuillez entrer votre téléphone.',
                     ]),
                 ],
             ])
@@ -63,7 +63,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Vous devez accepter les conditions.',
+                        'message' => 'Veuillez accepter les conditions.',
                     ]),
                 ],
             ])
