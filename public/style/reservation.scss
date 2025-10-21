@@ -1,0 +1,59 @@
+$vert: #33b698;
+
+.reservation{
+    .profil img {
+        filter: invert(1);
+    }
+
+    main {
+        width: 90%;
+        margin: auto;
+
+        .annulation {
+            color: black;
+
+            &::before {
+                content: "< ";
+            }
+        }
+
+        .trajet {
+            width: fit-content;
+            color: white;
+            background-color: $vert;
+            padding: 25px;
+            margin: 50px auto 0;
+
+            .icone {
+                margin-bottom: 25px;
+
+                img {
+                    filter: invert(1);
+                }
+
+                div {
+                    height: 75px;
+                }
+            }
+
+            label {
+                display: none;
+            }
+
+            #reservation {
+                width: fit-content;
+                margin: 25px auto 0;
+            }
+
+            button {
+                color: white;
+                border-color: white;
+                margin: 25px auto 0;
+
+                &::after {
+                    filter: brightness(3);
+                }
+            }
+        }
+    }
+}

@@ -61,7 +61,39 @@ button {
     }
 }
 
-.alerte p {
-    color: $vert;
-    text-align: center;
+.trajet {
+    border-radius: 25px;
+
+    .icone {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 50px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100px;
+        }
+
+        img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+
+    .invalide {
+        background-color: $vert;
+
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
 }

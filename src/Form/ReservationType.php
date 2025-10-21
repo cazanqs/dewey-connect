@@ -25,9 +25,8 @@ class ReservationType extends AbstractType
         
         $builder
             ->add('sieges_reserves', ChoiceType::class, [
-                'label' => 'Nombre de places à réserver',
                 'choices' => $choices,
-                'placeholder' => 'Choisissez le nombre de places',
+                'placeholder' => 'Nombre de places à réserver',
                 'attr' => [
                     'class' => 'form-select'
                 ]

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Réserver un trajet{{ parent() }}{% endblock %}
+{% block title %}Réserver le trajet{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="reserver-un-trajet">
+    <body class="reservation">
         <header>
             <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
             
@@ -20,23 +20,52 @@
             </nav>
         </header>
         <main>
-            <h2>Réserver un trajet</h2>
-            
-            <div class="trajet-details">
-                <h3>{{ trajet.pointDeDepart }} → {{ trajet.destination }}</h3>
-                <p><strong>Date :</strong> {{ trajet.dateEtHeure|date('d/m/Y H:i') }}</p>
-                <p><strong>Conducteur :</strong> {{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
-                <p><strong>Places disponibles :</strong> {{ trajet.siegesLibres }}</p>
-            </div>
+            <h1>Réserver le trajet</h1>
 
-            {{ form_start(form) }}
-                {{ form_widget(form) }}
-                
-                <div class="form-actions">
-                    <button type="submit">Confirmer la réservation</button>
-                    <a href="{{ path('app_accueil') }}">Annuler</a>
+            <a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles" class="annulation">Annuler la réservation</a>
+
+            <div class="trajet">
+                <div class="icone">
+                    <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
+
+                    <div>
+                        <p>{{ trajet.pointDeDepart }}</p>
+                        <p>{{ trajet.destination }}</p>
+                    </div>
                 </div>
-            {{ form_end(form) }}
+
+                <div class="icone">
+                    <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un utilisateur">
+
+                    <p>{{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
+                </div>
+
+                <div class="icone">
+                    <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
+
+                    <p>{{ trajet.dateEtHeure|date('d/m/Y H:i') }}</p>
+                </div>
+
+                <div class="icone">
+                    <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
+
+                    {% if trajet.siegesLibres > 1 %}
+                        <p>Il reste encore {{ trajet.siegesLibres }} places</p>
+                    {% elseif trajet.siegesLibres == 1 %}
+                        <p>Il reste encore {{ trajet.siegesLibres }} place</p>
+                    {% else %}
+                        <p>Complet</p>
+                    {% endif %}
+                </div>
+
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    
+                    <div class="form-actions">
+                        <button type="submit">Réserver</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
         </main>
     </body>
 {% endblock %}

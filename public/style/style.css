@@ -56,9 +56,35 @@ button:hover::after {
   transform: rotate(45deg);
 }
 
-.alerte p {
-  color: #33b698;
-  text-align: center;
+.trajet {
+  border-radius: 25px;
+}
+.trajet .icone {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 50px;
+}
+.trajet .icone:last-of-type {
+  margin-bottom: 0;
+}
+.trajet .icone div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+}
+.trajet .icone img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  object-position: center;
+}
+.trajet .invalide {
+  background-color: #33b698;
+}
+.trajet .invalide:hover {
+  cursor: not-allowed;
 }
 
 header {
@@ -234,35 +260,55 @@ header ul .profil img {
 }
 .accueil #voir-les-trajets-disponibles .trajets .trajet {
   background-color: white;
-  border-radius: 25px;
   padding: 50px 25px 0 25px;
-}
-.accueil #voir-les-trajets-disponibles .trajets .trajet .icone {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  margin-bottom: 50px;
-}
-.accueil #voir-les-trajets-disponibles .trajets .trajet .icone:last-of-type {
-  margin-bottom: 0;
-}
-.accueil #voir-les-trajets-disponibles .trajets .trajet .icone div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100px;
-}
-.accueil #voir-les-trajets-disponibles .trajets .trajet .icone img {
-  height: 40px;
-  width: 40px;
-  object-fit: contain;
-  object-position: center;
-}
-.accueil #voir-les-trajets-disponibles .trajets .trajet .complet {
-  background-color: #33b698;
 }
 .accueil #voir-les-trajets-disponibles .vide {
   color: white;
+}
+
+.reservation .profil img {
+  filter: invert(1);
+}
+.reservation main {
+  width: 90%;
+  margin: auto;
+}
+.reservation main .annulation {
+  color: black;
+}
+.reservation main .annulation::before {
+  content: "< ";
+}
+.reservation main .trajet {
+  width: fit-content;
+  color: white;
+  background-color: #33b698;
+  padding: 25px;
+  margin: 50px auto 0;
+}
+.reservation main .trajet .icone {
+  margin-bottom: 25px;
+}
+.reservation main .trajet .icone img {
+  filter: invert(1);
+}
+.reservation main .trajet .icone div {
+  height: 75px;
+}
+.reservation main .trajet label {
+  display: none;
+}
+.reservation main .trajet #reservation {
+  width: fit-content;
+  margin: 25px auto 0;
+}
+.reservation main .trajet button {
+  color: white;
+  border-color: white;
+  margin: 25px auto 0;
+}
+.reservation main .trajet button::after {
+  filter: brightness(3);
 }
 
 /*# sourceMappingURL=style.css.map */

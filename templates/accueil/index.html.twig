@@ -76,26 +76,34 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="trajets">
                     {% for trajet in trajets %}
                         <div class="trajet">
                             <div class="icone">
                                 <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
+
                                 <div>
                                     <p>{{ trajet.pointDeDepart }}</p>
                                     <p>{{ trajet.destination }}</p>
                                 </div>
                             </div>
+
                             <div class="icone">
                                 <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un utilisateur">
+                                
                                 <p>{{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
                             </div>
+
                             <div class="icone">
                                 <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
+
                                 <p>{{ trajet.dateEtHeure|date('d/m/Y H:i') }}</p>
                             </div>
+
                             <div class="icone">
                                 <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
+                                
                                 {% if trajet.siegesLibres > 1 %}
                                     <p>Il reste encore {{ trajet.siegesLibres }} places</p>
                                 {% elseif trajet.siegesLibres == 1 %}
@@ -105,13 +113,17 @@
                                 {% endif %}
                             </div>
                             {% if is_granted('ROLE_USER') %}
-                                {% if trajet.siegesLibres >= 1 %}
+                                {% if trajet.siegesLibres >= 1 and trajet.utilisateur.id != app.user.id %}
                                     <a href="{{ path('app_reservation', {'id': trajet.id}) }}"><button>Réserver</button></a>
                                 {% else %}
-                                    <button class="complet">Réserver</button>
+                                    <button class="invalide">Réserver</button>
                                 {% endif %}
                             {% else %}
-                                <a href="{{ path('app_login') }}"><button type="button">Réserver</button></a>
+                                {% if trajet.siegesLibres >= 1 %}
+                                    <a href="{{ path('app_login') }}"><button type="button">Réserver</button></a>
+                                {% else %}
+                                    <button class="invalide">Réserver</button>
+                                {% endif %}
                             {% endif %}
                         </div>
                     {% else %}
