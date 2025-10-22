@@ -4,41 +4,25 @@
 
 {% block body %}
     <body class="connexion">
-        <header>
-            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-            <nav>
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-                    <li class="profil"><a href=""><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                </ul>
-            </nav>
-        </header>
         <main>
-            <form method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
+            <section>
+                <div class="image"><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></div>
 
-                <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-                <label for="username">Email</label>
-                <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-                <label for="password">Mot de passe</label>
-                <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-                <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                <form method="post">
+                    <div class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></div>
 
-                {#
-                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                    See https://symfony.com/doc/current/security/remember_me.html
+                    <h1>Connexion</h1>
 
-                    <div class="checkbox mb-3">
-                        <input type="checkbox" name="_remember_me" id="_remember_me">
-                        <label for="_remember_me">Remember me</label>
+                    <div class="form">
+                        <input type="email" value="{{ last_username }}" name="_username" id="username" autocomplete="email" placeholder="Email" required>
+                        <input type="password" name="_password" id="password" autocomplete="current-password" placeholder="Mot de passe" required>
                     </div>
-                #}
 
-                <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>
-            </form>
+                    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                    
+                    <button type="submit">Se connecter</button>
+                </form>
+            </section>
         </main>
     </body>
 {% endblock %}

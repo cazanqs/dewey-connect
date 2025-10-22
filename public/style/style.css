@@ -19,7 +19,7 @@ h2 {
   font-size: 40px;
 }
 
-p, a, li, button, label, input {
+p, a, li, button, input, select {
   font-size: 20px;
 }
 
@@ -302,13 +302,77 @@ header ul .profil img {
   width: fit-content;
   margin: 25px auto 0;
 }
+.reservation main .trajet #reservation select {
+  color: white;
+  border: solid 2px white;
+  appearance: none;
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  padding: 10px 40px 10px 10px;
+}
+.reservation main .trajet #reservation select:focus {
+  outline-color: #33b698;
+}
 .reservation main .trajet button {
   color: white;
   border-color: white;
-  margin: 25px auto 0;
+  margin-bottom: 0;
 }
 .reservation main .trajet button::after {
   filter: brightness(3);
+}
+
+.connexion {
+  background-color: #33b698;
+}
+.connexion section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 90%;
+  background-color: white;
+  border-radius: 25px;
+  margin: auto;
+}
+.connexion section .image {
+  position: relative;
+  height: 90vh;
+  width: 60%;
+  object-fit: cover;
+  border-radius: 25px 0 0 25px;
+  line-height: 0;
+}
+.connexion section .image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 25px 0 0 25px;
+}
+.connexion section .image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.connexion section form {
+  width: 40%;
+  padding: 50px 25px;
+}
+.connexion section form div {
+  width: 25%;
+  margin: 0 auto 50px;
+}
+.connexion section form div img {
+  width: 100%;
+}
+.connexion section form h1 {
+  margin-bottom: 50px;
 }
 
 /*# sourceMappingURL=style.css.map */

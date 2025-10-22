@@ -11,6 +11,7 @@
                 <ul>
                     <li><a href="#creer-un-trajet">Créer un trajet</a></li>
                     <li><a href="#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+
                     {% if is_granted('ROLE_USER') %}
                         <li class="profil"><a href=""><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
                     {% else %}
