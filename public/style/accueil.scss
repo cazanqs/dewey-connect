@@ -1,6 +1,10 @@
 $vert: #33b698;
 
 .accueil {
+    a {
+        text-decoration: none;
+    }
+
     .banniere {
         position: relative;
         height: 90vh;

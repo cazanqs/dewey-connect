@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -19,12 +20,8 @@ h2 {
   font-size: 40px;
 }
 
-p, a, li, button, input, select {
+p, a, li, button, input, select, label {
   font-size: 20px;
-}
-
-a {
-  text-decoration: none;
 }
 
 button {
@@ -113,6 +110,7 @@ header ul a {
   font-size: 20px;
   font-weight: bold;
   color: black;
+  text-decoration: none;
 }
 header ul .profil {
   width: 40px;
@@ -130,6 +128,9 @@ header ul .profil img {
   color: white;
 }
 
+.accueil a {
+  text-decoration: none;
+}
 .accueil .banniere {
   position: relative;
   height: 90vh;
@@ -323,56 +324,120 @@ header ul .profil img {
   filter: brightness(3);
 }
 
-.connexion {
-  background-color: #33b698;
-}
-.connexion section {
+.authentification section {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  width: 90%;
-  background-color: white;
+  width: 80%;
+  background-color: #33b698;
   border-radius: 25px;
   margin: auto;
 }
-.connexion section .image {
+.authentification section .image {
   position: relative;
-  height: 90vh;
   width: 60%;
   object-fit: cover;
-  border-radius: 25px 0 0 25px;
   line-height: 0;
 }
-.connexion section .image::after {
+.authentification section .image::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  background-image: url("../images/logotype-blanc.svg");
+  background-size: 25%;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 25px 0 0 25px;
 }
-.connexion section .image img {
+.authentification section .image img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border-radius: 25px 0 0 25px;
 }
-.connexion section form {
+.authentification section form {
   width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
   padding: 50px 25px;
 }
-.connexion section form div {
-  width: 25%;
-  margin: 0 auto 50px;
+.authentification section form h1 {
+  color: white;
 }
-.connexion section form div img {
+.authentification section form .formulaire {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto;
+}
+.authentification section form .formulaire input {
+  color: white;
+  background-color: transparent;
+  border: solid 2px white;
+  padding: 10px;
+}
+.authentification section form .formulaire input::placeholder {
+  color: white;
+}
+.authentification section form .formulaire input:focus {
+  outline-color: #33b698;
+}
+.authentification section form button {
+  color: white;
+  border-color: white;
+  margin: 0 auto;
+}
+.authentification section form button::after {
+  filter: brightness(3);
+}
+.authentification section form p {
+  color: white;
+  text-align: center;
+}
+.authentification.inscription label {
+  display: none;
+}
+.authentification.inscription input {
   width: 100%;
+  box-sizing: border-box;
 }
-.connexion section form h1 {
-  margin-bottom: 50px;
+.authentification.inscription .nom {
+  display: flex;
+  gap: 10px;
+}
+.authentification.inscription .conditions div {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+  gap: 10px;
+}
+.authentification.inscription .conditions div input {
+  position: relative;
+  width: fit-content;
+  appearance: none;
+}
+.authentification.inscription .conditions div input:hover {
+  cursor: pointer;
+}
+.authentification.inscription .conditions div input:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.authentification.inscription .conditions div label {
+  display: block;
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */

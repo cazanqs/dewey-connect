@@ -17,12 +17,17 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', null, [
+                'attr' => ['placeholder' => 'Adresse email']
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'placeholder' => 'Mot de passe'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre mot de passe.',
@@ -37,6 +42,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('prenom', null, [
                 'label' => 'Prénom',
+                'attr' => ['placeholder' => 'Prénom'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre prénom.',
@@ -45,6 +51,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('nom_de_famille', null, [
                 'label' => 'Nom de famille',
+                'attr' => ['placeholder' => 'Nom de famille'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre nom de famille.',
@@ -53,6 +60,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('telephone', null, [
                 'label' => 'Téléphone',
+                'attr' => ['placeholder' => 'Numéro de téléphone'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre téléphone.',

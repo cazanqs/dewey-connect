@@ -3,36 +3,38 @@
 {% block title %}Inscription{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="inscription">
-        <header>
-            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-            <nav>
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-                    <li class="profil"><a href=""><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                </ul>
-            </nav>
-        </header>
+    <body class="authentification inscription">
         <main>
-            <h1>Inscription</h1>
+            <section>
+                <a href="{{ path('app_accueil') }}" class="image"><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></a>
 
-            {{ form_errors(registrationForm) }}
+                {{ form_start(registrationForm) }}
+                    <h1>Inscription</h1>
 
-            {{ form_start(registrationForm) }}
-                {{ form_row(registrationForm.email) }}
-                {{ form_row(registrationForm.plainPassword, {
-                    label: 'Mot de passe'
-                }) }}
-                {{ form_row(registrationForm.prenom) }}
-                {{ form_row(registrationForm.nom_de_famille) }}
-                {{ form_row(registrationForm.telephone) }}
-                {{ form_row(registrationForm.agreeTerms, {
-                    label: "J'accepte les conditions"
-                }) }}
+                    <div class="formulaire">
+                        {{ form_row(registrationForm.email) }}
+                        {{ form_row(registrationForm.plainPassword) }}
+                        
+                        <div class="nom">
+                            {{ form_row(registrationForm.prenom) }}
+                            {{ form_row(registrationForm.nom_de_famille) }}
+                        </div>
 
-                <button type="submit" class="btn">S'inscrire</button>
-            {{ form_end(registrationForm) }}
+                        {{ form_row(registrationForm.telephone) }}
+                        
+                        <div class="conditions">
+                            {{ form_row(registrationForm.agreeTerms, {
+                                label: "J'accepte les conditions"
+                            }) }}
+                        </div>
+                    </div>
+
+                    <button type="submit">S'inscrire</button>
+
+                    <p>Déjà un compte ? <a href="{{ path('app_login') }}">Connectez-vous</a> !</p>
+                {{ form_end(registrationForm) }}
+
+            </section>
         </main>
     </body>
 {% endblock %}

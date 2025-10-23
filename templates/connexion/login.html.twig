@@ -3,17 +3,15 @@
 {% block title %}Connexion{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="connexion">
+    <body class="authentification">
         <main>
             <section>
-                <div class="image"><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></div>
+                <a href="{{ path('app_accueil') }}" class="image"><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></a>
 
                 <form method="post">
-                    <div class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></div>
-
                     <h1>Connexion</h1>
 
-                    <div class="form">
+                    <div class="formulaire">
                         <input type="email" value="{{ last_username }}" name="_username" id="username" autocomplete="email" placeholder="Email" required>
                         <input type="password" name="_password" id="password" autocomplete="current-password" placeholder="Mot de passe" required>
                     </div>
@@ -21,6 +19,8 @@
                     <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
                     
                     <button type="submit">Se connecter</button>
+
+                    <p>Aucun compte ? <a href="{{ path('app_register') }}">Inscrivez-vous</a> !</p>
                 </form>
             </section>
         </main>
