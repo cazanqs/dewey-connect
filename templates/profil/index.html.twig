@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{{ parent() }}{% endblock %}
+
+{% block body %}
+    <body>
+        <header>
+            <a href="#" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#creer-un-trajet">Créer un trajet</a></li>
+                    <li><a href="#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Mon Profil</h1>
+            
+            <div class="user-info">
+                <h2>Informations actuelles</h2>
+                <p><strong>Email :</strong> {{ user.email }}</p>
+                <p><strong>Prénom :</strong> {{ user.prenom }}</p>
+                <p><strong>Nom :</strong> {{ user.nomDeFamille }}</p>
+                <p><strong>Téléphone :</strong> {{ user.telephone }}</p>
+            </div>
+
+            <div class="edit-form">
+                <h2>Modifier mes informations</h2>
+                
+                {{ form_start(profilForm) }}
+                    {{ form_widget(profilForm) }}
+                    
+                    <button type="submit">Mettre à jour</button>
+                    <a href="{{ path('app_accueil') }}">Retour à l'accueil</a>
+                {{ form_end(profilForm) }}
+            </div>
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-error">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </main>
+    </body>
+{% endblock %}
