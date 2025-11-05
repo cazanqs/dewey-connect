@@ -52,24 +52,24 @@ button:hover {
 button:hover::after {
   transform: rotate(45deg);
 }
+button.white {
+  color: white;
+  border-color: white;
+  margin-bottom: 0;
+}
+button.white::after {
+  filter: brightness(3);
+}
 
 .trajet {
   border-radius: 25px;
+  padding: 50px 25px;
 }
 .trajet .icone {
   display: flex;
   align-items: center;
   gap: 25px;
-  margin-bottom: 50px;
-}
-.trajet .icone:last-of-type {
-  margin-bottom: 0;
-}
-.trajet .icone div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100px;
+  margin-bottom: 35px;
 }
 .trajet .icone img {
   height: 40px;
@@ -77,10 +77,19 @@ button:hover::after {
   object-fit: contain;
   object-position: center;
 }
-.trajet .invalide {
+.trajet .icone div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+}
+.trajet button {
+  margin: 0 auto;
+}
+.trajet button.invalide {
   background-color: #33b698;
 }
-.trajet .invalide:hover {
+.trajet button.invalide:hover {
   cursor: not-allowed;
 }
 
@@ -227,9 +236,9 @@ header ul .profil img {
 }
 .accueil .texte-defilant .animation .textes p::after {
   content: "";
-  display: block;
   height: 25px;
   width: 25px;
+  display: block;
   border-radius: 100%;
 }
 @keyframes text-defilant {
@@ -260,15 +269,14 @@ header ul .profil img {
   background-color: white;
 }
 .accueil #voir-les-trajets-disponibles .trajets {
+  width: 90%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
-  width: 90%;
   margin: auto;
 }
 .accueil #voir-les-trajets-disponibles .trajets .trajet {
   background-color: white;
-  padding: 50px 25px 0 25px;
 }
 .accueil #voir-les-trajets-disponibles .vide {
   color: white;
@@ -285,24 +293,17 @@ header ul .profil img {
   width: fit-content;
   color: white;
   background-color: #33b698;
-  padding: 25px;
   margin: 50px auto 0;
 }
-.reservation main .trajet .icone {
-  margin-bottom: 25px;
-}
-.reservation main .trajet .icone img {
+.reservation main .trajet img {
   filter: invert(1);
-}
-.reservation main .trajet .icone div {
-  height: 75px;
 }
 .reservation main .trajet label {
   display: none;
 }
 .reservation main .trajet #reservation {
   width: fit-content;
-  margin: 25px auto 0;
+  margin: 0 auto 35px;
 }
 .reservation main .trajet #reservation select {
   color: white;
@@ -315,14 +316,6 @@ header ul .profil img {
 }
 .reservation main .trajet #reservation select:focus {
   outline-color: black;
-}
-.reservation main .trajet button {
-  color: white;
-  border-color: white;
-  margin-bottom: 0;
-}
-.reservation main .trajet button::after {
-  filter: brightness(3);
 }
 
 .authentification section {
@@ -451,10 +444,10 @@ header ul .profil img {
 .profil main .conteneur {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-top: 50px;
 }
 .profil main .conteneur .navigation {
+  height: fit-content;
   width: 25%;
   background-color: #33b698;
   border-radius: 25px;
@@ -509,16 +502,32 @@ header ul .profil img {
 .profil main .conteneur .informations .centre form div {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
-.profil main .conteneur .informations .centre form div input {
+.profil main .conteneur .informations .centre form div input, .profil main .conteneur .informations .centre form div select {
   border: solid 2px #33b698;
   padding: 10px;
 }
-.profil main .conteneur .informations .centre form div input:focus {
+.profil main .conteneur .informations .centre form div input:focus, .profil main .conteneur .informations .centre form div select:focus {
   outline-color: black;
+}
+.profil main .conteneur .informations .centre form div select {
+  appearance: none;
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2333b698' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  padding-right: 40px;
 }
 .profil main .conteneur .informations .centre form div.nom {
   flex-direction: row;
+  gap: 10px;
+}
+.profil main .conteneur .informations .centre.largeur {
+  width: 70%;
+}
+.profil main .conteneur .informations .centre.largeur #trajet {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 .profil main .conteneur .informations .modifier {
@@ -533,14 +542,39 @@ header ul .profil img {
 .profil main .conteneur .informations .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
 }
 .profil main .conteneur .informations .grid .trajet {
+  position: relative;
   color: white;
   background-color: #33b698;
-  padding: 25px;
+  padding: 60px 25px 25px;
+}
+.profil main .conteneur .informations .grid .trajet .statut {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  border-radius: 25px;
+  padding: 2.5px;
+}
+.profil main .conteneur .informations .grid .trajet .statut p {
+  font-size: 15px;
+  color: white;
+  border-radius: 25px;
+  padding: 5px 10px;
+}
+.profil main .conteneur .informations .grid .trajet .statut .a-venir {
+  background-color: #33b698;
+}
+.profil main .conteneur .informations .grid .trajet .statut .effectue {
+  background-color: red;
 }
 .profil main .conteneur .informations .grid .trajet img {
   filter: invert(1);
+}
+.profil main .conteneur .informations .grid a {
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=style.css.map */

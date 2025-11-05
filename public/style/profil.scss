@@ -12,10 +12,10 @@ $vert: #33b698;
         .conteneur {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             margin-top: 50px;
 
             .navigation {
+                height: fit-content;
                 width: 25%;
                 background-color: $vert;
                 border-radius: 25px;
@@ -77,8 +77,9 @@ $vert: #33b698;
                         div {
                             display: flex;
                             flex-direction: column;
+                            gap: 5px;
 
-                            input {
+                            input, select {
                                 border: solid 2px $vert;
                                 padding: 10px;
 
@@ -87,10 +88,28 @@ $vert: #33b698;
                                 }
                             }
 
+                            select {
+                                appearance: none;
+                                background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2333b698' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
+                                background-position: right 10px center;
+                                background-size: 20px;
+                                padding-right: 40px
+                            }
+
                             &.nom {
                                 flex-direction: row;
                                 gap: 10px;
                             }
+                        }
+                    }
+
+                    &.largeur {
+                        width: 70%;
+
+                        #trajet {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
                         }
                     }
                 }
@@ -109,15 +128,45 @@ $vert: #33b698;
                 .grid {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
+                    gap: 25px;
 
                     .trajet {
+                        position: relative;
                         color: white;
                         background-color: $vert;
-                        padding: 25px;
+                        padding: 60px 25px 25px;
+
+                        .statut {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            background-color: white;
+                            border-radius: 25px;
+                            padding: 2.5px;
+
+                            p {
+                                font-size: 15px;
+                                color: white;
+                                border-radius: 25px;
+                                padding: 5px 10px;
+                            }
+
+                            .a-venir {
+                                background-color: $vert;
+                            }
+
+                            .effectue {
+                                background-color: red;
+                            }
+                        }
 
                         img {
                             filter: invert(1);
                         }
+                    }
+
+                    a {
+                        text-decoration: none;
                     }
                 }
             }

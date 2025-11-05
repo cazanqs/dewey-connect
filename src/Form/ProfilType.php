@@ -16,7 +16,8 @@ class ProfilType extends AbstractType
     {
         $builder
             ->add('email', null, [
-                'label' => 'Adresse email : ',
+                'label' => 'Adresse email',
+                'attr' => ['placeholder' => 'Adresse email'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre adresse email.',
@@ -24,7 +25,8 @@ class ProfilType extends AbstractType
                 ],
             ])
             ->add('prenom', null, [
-                'label' => 'Prénom : ',
+                'label' => 'Prénom',
+                'attr' => ['placeholder' => 'Prénom'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre prénom.',
@@ -32,7 +34,8 @@ class ProfilType extends AbstractType
                 ],
             ])
             ->add('nom_de_famille', null, [
-                'label' => 'Nom de famille : ',
+                'label' => 'Nom de famille',
+                'attr' => ['placeholder' => 'Nom de famille'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre nom de famille.',
@@ -40,7 +43,8 @@ class ProfilType extends AbstractType
                 ],
             ])
             ->add('telephone', null, [
-                'label' => 'Numéro de téléphone : ',
+                'label' => 'Numéro de téléphone',
+                'attr' => ['placeholder' => 'Numéro de téléphone'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre numéro de téléphone.',
@@ -48,7 +52,7 @@ class ProfilType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'Nouveau mot de passe (optionnel) : ',
+                'label' => 'Nouveau mot de passe (optionnel)',
                 'mapped' => false,
                 'required' => false,
                 'attr' => [

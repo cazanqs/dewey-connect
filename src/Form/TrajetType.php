@@ -16,6 +16,7 @@ class TrajetType extends AbstractType
     {
         $builder
             ->add('point_de_depart', null, [
+                'label' => 'Point de départ',
                 'attr' => ['placeholder' => 'Point de départ']
             ])
             ->add('destination', null, [
@@ -26,6 +27,7 @@ class TrajetType extends AbstractType
                 'attr' => ['placeholder' => 'Date et heure']
             ])
             ->add('sieges_libres', null, [
+                'label' => 'Sièges libres',
                 'attr' => ['placeholder' => 'Sièges libres']
             ])
         ;

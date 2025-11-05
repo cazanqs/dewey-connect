@@ -19,7 +19,7 @@
         <main>
             <h1>Modifier mes informations</h1>
 
-            <a href="{{ path('app_profil') }}" class="annuler">Revenir en arrière</a>
+            <a href="{{ path('app_profil') }}" class="annuler">Annuler la modification</a>
 
             <div class="conteneur">
                 <section class="navigation">
@@ -27,7 +27,7 @@
                         <ul>
                             <li><a href="{{ path('app_profil') }}">Mes informations</a></li>
                             <li><a href="{{ path('app_profil_trajets') }}">Mes trajets</a></li>
-                            <li><a href="#">Mes réservations</a></li>
+                            <li><a href="{{ path('app_profil_reservations') }}">Mes réservations</a></li>
                             <li><a href="{{ path('app_logout') }}" class="deconnexion">Se déconnecter</a></li>
                         </ul>
                     </nav>

@@ -55,27 +55,27 @@ button {
             transform: rotate(45deg);
         }
     }
+
+    &.white {
+        color: white;
+        border-color: white;
+        margin-bottom: 0;
+
+        &::after {
+            filter: brightness(3);
+        }
+    }
 }
 
 .trajet {
     border-radius: 25px;
+    padding: 50px 25px;
 
     .icone {
         display: flex;
         align-items: center;
         gap: 25px;
-        margin-bottom: 50px;
-
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-
-        div {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100px;
-        }
+        margin-bottom: 35px;
 
         img {
             height: 40px;
@@ -83,13 +83,24 @@ button {
             object-fit: contain;
             object-position: center;
         }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 15px;
+        }
     }
 
-    .invalide {
-        background-color: $vert;
+    button {
+        margin: 0 auto;
 
-        &:hover {
-            cursor: not-allowed;
+        &.invalide {
+            background-color: $vert;
+
+            &:hover {
+                cursor: not-allowed;
+            }
         }
     }
 }

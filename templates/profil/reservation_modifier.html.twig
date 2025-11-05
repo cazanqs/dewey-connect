@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon profil{{ parent() }}{% endblock %}
+{% block title %}Modifier un trajet{{ parent() }}{% endblock %}
 
 {% block body %}
     <body class="profil">
@@ -17,7 +17,9 @@
         </header>
 
         <main>
-            <h1>Mes informations</h1>
+            <h1>Modifier un trajet</h1>
+
+            <a href="{{ path('app_profil_reservations') }}" class="annuler">Annuler la modification</a>
 
             <div class="conteneur">
                 <section class="navigation">
@@ -32,16 +34,12 @@
                 </section>
 
                 <section class="informations">
-                    <div class="centre">
-                        <p>Adresse email : {{ user.email }}</p>
-                        <p>Prénom : {{ user.prenom }}</p>
-                        <p>Nom de famille : {{ user.nomDeFamille }}</p>
-                        <p>Numéro de téléphone : {{ user.telephone }}</p>
-                    </div>
-
-                    <div class="modifier">
-                        <a href="{{ path('app_profil_modifier') }}">Modifier mes informations</a>
-                        <a href="{{ path('app_profil_modifier') }}">Modifier mon mot de passe</a>
+                    <div class="centre largeur">
+                        {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                            
+                            <button type="submit">Enregistrer</button>
+                        {{ form_end(form) }}
                     </div>
                 </section>
             </div>

@@ -16,6 +16,7 @@ final class AccueilController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $trajet = new Trajet();
+
         $form = $this->createForm(TrajetType::class, $trajet);
         $form->handleRequest($request);
 
@@ -29,6 +30,7 @@ final class AccueilController extends AbstractController
         }
 
         $trajetsRepository = $entityManager->getRepository(Trajet::class);
+
         $trajets = $trajetsRepository->createQueryBuilder('t')
             ->where('t.date_et_heure > :now')
             ->setParameter('now', new \DateTime())

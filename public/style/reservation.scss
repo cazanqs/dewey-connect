@@ -13,19 +13,10 @@ $vert: #33b698;
             width: fit-content;
             color: white;
             background-color: $vert;
-            padding: 25px;
             margin: 50px auto 0;
 
-            .icone {
-                margin-bottom: 25px;
-
-                img {
-                    filter: invert(1);
-                }
-
-                div {
-                    height: 75px;
-                }
+            img {
+                filter: invert(1);
             }
 
             label {
@@ -34,7 +25,7 @@ $vert: #33b698;
 
             #reservation {
                 width: fit-content;
-                margin: 25px auto 0;
+                margin: 0 auto 35px;
 
                 select {
                     color: white;
@@ -48,16 +39,6 @@ $vert: #33b698;
                     &:focus {
                         outline-color: black;
                     }
-                }
-            }
-
-            button {
-                color: white;
-                border-color: white;
-                margin-bottom: 0;
-
-                &::after {
-                    filter: brightness(3);
                 }
             }
         }
