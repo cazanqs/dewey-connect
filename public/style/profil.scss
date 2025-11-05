@@ -1,0 +1,126 @@
+$vert: #33b698;
+
+.profil {
+    .profil img {
+        filter: invert(1);
+    }
+
+    main {
+        width: 75%;
+        margin: auto;
+
+        .conteneur {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+
+            .navigation {
+                width: 25%;
+                background-color: $vert;
+                border-radius: 25px;
+
+                ul {
+                    width: fit-content;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                    list-style: none;
+                    padding: 50px 10px;
+                    margin: auto;
+
+                    a {
+                        color: white;
+
+                        &.deconnexion {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+
+                            &::before {
+                                content: "";
+                                height: 15px;
+                                width: 15px;
+                                background-image: url('../images/deconnexion.svg');
+                                background-size: contain;
+                                background-position: center;
+                                background-repeat: no-repeat;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .informations {
+                width: 70%;
+
+                .centre {
+                    width: fit-content;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: auto;
+
+                    p {
+                        width: fit-content;
+                    }
+
+                    button {
+                        margin: 25px auto 0 ;
+                    }
+
+                    form {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        
+                        div {
+                            display: flex;
+                            flex-direction: column;
+
+                            input {
+                                border: solid 2px $vert;
+                                padding: 10px;
+
+                                &:focus {
+                                    outline-color: black;
+                                }
+                            }
+
+                            &.nom {
+                                flex-direction: row;
+                                gap: 10px;
+                            }
+                        }
+                    }
+                }
+
+                .modifier {
+                    display: flex;
+                    justify-content: center;
+                    gap: 25px;
+                    margin-top: 25px;
+
+                    a {
+                        color: black;
+                    }
+                }
+
+                .grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+
+                    .trajet {
+                        color: white;
+                        background-color: $vert;
+                        padding: 25px;
+
+                        img {
+                            filter: invert(1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon profil{{ parent() }}{% endblock %}
+{% block title %}Modifier mon profil{{ parent() }}{% endblock %}
 
 {% block body %}
     <body class="profil">
@@ -17,7 +17,9 @@
         </header>
 
         <main>
-            <h1>Mes informations</h1>
+            <h1>Modifier mes informations</h1>
+
+            <a href="{{ path('app_profil') }}" class="annuler">Revenir en arrière</a>
 
             <div class="conteneur">
                 <section class="navigation">
@@ -33,15 +35,19 @@
 
                 <section class="informations">
                     <div class="centre">
-                        <p>Adresse email : {{ user.email }}</p>
-                        <p>Prénom : {{ user.prenom }}</p>
-                        <p>Nom de famille : {{ user.nomDeFamille }}</p>
-                        <p>Numéro de téléphone : {{ user.telephone }}</p>
-                    </div>
+                        {{ form_start(profil) }}
+                            {{ form_row(profil.email) }}
+                            
+                            <div class="nom">
+                                {{ form_row(profil.prenom) }}
+                                {{ form_row(profil.nom_de_famille) }}
+                            </div>
+                            
+                            {{ form_row(profil.telephone) }}
+                            {{ form_row(profil.plainPassword) }}
 
-                    <div class="modifier">
-                        <a href="{{ path('app_profil_modifier') }}">Modifier mes informations</a>
-                        <a href="{{ path('app_profil_modifier') }}">Modifier mon mot de passe</a>
+                            <button type="submit">Enregistrer</button>
+                        {{ form_end(profil) }}
                     </div>
                 </section>
             </div>

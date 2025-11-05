@@ -84,6 +84,13 @@ button:hover::after {
   cursor: not-allowed;
 }
 
+.annuler {
+  color: black;
+}
+.annuler::before {
+  content: "< ";
+}
+
 header {
   width: 90%;
   display: flex;
@@ -190,7 +197,7 @@ header ul .profil img {
   box-sizing: border-box;
 }
 .accueil #creer-un-trajet #trajet div input:focus {
-  outline-color: #33b698;
+  outline-color: black;
 }
 .accueil #creer-un-trajet #trajet div:first-of-type input {
   border-radius: 25px 0 0 25px;
@@ -271,14 +278,8 @@ header ul .profil img {
   filter: invert(1);
 }
 .reservation main {
-  width: 90%;
+  width: 75%;
   margin: auto;
-}
-.reservation main .annulation {
-  color: black;
-}
-.reservation main .annulation::before {
-  content: "< ";
 }
 .reservation main .trajet {
   width: fit-content;
@@ -313,7 +314,7 @@ header ul .profil img {
   padding: 10px 40px 10px 10px;
 }
 .reservation main .trajet #reservation select:focus {
-  outline-color: #33b698;
+  outline-color: black;
 }
 .reservation main .trajet button {
   color: white;
@@ -389,7 +390,7 @@ header ul .profil img {
   color: white;
 }
 .authentification section form .formulaire input:focus {
-  outline-color: #33b698;
+  outline-color: black;
 }
 .authentification section form button {
   color: white;
@@ -438,6 +439,108 @@ header ul .profil img {
 .authentification.inscription .conditions div label {
   display: block;
   color: white;
+}
+
+.profil .profil img {
+  filter: invert(1);
+}
+.profil main {
+  width: 75%;
+  margin: auto;
+}
+.profil main .conteneur {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+}
+.profil main .conteneur .navigation {
+  width: 25%;
+  background-color: #33b698;
+  border-radius: 25px;
+}
+.profil main .conteneur .navigation ul {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  list-style: none;
+  padding: 50px 10px;
+  margin: auto;
+}
+.profil main .conteneur .navigation ul a {
+  color: white;
+}
+.profil main .conteneur .navigation ul a.deconnexion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profil main .conteneur .navigation ul a.deconnexion::before {
+  content: "";
+  height: 15px;
+  width: 15px;
+  background-image: url("../images/deconnexion.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.profil main .conteneur .informations {
+  width: 70%;
+}
+.profil main .conteneur .informations .centre {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: auto;
+}
+.profil main .conteneur .informations .centre p {
+  width: fit-content;
+}
+.profil main .conteneur .informations .centre button {
+  margin: 25px auto 0;
+}
+.profil main .conteneur .informations .centre form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profil main .conteneur .informations .centre form div {
+  display: flex;
+  flex-direction: column;
+}
+.profil main .conteneur .informations .centre form div input {
+  border: solid 2px #33b698;
+  padding: 10px;
+}
+.profil main .conteneur .informations .centre form div input:focus {
+  outline-color: black;
+}
+.profil main .conteneur .informations .centre form div.nom {
+  flex-direction: row;
+  gap: 10px;
+}
+.profil main .conteneur .informations .modifier {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 25px;
+}
+.profil main .conteneur .informations .modifier a {
+  color: black;
+}
+.profil main .conteneur .informations .grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.profil main .conteneur .informations .grid .trajet {
+  color: white;
+  background-color: #33b698;
+  padding: 25px;
+}
+.profil main .conteneur .informations .grid .trajet img {
+  filter: invert(1);
 }
 
 /*# sourceMappingURL=style.css.map */

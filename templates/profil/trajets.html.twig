@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes trajets{{ parent() }}{% endblock %}
+
+{% block body %}
+    <body class="profil">
+        <header>
+            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+            
+            <nav>
+                <ul>
+                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
+                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+                    <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Mes trajets</h1>
+
+            <a href="{{ path('app_profil') }}" class="annuler">Revenir en arrière</a>
+
+            <div class="conteneur">
+                <section class="navigation">
+                    <nav>
+                        <ul>
+                            <li><a href="{{ path('app_profil') }}">Mes informations</a></li>
+                            <li><a href="{{ path('app_profil_trajets') }}">Mes trajets</a></li>
+                            <li><a href="#">Mes réservations</a></li>
+                            <li><a href="{{ path('app_logout') }}" class="deconnexion">Se déconnecter</a></li>
+                        </ul>
+                    </nav>
+                </section>
+
+                <section class="informations">
+                    {% if trajets is not empty %}
+                        <div class="grid">
+                            {% for trajet in trajets %}
+                                <div class="trajet">
+                                    <div class="icone">
+                                        <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
+
+                                        <div>
+                                            <p>{{ trajet.pointDeDepart }}</p>
+                                            <p>{{ trajet.destination }}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="icone">
+                                        <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un utilisateur">
+                                        
+                                        <p>{{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
+                                    </div>
+
+                                    <div class="icone">
+                                        <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
+
+                                        <p>{{ trajet.dateEtHeure|date('d/m/Y | H:i') }}</p>
+                                    </div>
+
+                                    <div class="icone">
+                                        <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
+                                        
+                                        {% if trajet.siegesLibres > 1 %}
+                                            <p>Il reste encore {{ trajet.siegesLibres }} places</p>
+                                        {% elseif trajet.siegesLibres == 1 %}
+                                            <p>Il reste encore {{ trajet.siegesLibres }} place</p>
+                                        {% else %}
+                                            <p>Complet</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="vide">Vous n'avez créé aucun trajet pour le moment.</p>
+                    {% endif %}
+                </section>
+            </div>
+        </main>
+    </body>
+{% endblock %}

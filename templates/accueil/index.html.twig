@@ -5,12 +5,12 @@
 {% block body %}
     <body class="accueil">
         <header>
-            <a href="#" class="logotype"><img src="{{ asset('images/logotype-blanc.svg') }}" alt="Logotype Agence Dewey"></a>
+            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-blanc.svg') }}" alt="Logotype Agence Dewey"></a>
             
             <nav>
                 <ul>
-                    <li><a href="#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
+                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
 
                     {% if is_granted('ROLE_USER') %}
                         <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
@@ -99,7 +99,7 @@
                             <div class="icone">
                                 <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
 
-                                <p>{{ trajet.dateEtHeure|date('d/m/Y H:i') }}</p>
+                                <p>{{ trajet.dateEtHeure|date('d/m/Y | H:i') }}</p>
                             </div>
 
                             <div class="icone">

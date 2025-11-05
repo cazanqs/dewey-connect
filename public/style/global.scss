@@ -93,3 +93,11 @@ button {
         }
     }
 }
+
+.annuler {
+    color: black;
+
+    &::before {
+        content: "< ";
+    }
+}

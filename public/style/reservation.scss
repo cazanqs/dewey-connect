@@ -6,16 +6,8 @@ $vert: #33b698;
     }
 
     main {
-        width: 90%;
+        width: 75%;
         margin: auto;
-
-        .annulation {
-            color: black;
-
-            &::before {
-                content: "< ";
-            }
-        }
 
         .trajet {
             width: fit-content;
@@ -54,7 +46,7 @@ $vert: #33b698;
                     padding: 10px 40px 10px 10px;
 
                     &:focus {
-                        outline-color: $vert;
+                        outline-color: black;
                     }
                 }
             }
