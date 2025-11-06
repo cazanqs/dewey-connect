@@ -530,6 +530,36 @@ header ul .profil img {
   flex-direction: column;
   gap: 10px;
 }
+.profil main .conteneur .informations .centre.row {
+  width: 100%;
+  flex-direction: row;
+  gap: 25px;
+}
+.profil main .conteneur .informations .centre.row form {
+  width: 70%;
+}
+.profil main .conteneur .informations .centre.row .liste {
+  height: fit-content;
+  width: 30%;
+  background-color: #33b698;
+  border-radius: 25px;
+  padding: 25px;
+}
+.profil main .conteneur .informations .centre.row .liste h2 {
+  font-size: 20px;
+  color: white;
+}
+.profil main .conteneur .informations .centre.row .liste ul {
+  list-style: inside;
+  margin: 25px 0;
+}
+.profil main .conteneur .informations .centre.row .liste ul li {
+  color: white;
+}
+.profil main .conteneur .informations .centre.row .liste p {
+  color: white;
+  margin: auto;
+}
 .profil main .conteneur .informations .modifier {
   display: flex;
   justify-content: center;

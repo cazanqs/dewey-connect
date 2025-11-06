@@ -112,6 +112,43 @@ $vert: #33b698;
                             gap: 10px;
                         }
                     }
+
+                    &.row {
+                        width: 100%;
+                        flex-direction: row ;
+                        gap: 25px;
+
+                        form {
+                            width: 70%;
+                        }
+
+                        .liste {
+                            height: fit-content;
+                            width: 30%;
+                            background-color: $vert;
+                            border-radius: 25px;
+                            padding: 25px;
+
+                            h2 {
+                                font-size: 20px;
+                                color: white;
+                            }
+
+                            ul {
+                                list-style: inside;
+                                margin: 25px 0;
+
+                                li {
+                                    color: white;   
+                                }
+                            }
+
+                            p {
+                                color: white;
+                                margin: auto;
+                            }
+                        }
+                    }
                 }
 
                 .modifier {

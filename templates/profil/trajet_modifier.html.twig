@@ -34,12 +34,45 @@
                 </section>
 
                 <section class="informations">
-                    <div class="centre largeur">
+                    <div class="centre row">
                         {{ form_start(form) }}
                             {{ form_widget(form) }}
                             
                             <button type="submit">Enregistrer</button>
                         {{ form_end(form) }}
+
+                        {% if trajet.reservations is not empty %}
+                            <div class="liste">
+                                {% if trajet.reservations|length > 1 %}
+                                    <h2>Réservations correspondantes</h2>
+                                {% else %}
+                                    <h2>Réservation correspondante</h2>
+                                {% endif %}
+
+                                <ul>
+                                    {% for reservation in trajet.reservations %}
+                                        <li>
+                                            {{ reservation.utilisateur.prenom }} {{ reservation.utilisateur.nomDeFamille }} | {{ reservation.siegesReserves }}
+                                            
+                                            {% if reservation.siegesReserves > 1 %}
+                                                sièges
+                                            {% else %}
+                                                siège
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+
+                                {% set siegesReserves = 0 %}
+
+                                {% for reservation in trajet.reservations %}
+                                    {% set siegesReserves = siegesReserves + reservation.siegesReserves %}
+                                {% endfor %}
+
+                                <p>Sièges réservés : {{ siegesReserves }}</p>
+                            </div>
+                        {% endif %}
+                        </div>
                     </div>
                 </section>
             </div>
