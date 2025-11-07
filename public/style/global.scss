@@ -117,6 +117,7 @@ button {
     position: fixed;
     top: 25px;
     right: 25px;
+    font-size: 16px;
     font-weight: bold;
     color: white;
     border-radius: 5px;
@@ -138,8 +139,14 @@ button {
     }
 }
 
-.message p {
+.message p, .message a {
     font-size: 16px;
+    color: white;
+}
+
+.message a {
+    display: block;
+    text-align: center;
 }
 
 form div.formulaire li, form div#reservation li, .profil form li {

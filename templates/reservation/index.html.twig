@@ -11,11 +11,7 @@
                 <ul>
                     <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
                     <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-                    {% if is_granted('ROLE_USER') %}
-                        <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                    {% else %}
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                    {% endif %}
+                    <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
                 </ul>
             </nav>
         </header>
@@ -57,6 +53,18 @@
                         <p>Complet</p>
                     {% endif %}
                 </div>
+
+                {% if reservationExistante %}
+                    <div class="message information">
+                        {% if reservationExistante.siegesReserves == 1 %}
+                            <p>Vous avez déjà réservé {{ reservationExistante.siegesReserves }} siège pour ce trajet.</p>
+                        {% else %}
+                            <p>Vous avez déjà réservé {{ reservationExistante.siegesReserves }} sièges pour ce trajet.</p>
+                        {% endif %}
+
+                        <a href="{{ path('app_profil_reservation_modifier', {id: reservationExistante.id}) }}">Modifier ma réservation</a>
+                    </div>
+                {% endif %}
 
                 {{ form_start(form) }}
                     {{ form_widget(form) }}

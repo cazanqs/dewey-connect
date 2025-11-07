@@ -51,15 +51,11 @@
 
                                 <ul>
                                     {% for reservation in trajet.reservations %}
-                                        <li>
-                                            {{ reservation.utilisateur.prenom }} {{ reservation.utilisateur.nomDeFamille }} | {{ reservation.siegesReserves }}
-                                            
-                                            {% if reservation.siegesReserves > 1 %}
-                                                sièges
-                                            {% else %}
-                                                siège
-                                            {% endif %}
-                                        </li>
+                                        {% if reservation.siegesReserves > 1 %}
+                                            <li>{{ reservation.utilisateur.prenom }} {{ reservation.utilisateur.nomDeFamille }} | {{ reservation.siegesReserves }} sièges</li>
+                                        {% else %}
+                                            <li>{{ reservation.utilisateur.prenom }} {{ reservation.utilisateur.nomDeFamille }} | {{ reservation.siegesReserves }} siège</li>
+                                        {% endif %}
                                     {% endfor %}
                                 </ul>
 

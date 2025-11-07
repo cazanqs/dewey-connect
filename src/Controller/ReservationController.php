@@ -16,9 +16,21 @@ final class ReservationController extends AbstractController
     #[Route('/reservation/{id}', name: 'app_reservation')]
     public function index(Trajet $trajet, Request $request, EntityManagerInterface $entityManager): Response
     {
+        $utilisateur = $this->getUser();
+
+        if (!$utilisateur) {
+            $this->addFlash('error', 'Vous devez être connecté pour effectuer une réservation.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $reservationExistante = $entityManager->getRepository(Reservation::class)->findOneBy([
+            'utilisateur' => $utilisateur,
+            'trajet' => $trajet
+        ]);
+
         $reservation = new Reservation();
         $reservation->setTrajet($trajet);
-        $reservation->setUtilisateur($this->getUser());
+        $reservation->setUtilisateur($utilisateur);
         
         $form = $this->createForm(ReservationType::class, $reservation, [
             'trajet' => $trajet
@@ -29,24 +41,21 @@ final class ReservationController extends AbstractController
             $siegesReserves = $reservation->getSiegesReserves();
             
             if ($siegesReserves > 0 && $siegesReserves <= $trajet->getSiegesLibres()) {
-                try {
-                    $trajet->setSiegesLibres($trajet->getSiegesLibres() - $siegesReserves);
-                    
-                    $entityManager->persist($reservation);
-                    $entityManager->flush();
-                    
-                    $this->addFlash('success', 'Votre réservation a été confirmée avec succès !');
+                $trajet->setSiegesLibres($trajet->getSiegesLibres() - $siegesReserves);
+                
+                $entityManager->persist($reservation);
+                $entityManager->flush();
 
-                    return $this->redirectToRoute('app_accueil');
-                } catch (\Exception $e) {
-                    $this->addFlash('error', 'Une erreur est survenue lors de la réservation, veuillez réessayer.');
-                }
+                $this->addFlash('success', 'Votre réservation a été créée avec succès !');
+
+                return $this->redirectToRoute('app_accueil');
             }
         }
 
         return $this->render('reservation/index.html.twig', [
             'trajet' => $trajet,
             'form' => $form->createView(),
+            'reservationExistante' => $reservationExistante,
         ]);
     }
 }
