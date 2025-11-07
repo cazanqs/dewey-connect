@@ -18,26 +18,35 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
     {
         if ($this->getUser()) {
+            $this->addFlash('information', 'Vous êtes déjà connecté.');
+
             return $this->redirectToRoute('app_accueil');
         }
         
         $user = new Utilisateur();
+        
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $plainPassword */
-            $plainPassword = $form->get('plainPassword')->getData();
+            try {
+                /** @var string $plainPassword */
+                $plainPassword = $form->get('plainPassword')->getData();
 
-            // encode the plain password
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+                // encode the plain password
+                $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            $security->login($user, 'form_login', 'main');
+                // Connexion automatique après inscription
+                $security->login($user, 'form_login', 'main');
 
-            return $this->redirectToRoute('app_accueil');
+                return $this->redirectToRoute('app_accueil');
+                
+            } catch (\Exception $e) {
+                $this->addFlash('erreur', 'Une erreur est survenue lors de l\'inscription, veuillez réessayer.');
+            }
         }
 
         return $this->render('registration/register.html.twig', [

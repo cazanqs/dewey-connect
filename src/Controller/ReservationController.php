@@ -29,12 +29,18 @@ final class ReservationController extends AbstractController
             $siegesReserves = $reservation->getSiegesReserves();
             
             if ($siegesReserves > 0 && $siegesReserves <= $trajet->getSiegesLibres()) {
-                $trajet->setSiegesLibres($trajet->getSiegesLibres() - $siegesReserves);
-                
-                $entityManager->persist($reservation);
-                $entityManager->flush();
-                
-                return $this->redirectToRoute('app_accueil');
+                try {
+                    $trajet->setSiegesLibres($trajet->getSiegesLibres() - $siegesReserves);
+                    
+                    $entityManager->persist($reservation);
+                    $entityManager->flush();
+                    
+                    $this->addFlash('success', 'Votre réservation a été confirmée avec succès !');
+
+                    return $this->redirectToRoute('app_accueil');
+                } catch (\Exception $e) {
+                    $this->addFlash('error', 'Une erreur est survenue lors de la réservation, veuillez réessayer.');
+                }
             }
         }
 

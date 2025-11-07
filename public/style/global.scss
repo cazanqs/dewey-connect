@@ -112,3 +112,50 @@ button {
         content: "< ";
     }
 }
+
+.message, form div.formulaire li, form div#reservation li, .profil form li {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
+    padding: 15px 20px;
+    z-index: 2;
+    animation: transition .25s ease-out;
+
+    &.success {
+        background-color: $vert;
+    }
+
+    &.erreur {
+        background-color: red;
+    }
+
+    &.information {
+        background-color: blue;
+    }
+}
+
+.message p {
+    font-size: 16px;
+}
+
+form div.formulaire li, form div#reservation li, .profil form li {
+    font-size: 16px;
+    list-style: none;
+    background-color: red;
+}
+
+@keyframes transition {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

@@ -28,6 +28,7 @@ class ReservationType extends AbstractType
                 'choices' => $choices,
                 'label' => 'Sièges réservés',
                 'placeholder' => 'Nombre de places à réserver',
+                'invalid_message' => 'Veuillez sélectionner un choix valide.',
                 'attr' => [
                     'class' => 'form-select'
                 ]

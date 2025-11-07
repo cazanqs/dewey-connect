@@ -100,6 +100,48 @@ button.white::after {
   content: "< ";
 }
 
+.message, form div.formulaire li, form div#reservation li, .profil form li {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  z-index: 2;
+  animation: transition 0.25s ease-out;
+}
+.message.success, form div.formulaire li.success, form div#reservation li.success, .profil form li.success {
+  background-color: #33b698;
+}
+.message.erreur, form div.formulaire li.erreur, form div#reservation li.erreur, .profil form li.erreur {
+  background-color: red;
+}
+.message.information, form div.formulaire li.information, form div#reservation li.information, .profil form li.information {
+  background-color: blue;
+}
+
+.message p {
+  font-size: 16px;
+}
+
+form div.formulaire li, form div#reservation li, .profil form li {
+  font-size: 16px;
+  list-style: none;
+  background-color: red;
+}
+
+@keyframes transition {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 header {
   width: 90%;
   display: flex;
@@ -319,15 +361,12 @@ header ul .profil img {
 }
 
 .authentification section {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
+  height: 75vh;
   width: 80%;
+  display: flex;
   background-color: #33b698;
   border-radius: 25px;
-  margin: auto;
+  margin: 12.5vh auto;
 }
 .authentification section .image {
   position: relative;

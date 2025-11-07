@@ -21,10 +21,23 @@ final class AccueilController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $trajet->setUtilisateur($this->getUser());
+            if (!$this->getUser()) {
+                $this->addFlash('erreur', 'Veuillez vous connecter pour créer un trajet.');
+                
+                return $this->redirectToRoute('app_login');
+            }
 
-            $entityManager->persist($trajet);
-            $entityManager->flush();
+            try {
+                $trajet->setUtilisateur($this->getUser());
+
+                $entityManager->persist($trajet);
+                $entityManager->flush();
+                
+                $this->addFlash('success', 'Votre trajet a été créé avec succès !');
+                
+            } catch (\Exception $e) {
+                $this->addFlash('erreur', 'Une erreur est survenue lors de la création du trajet, veuillez réessayer.');
+            }
             
             return $this->redirectToRoute('app_accueil');
         }

@@ -4,6 +4,14 @@
 
 {% block body %}
     <body class="profil">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="message {{ type }}">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         <header>
             <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
             
@@ -33,10 +41,10 @@
 
                 <section class="informations">
                     <div class="centre">
-                        <p>Adresse email : {{ user.email }}</p>
-                        <p>Prénom : {{ user.prenom }}</p>
-                        <p>Nom de famille : {{ user.nomDeFamille }}</p>
-                        <p>Numéro de téléphone : {{ user.telephone }}</p>
+                        <p>Adresse email : {{ utilisateur.email }}</p>
+                        <p>Prénom : {{ utilisateur.prenom }}</p>
+                        <p>Nom de famille : {{ utilisateur.nomDeFamille }}</p>
+                        <p>Numéro de téléphone : {{ utilisateur.telephone }}</p>
                     </div>
 
                     <div class="modifier">

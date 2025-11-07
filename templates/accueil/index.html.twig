@@ -4,6 +4,14 @@
 
 {% block body %}
     <body class="accueil">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="message {{ type }}">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         <header>
             <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-blanc.svg') }}" alt="Logotype Agence Dewey"></a>
             
@@ -20,6 +28,7 @@
                 </ul>
             </nav>
         </header>
+
         <main>
             <section class="banniere">
                 <h1>Dewey Connect<br>Des trajets partagés, des liens renforcés</h1>
@@ -38,7 +47,7 @@
                         
                         <button type="submit">Créer le trajet</button>
                     {% else %}
-                        <a href="{{ path('app_login') }}"><button type="button">Créer le trajet</button></a>
+                        <button type="submit">Créer le trajet</button>
                     {% endif %}
                 {{ form_end(form) }}
             </section>

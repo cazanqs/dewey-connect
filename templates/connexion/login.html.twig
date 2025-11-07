@@ -4,6 +4,14 @@
 
 {% block body %}
     <body class="authentification">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="message {{ type }}">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         <main>
             <section>
                 <a href="{{ path('app_accueil') }}" class="image"><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></a>

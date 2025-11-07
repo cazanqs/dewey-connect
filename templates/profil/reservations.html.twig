@@ -4,6 +4,14 @@
 
 {% block body %}
     <body class="profil">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="message {{ type }}">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        
         <header>
             <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
             
