@@ -1,44 +1,38 @@
 $vert: #33b698;
 
-.reservation{
-    .profil img {
-        filter: invert(1);
-    }
+.reservation main {
+    width: 75%;
+    margin: auto;
 
-    main {
-        width: 75%;
-        margin: auto;
+    .trajet {
+        width: fit-content;
+        color: white;
+        background-color: $vert;
+        margin: 50px auto 0;
 
-        .trajet {
+        img {
+            filter: invert(1);
+        }
+
+        label {
+            display: none;
+        }
+
+        #reservation {
             width: fit-content;
-            color: white;
-            background-color: $vert;
-            margin: 50px auto 0;
+            margin: 0 auto 35px;
 
-            img {
-                filter: invert(1);
-            }
+            select {
+                color: white;
+                border: solid 2px white;
+                appearance: none;
+                background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
+                background-position: right 10px center;
+                background-size: 20px;
+                padding: 10px 40px 10px 10px;
 
-            label {
-                display: none;
-            }
-
-            #reservation {
-                width: fit-content;
-                margin: 0 auto 35px;
-
-                select {
-                    color: white;
-                    border: solid 2px white;
-                    appearance: none;
-                    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
-                    background-position: right 10px center;
-                    background-size: 20px;
-                    padding: 10px 40px 10px 10px;
-
-                    &:focus {
-                        outline-color: black;
-                    }
+                &:focus {
+                    outline-color: black;
                 }
             }
         }

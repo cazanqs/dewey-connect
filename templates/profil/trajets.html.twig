@@ -13,15 +13,47 @@
         {% endfor %}
         
         <header>
-            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-            
-            <nav>
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-                    <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                </ul>
-            </nav>
+            <div class="desktop">
+                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
+                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+
+                        {% if is_granted('ROLE_USER') %}
+                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="mobile">
+                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+
+                <div class="burger">
+                    <img src="{{ asset('images/burger.svg') }}" alt="Menu burger">
+                </div>
+
+                <div class="croix">
+                    <img src="{{ asset('images/croix.svg') }}" alt="Croix">
+                </div>
+
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
+                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+
+                        {% if is_granted('ROLE_USER') %}
+                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
         </header>
 
         <main>

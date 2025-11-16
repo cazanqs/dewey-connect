@@ -3,7 +3,7 @@
 {% block title %}Connexion{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="authentification">
+    <body class="authentification connexion">
         {% for type, messages in app.flashes %}
             {% for message in messages %}
                 <div class="message {{ type }}">

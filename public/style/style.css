@@ -15,13 +15,28 @@ h1, h2 {
 h1 {
   font-size: 45px;
 }
+@media (max-width: 768px) {
+  h1 {
+    font-size: 30px;
+  }
+}
 
 h2 {
   font-size: 40px;
 }
+@media (max-width: 768px) {
+  h2 {
+    font-size: 25px;
+  }
+}
 
 p, a, li, button, input, select, label {
   font-size: 20px;
+}
+@media (max-width: 768px) {
+  p, a, li, button, input, select, label {
+    font-size: 15px;
+  }
 }
 
 button {
@@ -65,11 +80,21 @@ button.white::after {
   border-radius: 25px;
   padding: 50px 25px;
 }
+@media (max-width: 768px) {
+  .trajet {
+    padding: 25px;
+  }
+}
 .trajet .icone {
   display: flex;
   align-items: center;
   gap: 25px;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
+}
+@media (max-width: 768px) {
+  .trajet .icone {
+    margin-bottom: 15px;
+  }
 }
 .trajet .icone img {
   height: 40px;
@@ -96,15 +121,22 @@ button.white::after {
 .annuler {
   color: black;
 }
+@media (max-width: 768px) {
+  .annuler {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+  }
+}
 .annuler::before {
   content: "< ";
 }
 
 .message, form div.formulaire li, form div#reservation li, .profil form li {
-  position: fixed;
+  position: absolute;
   top: 25px;
   right: 25px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   color: white;
   border-radius: 5px;
@@ -124,7 +156,7 @@ button.white::after {
 }
 
 .message p, .message a {
-  font-size: 16px;
+  font-size: 15px;
   color: white;
 }
 
@@ -134,7 +166,7 @@ button.white::after {
 }
 
 form div.formulaire li, form div#reservation li, .profil form li {
-  font-size: 16px;
+  font-size: 15px;
   list-style: none;
   background-color: red;
 }
@@ -149,48 +181,133 @@ form div.formulaire li, form div#reservation li, .profil form li {
     opacity: 1;
   }
 }
-header {
+header .desktop, header .mobile {
   width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: auto;
   z-index: 1;
 }
-header .logotype {
-  width: 10%;
+header .desktop .logotype, header .mobile .logotype {
   margin: 10px 0;
 }
-header .logotype img {
+header .desktop .logotype img, header .mobile .logotype img {
   width: 100%;
 }
-header ul {
+header .desktop ul, header .mobile ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 100px;
   list-style: none;
 }
-header ul a {
-  font-size: 20px;
+header .desktop a, header .mobile a {
   font-weight: bold;
   color: black;
   text-decoration: none;
 }
-header ul .profil {
+@media (max-width: 768px) {
+  header .desktop a, header .mobile a {
+    color: white;
+  }
+}
+header .desktop .profil, header .mobile .profil {
   width: 40px;
 }
-header ul .profil img {
+header .desktop .profil img, header .mobile .profil img {
   width: 100%;
 }
+@media (max-width: 768px) {
+  header .desktop {
+    display: none;
+  }
+}
+header .desktop .logotype {
+  width: 10%;
+}
+header .desktop ul {
+  gap: 100px;
+}
+header .mobile {
+  position: relative;
+}
+@media (min-width: 769px) {
+  header .mobile {
+    display: none;
+  }
+}
+header .mobile .logotype {
+  width: 25%;
+}
+header .mobile .burger, header .mobile .croix {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 25px;
+  width: 25px;
+  color: white;
+  line-height: 0;
+}
+header .mobile .burger img, header .mobile .croix img {
+  width: 100%;
+}
+header .mobile .burger {
+  right: 0;
+}
+header .mobile .croix {
+  right: 5%;
+  display: none;
+}
+header .mobile nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  height: 100vh;
+  width: 100%;
+  background-color: #000;
+}
+header .mobile nav ul {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  flex-direction: column;
+  gap: 50px;
+}
+header .mobile nav ul a {
+  font-size: 20px;
+}
+header .mobile.ouvert {
+  width: 100%;
+}
+header .mobile.ouvert .burger {
+  display: none;
+}
+header .mobile.ouvert .croix {
+  display: block;
+  z-index: 1;
+}
+header .mobile.ouvert nav {
+  display: block;
+}
 
-.accueil header {
+.accueil header .desktop, .accueil header .mobile {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
-.accueil header a {
-  color: white;
+
+.profil header .desktop, .profil header .mobile, .reservation header .desktop, .reservation header .mobile {
+  margin: auto;
+}
+@media (min-width: 769px) {
+  .profil header .desktop .profil img, .profil header .mobile .profil img, .reservation header .desktop .profil img, .reservation header .mobile .profil img {
+    filter: invert(1);
+  }
+}
+.profil header .desktop .burger img, .profil header .mobile .burger img, .reservation header .desktop .burger img, .reservation header .mobile .burger img {
+  filter: invert(1);
 }
 
 .accueil a {
@@ -200,6 +317,11 @@ header ul .profil img {
   position: relative;
   height: 90vh;
 }
+@media (max-width: 768px) {
+  .accueil .banniere {
+    height: 75vh;
+  }
+}
 .accueil .banniere h1 {
   position: absolute;
   top: 50%;
@@ -208,6 +330,14 @@ header ul .profil img {
   width: 90%;
   color: white;
   z-index: 1;
+}
+@media (max-width: 768px) {
+  .accueil .banniere h1 {
+    width: 75%;
+  }
+}
+.accueil .banniere h1.burger {
+  z-index: 0;
 }
 .accueil .banniere div {
   height: 100%;
@@ -230,6 +360,11 @@ header ul .profil img {
   width: 90%;
   margin: 100px auto 50px;
 }
+@media (max-width: 768px) {
+  .accueil #creer-un-trajet {
+    margin: 50px auto 25px;
+  }
+}
 .accueil #creer-un-trajet h2 {
   margin-bottom: 50px;
 }
@@ -241,8 +376,19 @@ header ul .profil img {
   border-radius: 50px;
   padding: 10px;
 }
+@media (max-width: 768px) {
+  .accueil #creer-un-trajet #trajet {
+    flex-direction: column;
+    border-radius: 25px;
+  }
+}
 .accueil #creer-un-trajet #trajet div {
   width: 25%;
+}
+@media (max-width: 768px) {
+  .accueil #creer-un-trajet #trajet div {
+    width: 100%;
+  }
 }
 .accueil #creer-un-trajet #trajet div label {
   display: none;
@@ -260,12 +406,30 @@ header ul .profil img {
 .accueil #creer-un-trajet #trajet div:first-of-type input {
   border-radius: 25px 0 0 25px;
 }
+@media (max-width: 768px) {
+  .accueil #creer-un-trajet #trajet div:first-of-type input {
+    border-radius: 25px 25px 0 0;
+  }
+}
 .accueil #creer-un-trajet #trajet div:last-of-type input {
   border-radius: 0 25px 25px 0;
+}
+@media (max-width: 768px) {
+  .accueil #creer-un-trajet #trajet div:last-of-type input {
+    border-radius: 0 0 25px 25px;
+  }
+}
+.accueil #creer-un-trajet button {
+  margin-bottom: 0;
 }
 .accueil .texte-defilant {
   padding-top: 50px;
   overflow: hidden;
+}
+@media (max-width: 768px) {
+  .accueil .texte-defilant {
+    padding-top: 25px;
+  }
 }
 .accueil .texte-defilant .animation {
   display: flex;
@@ -283,12 +447,25 @@ header ul .profil img {
   font-weight: bold;
   margin-left: 50px;
 }
+@media (max-width: 768px) {
+  .accueil .texte-defilant .animation .textes p {
+    gap: 25px;
+    font-size: 25px;
+    margin-left: 25px;
+  }
+}
 .accueil .texte-defilant .animation .textes p::after {
   content: "";
   height: 25px;
   width: 25px;
   display: block;
   border-radius: 100%;
+}
+@media (max-width: 768px) {
+  .accueil .texte-defilant .animation .textes p::after {
+    height: 15px;
+    width: 15px;
+  }
 }
 @keyframes text-defilant {
   0% {
@@ -308,6 +485,11 @@ header ul .profil img {
   background-color: #33b698;
   padding-bottom: 100px;
 }
+@media (max-width: 768px) {
+  .accueil #voir-les-trajets-disponibles {
+    padding-bottom: 50px;
+  }
+}
 .accueil #voir-les-trajets-disponibles .texte-defilant {
   rotate: 180deg;
 }
@@ -322,7 +504,14 @@ header ul .profil img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
-  margin: auto;
+  margin: 50px auto 0;
+}
+@media (max-width: 768px) {
+  .accueil #voir-les-trajets-disponibles .trajets {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 25px;
+  }
 }
 .accueil #voir-les-trajets-disponibles .trajets .trajet {
   background-color: white;
@@ -331,9 +520,6 @@ header ul .profil img {
   color: white;
 }
 
-.reservation .profil img {
-  filter: invert(1);
-}
 .reservation main {
   width: 75%;
   margin: auto;
@@ -368,18 +554,31 @@ header ul .profil img {
 }
 
 .authentification section {
-  height: 75vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 80%;
   display: flex;
   background-color: #33b698;
   border-radius: 25px;
-  margin: 12.5vh auto;
+}
+@media (max-width: 768px) {
+  .authentification section {
+    flex-direction: column;
+    width: 90%;
+  }
 }
 .authentification section .image {
   position: relative;
   width: 60%;
   object-fit: cover;
   line-height: 0;
+}
+@media (max-width: 768px) {
+  .authentification section .image {
+    width: 100%;
+  }
 }
 .authentification section .image::after {
   content: "";
@@ -395,11 +594,21 @@ header ul .profil img {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 25px 0 0 25px;
 }
+@media (max-width: 768px) {
+  .authentification section .image::after {
+    border-radius: 25px 25px 0 0;
+  }
+}
 .authentification section .image img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 25px 0 0 25px;
+}
+@media (max-width: 768px) {
+  .authentification section .image img {
+    border-radius: 25px 25px 0 0;
+  }
 }
 .authentification section form {
   width: 40%;
@@ -408,6 +617,14 @@ header ul .profil img {
   justify-content: center;
   gap: 50px;
   padding: 50px 25px;
+}
+@media (max-width: 768px) {
+  .authentification section form {
+    width: 90%;
+    gap: 25px;
+    padding: 50px 0;
+    margin: auto;
+  }
 }
 .authentification section form h1 {
   color: white;
@@ -480,23 +697,37 @@ header ul .profil img {
   color: white;
 }
 
-.profil .profil img {
-  filter: invert(1);
-}
 .profil main {
   width: 75%;
   margin: auto;
+}
+@media (max-width: 768px) {
+  .profil main {
+    width: 90%;
+  }
 }
 .profil main .conteneur {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
 }
+@media (max-width: 768px) {
+  .profil main .conteneur {
+    flex-direction: column;
+    margin-top: 25px;
+  }
+}
 .profil main .conteneur .navigation {
   height: fit-content;
   width: 25%;
   background-color: #33b698;
   border-radius: 25px;
+}
+@media (max-width: 768px) {
+  .profil main .conteneur .navigation {
+    width: 100%;
+    margin-bottom: 25px;
+  }
 }
 .profil main .conteneur .navigation ul {
   width: fit-content;
@@ -506,6 +737,11 @@ header ul .profil img {
   list-style: none;
   padding: 50px 10px;
   margin: auto;
+}
+@media (max-width: 768px) {
+  .profil main .conteneur .navigation ul {
+    padding: 25px 10px;
+  }
 }
 .profil main .conteneur .navigation ul a {
   color: white;
@@ -527,12 +763,22 @@ header ul .profil img {
 .profil main .conteneur .informations {
   width: 70%;
 }
+@media (max-width: 768px) {
+  .profil main .conteneur .informations {
+    width: 100%;
+  }
+}
 .profil main .conteneur .informations .centre {
   width: fit-content;
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin: auto;
+}
+@media (max-width: 768px) {
+  .profil main .conteneur .informations .centre {
+    width: 100%;
+  }
 }
 .profil main .conteneur .informations .centre p {
   width: fit-content;
@@ -568,6 +814,11 @@ header ul .profil img {
   flex-direction: row;
   gap: 10px;
 }
+@media (max-width: 768px) {
+  .profil main .conteneur .informations .centre form div.nom {
+    flex-direction: column;
+  }
+}
 .profil main .conteneur .informations .centre.largeur {
   width: 70%;
 }
@@ -581,8 +832,18 @@ header ul .profil img {
   flex-direction: row;
   gap: 25px;
 }
+@media (max-width: 768px) {
+  .profil main .conteneur .informations .centre.row {
+    flex-direction: column;
+  }
+}
 .profil main .conteneur .informations .centre.row form {
   width: 70%;
+}
+@media (max-width: 768px) {
+  .profil main .conteneur .informations .centre.row form {
+    width: 100%;
+  }
 }
 .profil main .conteneur .informations .centre.row .liste {
   height: fit-content;
@@ -590,6 +851,12 @@ header ul .profil img {
   background-color: #33b698;
   border-radius: 25px;
   padding: 25px;
+}
+@media (max-width: 768px) {
+  .profil main .conteneur .informations .centre.row .liste {
+    width: 75%;
+    margin: auto;
+  }
 }
 .profil main .conteneur .informations .centre.row .liste h2 {
   font-size: 20px;
@@ -612,6 +879,12 @@ header ul .profil img {
   gap: 25px;
   margin-top: 25px;
 }
+@media (max-width: 768px) {
+  .profil main .conteneur .informations .modifier {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 .profil main .conteneur .informations .modifier a {
   color: black;
 }
@@ -619,6 +892,11 @@ header ul .profil img {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 25px;
+}
+@media (max-width: 768px) {
+  .profil main .conteneur .informations .grid {
+    grid-template-columns: 1fr;
+  }
 }
 .profil main .conteneur .informations .grid .trajet {
   position: relative;

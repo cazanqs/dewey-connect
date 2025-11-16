@@ -1,210 +1,256 @@
 $vert: #33b698;
 
-.profil {
-    .profil img {
-        filter: invert(1);
+.profil main {
+    width: 75%;
+    margin: auto;
+
+    @media (max-width: 768px) {
+        width: 90%;
     }
 
-    main {
-        width: 75%;
-        margin: auto;
+    .conteneur {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
 
-        .conteneur {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 50px;
+        @media (max-width: 768px) {
+            flex-direction: column;
+            margin-top: 25px;
+        }
 
-            .navigation {
-                height: fit-content;
-                width: 25%;
-                background-color: $vert;
-                border-radius: 25px;
+        .navigation {
+            height: fit-content;
+            width: 25%;
+            background-color: $vert;
+            border-radius: 25px;
 
-                ul {
+            @media (max-width: 768px) {
+                width: 100%;
+                margin-bottom: 25px;
+            }
+
+            ul {
+                width: fit-content;
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+                list-style: none;
+                padding: 50px 10px;
+                margin: auto;
+
+                @media (max-width: 768px) {
+                    padding: 25px 10px;
+                }
+
+                a {
+                    color: white;
+
+                    &.deconnexion {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        &::before {
+                            content: "";
+                            height: 15px;
+                            width: 15px;
+                            background-image: url('../images/deconnexion.svg');
+                            background-size: contain;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                }
+            }
+        }
+
+        .informations {
+            width: 70%;
+
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+
+            .centre {
+                width: fit-content;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin: auto;
+
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
+
+                p {
                     width: fit-content;
+                }
+
+                button {
+                    margin: 25px auto 0 ;
+                }
+
+                form {
                     display: flex;
                     flex-direction: column;
-                    gap: 25px;
-                    list-style: none;
-                    padding: 50px 10px;
-                    margin: auto;
+                    gap: 10px;
+                    
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
 
-                    a {
-                        color: white;
+                        input, select {
+                            border: solid 2px $vert;
+                            padding: 10px;
 
-                        &.deconnexion {
-                            display: flex;
-                            align-items: center;
+                            &:focus {
+                                outline-color: black;
+                            }
+                        }
+
+                        select {
+                            appearance: none;
+                            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2333b698' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
+                            background-position: right 10px center;
+                            background-size: 20px;
+                            padding-right: 40px
+                        }
+
+                        &.nom {
+                            flex-direction: row;
                             gap: 10px;
 
-                            &::before {
-                                content: "";
-                                height: 15px;
-                                width: 15px;
-                                background-image: url('../images/deconnexion.svg');
-                                background-size: contain;
-                                background-position: center;
-                                background-repeat: no-repeat;
+                            @media (max-width: 768px) {
+                                flex-direction: column;
                             }
+                        }
+                    }
+                }
+
+                &.largeur {
+                    width: 70%;
+
+                    #trajet {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                }
+
+                &.row {
+                    width: 100%;
+                    flex-direction: row ;
+                    gap: 25px;
+
+                    @media (max-width: 768px) {
+                        flex-direction: column;
+                    }
+
+                    form {
+                        width: 70%;
+
+                        @media (max-width: 768px) {
+                            width: 100%;
+                        }
+                    }
+
+                    .liste {
+                        height: fit-content;
+                        width: 30%;
+                        background-color: $vert;
+                        border-radius: 25px;
+                        padding: 25px;
+
+                        @media (max-width: 768px) {
+                            width: 75%;
+                            margin: auto;
+                        }
+
+                        h2 {
+                            font-size: 20px;
+                            color: white;
+                        }
+
+                        ul {
+                            list-style: inside;
+                            margin: 25px 0;
+
+                            li {
+                                color: white;   
+                            }
+                        }
+
+                        p {
+                            color: white;
+                            margin: auto;
                         }
                     }
                 }
             }
 
-            .informations {
-                width: 70%;
+            .modifier {
+                display: flex;
+                justify-content: center;
+                gap: 25px;
+                margin-top: 25px;
 
-                .centre {
-                    width: fit-content;
-                    display: flex;
+                @media (max-width: 768px) {
                     flex-direction: column;
-                    gap: 10px;
-                    margin: auto;
+                    align-items: center;
+                }
 
-                    p {
-                        width: fit-content;
-                    }
+                a {
+                    color: black;
+                }
+            }
 
-                    button {
-                        margin: 25px auto 0 ;
-                    }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
 
-                    form {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 10px;
-                        
-                        div {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 5px;
+                @media (max-width: 768px) {
+                    grid-template-columns: 1fr;
+                }
 
-                            input, select {
-                                border: solid 2px $vert;
-                                padding: 10px;
+                .trajet {
+                    position: relative;
+                    color: white;
+                    background-color: $vert;
+                    padding: 60px 25px 25px;
 
-                                &:focus {
-                                    outline-color: black;
-                                }
-                            }
+                    .statut {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background-color: white;
+                        border-radius: 25px;
+                        padding: 2.5px;
 
-                            select {
-                                appearance: none;
-                                background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2333b698' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
-                                background-position: right 10px center;
-                                background-size: 20px;
-                                padding-right: 40px
-                            }
-
-                            &.nom {
-                                flex-direction: row;
-                                gap: 10px;
-                            }
-                        }
-                    }
-
-                    &.largeur {
-                        width: 70%;
-
-                        #trajet {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 10px;
-                        }
-                    }
-
-                    &.row {
-                        width: 100%;
-                        flex-direction: row ;
-                        gap: 25px;
-
-                        form {
-                            width: 70%;
+                        p {
+                            font-size: 15px;
+                            color: white;
+                            border-radius: 25px;
+                            padding: 5px 10px;
                         }
 
-                        .liste {
-                            height: fit-content;
-                            width: 30%;
+                        .a-venir {
                             background-color: $vert;
-                            border-radius: 25px;
-                            padding: 25px;
-
-                            h2 {
-                                font-size: 20px;
-                                color: white;
-                            }
-
-                            ul {
-                                list-style: inside;
-                                margin: 25px 0;
-
-                                li {
-                                    color: white;   
-                                }
-                            }
-
-                            p {
-                                color: white;
-                                margin: auto;
-                            }
                         }
+
+                        .effectue {
+                            background-color: red;
+                        }
+                    }
+
+                    img {
+                        filter: invert(1);
                     }
                 }
 
-                .modifier {
-                    display: flex;
-                    justify-content: center;
-                    gap: 25px;
-                    margin-top: 25px;
-
-                    a {
-                        color: black;
-                    }
-                }
-
-                .grid {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 25px;
-
-                    .trajet {
-                        position: relative;
-                        color: white;
-                        background-color: $vert;
-                        padding: 60px 25px 25px;
-
-                        .statut {
-                            position: absolute;
-                            top: 10px;
-                            right: 10px;
-                            background-color: white;
-                            border-radius: 25px;
-                            padding: 2.5px;
-
-                            p {
-                                font-size: 15px;
-                                color: white;
-                                border-radius: 25px;
-                                padding: 5px 10px;
-                            }
-
-                            .a-venir {
-                                background-color: $vert;
-                            }
-
-                            .effectue {
-                                background-color: red;
-                            }
-                        }
-
-                        img {
-                            filter: invert(1);
-                        }
-                    }
-
-                    a {
-                        text-decoration: none;
-                    }
+                a {
+                    text-decoration: none;
                 }
             }
         }

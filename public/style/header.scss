@@ -1,32 +1,34 @@
 header {
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto;
-    z-index: 1;
-
-    .logotype {
-        width: 10%;
-        margin: 10px 0;
-
-        img {
-            width: 100%;
-        }
-    }
-
-    ul {
+    .desktop, .mobile {
+        width: 90%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 100px;
-        list-style: none;
+        z-index: 1;
+
+        .logotype {
+            margin: 10px 0;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
 
         a {
-            font-size: 20px;
             font-weight: bold;
             color: black;
             text-decoration: none;
+
+            @media (max-width: 768px) {
+                color: white;
+            }
         }
 
         .profil {
@@ -37,14 +39,114 @@ header {
             }
         }
     }
+
+    .desktop {
+        @media (max-width: 768px) {
+            display: none;
+        }
+
+        .logotype {
+            width: 10%;
+        }
+
+        ul {
+            gap: 100px;
+        }
+    }
+
+    .mobile {
+        position: relative;
+        
+        @media (min-width: 769px) {
+            display: none;
+        }
+
+        .logotype {
+            width: 25%;
+        }
+
+        .burger, .croix {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 25px;
+            width: 25px;
+            color: white;
+            line-height: 0;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .burger {
+            right: 0;
+        }
+
+        .croix {
+            right: 5%;
+            display: none;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            height: 100vh;
+            width: 100%;
+            background-color: #000;
+
+            ul {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 75%;
+                flex-direction: column;
+                gap: 50px;
+
+                a {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        &.ouvert {
+            width: 100%;
+
+            .burger {
+                display: none;
+            }
+
+            .croix {
+                display: block;
+                z-index: 1;
+            }
+
+            nav {
+                display: block;
+            }
+        }
+    }
 }
 
-.accueil header {
+.accueil header .desktop, .accueil header .mobile {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
 
-    a {
-        color: white;
+.profil header .desktop, .profil header .mobile, .reservation header .desktop, .reservation header .mobile {
+    margin: auto;
+
+    @media (min-width: 769px) {
+        .profil img {
+            filter: invert(1);
+        }
+    }
+
+    .burger img {
+        filter: invert(1);
     }
 }

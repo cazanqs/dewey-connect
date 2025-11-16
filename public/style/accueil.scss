@@ -9,6 +9,10 @@ $vert: #33b698;
         position: relative;
         height: 90vh;
 
+        @media (max-width: 768px) {
+            height: 75vh;
+        }
+
         h1 {
             position: absolute;
             top: 50%;
@@ -17,6 +21,14 @@ $vert: #33b698;
             width: 90%;
             color: white;
             z-index: 1;
+
+            @media (max-width: 768px) {
+                width: 75%;
+            }
+
+            &.burger {
+                z-index: 0;
+            }
         }
 
         div {
@@ -44,6 +56,10 @@ $vert: #33b698;
         width: 90%;
         margin: 100px auto 50px;
 
+        @media (max-width: 768px) {
+            margin: 50px auto 25px;
+        }
+
         h2 {
             margin-bottom: 50px;
         }
@@ -56,8 +72,17 @@ $vert: #33b698;
             border-radius: 50px;
             padding: 10px;
 
+            @media (max-width: 768px) {
+                flex-direction: column;
+                border-radius: 25px;
+            }
+
             div {
                 width: 25%;
+
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
 
                 label {
                     display: none;
@@ -77,18 +102,34 @@ $vert: #33b698;
 
                 &:first-of-type input {
                     border-radius: 25px 0 0 25px;
+
+                    @media (max-width: 768px) {
+                        border-radius: 25px 25px 0 0;
+                    }
                 }
 
                 &:last-of-type input {
                     border-radius: 0 25px 25px 0;
+
+                    @media (max-width: 768px) {
+                        border-radius: 0 0 25px 25px;
+                    }
                 }
             }
+        }
+
+        button {
+            margin-bottom: 0;
         }
     }
 
     .texte-defilant {
         padding-top: 50px;
         overflow: hidden;
+
+        @media (max-width: 768px) {
+            padding-top: 25px;
+        }
         
         .animation {
             display: flex;
@@ -106,12 +147,23 @@ $vert: #33b698;
                     font-weight: bold;
                     margin-left: 50px;
 
+                    @media (max-width: 768px) {
+                        gap: 25px;
+                        font-size: 25px;
+                        margin-left: 25px;
+                    }
+
                     &::after {
                         content: "";
                         height: 25px;
                         width: 25px;
                         display: block;
                         border-radius: 100%;
+
+                        @media (max-width: 768px) {
+                            height: 15px;
+                            width: 15px;
+                        }
                     }
                 }
             }
@@ -139,6 +191,10 @@ $vert: #33b698;
     #voir-les-trajets-disponibles {
         background-color: $vert;
         padding-bottom: 100px;
+
+        @media (max-width: 768px) {
+            padding-bottom: 50px;
+        }
         
         .texte-defilant {
             rotate: 180deg;
@@ -157,7 +213,13 @@ $vert: #33b698;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 50px;
-            margin: auto;
+            margin: 50px auto 0;
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                margin-top: 25px
+            }
 
             .trajet {
                 background-color: white;
