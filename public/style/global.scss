@@ -49,6 +49,11 @@ button {
     padding: 5px 20px;
     margin: 50px auto;
 
+    @media (max-width: 768px) {
+        border-width: 2px;
+        padding: 5px 10px;
+    }
+
     &::after {
         content: "";
         width: 15px;
@@ -165,8 +170,15 @@ button {
     }
 }
 
+.message {
+    font-size: 20px;
+
+    @media (max-width: 768px) {
+        font-size: 15px;
+    }
+}
+
 .message p, .message a {
-    font-size: 15px;
     color: white;
 }
 
@@ -176,7 +188,6 @@ button {
 }
 
 form div.formulaire li, form div#reservation li, .profil form li {
-    font-size: 15px;
     list-style: none;
     background-color: red;
 }

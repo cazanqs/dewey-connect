@@ -1,0 +1,46 @@
+$vert: #33b698;
+
+footer {
+    .conteneur {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        border-top: solid 1px $vert;
+        padding: 50px 0;
+        margin: 50px auto 0;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        div {
+            width: 10%;
+
+            @media (max-width: 768px) {
+                width: 25%;
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+        
+        ul {
+            list-style: none;
+
+            a {
+                color: black;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .credit {
+        width: 100%;
+        color: white;
+        text-align: center;
+        background-color: $vert;
+        padding: 10px 0;
+    }
+}

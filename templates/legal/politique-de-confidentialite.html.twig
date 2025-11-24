@@ -1,0 +1,160 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de confidentialité{{ parent() }}{% endblock %}
+
+{% block body %}
+    <body class="legal politique-de-confidentialite">
+        <header>
+            <div class="desktop">
+                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
+                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+
+                        {% if is_granted('ROLE_USER') %}
+                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="mobile">
+                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+
+                <div class="burger">
+                    <img src="{{ asset('images/burger.svg') }}" alt="Menu burger">
+                </div>
+
+                <div class="croix">
+                    <img src="{{ asset('images/croix.svg') }}" alt="Croix">
+                </div>
+
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
+                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+
+                        {% if is_granted('ROLE_USER') %}
+                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <h1>Politique de confidentialité</h1>
+
+                <h2>Introduction</h2>
+                
+                <p>La présente politique explique comment sont traitées les données personnelles dans le cadre de Dewey Connect, une application interne permettant la mise en relation de collaborateurs pour du covoiturage.</p>
+                <p>Le site est développé dans un cadre pédagogique et n’a pas vocation à être utilisé publiquement.</p>
+
+                <h2>Données collectées</h2>
+
+                <p>Dans le cadre de l’utilisation du site, seules les données strictement nécessaires au fonctionnement sont collectées :</p>
+
+                <ul>
+                    <li>Nom et prénom des utilisateurs</li>
+                    <li>Adresse email des utilisateurs</li>
+                    <li>Mot de passe (chiffré et jamais stocké en clair) des utilisateurs</li>
+                    <li>Informations relatives aux trajets proposés</li>
+                    <li>Réservations effectuées</li>
+                </ul>
+
+                <h2>Finalités du traitement</h2>
+
+                <p>Les données sont collectées uniquement pour :</p>
+
+                <ul>
+                    <li>Permettre aux utilisateurs de créer un compte</li>
+                    <li>Faciliter la création et la réservation de trajets</li>
+                    <li>Permettre la mise en relation interne entre collaborateurs</li>
+                    <li>Sécuriser l’accès au site</li>
+                </ul>
+
+                <p>Aucune exploitation commerciale n’est réalisée.</p>
+
+                <h2>Base légale</h2>
+
+                <p>Dans un cadre réel, ces traitements reposeraient sur l’intérêt légitime de l’entreprise et sur le consentement de l’utilisateur.</p> 
+                <p>Dans le cadre présent (projet pédagogique), les données n’ont qu’une utilité technique.</p>
+
+                <h2>Stockage et sécurité</h2>
+
+                <p>Les données sont stockées dans une base MySQL associée à l’environnement Symfony du projet.</p>
+                <p>Des mesures sont appliquées pour limiter les risques :</p>
+
+                <ul>
+                    <li>Mots de passe chiffrés via les outils de sécurité de Symfony</li>
+                    <li>Accès restreint aux utilisateurs authentifiés</li>
+                    <li>Logique de validation et de contrôle des formulaires</li>
+                </ul>
+
+                <h2>Durée de conservation</h2>
+
+                <p>Les données sont conservées uniquement pendant la durée du projet ou jusqu’à suppression du site.</p>
+                <p>Dans un contexte réel, l’entreprise pourrait définir une durée de conservation encadrée.</p>
+
+                <h2>Partage des données</h2>
+
+                <p>Les données ne sont ni transmises, ni vendues, ni partagées à un tiers.</p>
+                <p>Elles sont exclusivement utilisées dans le cadre technique du projet.</p>
+
+                <h2>Droits des utilisateurs</h2>
+
+                <p>Conformément au RGPD, l’utilisateur disposerait dans un cadre réel des droits suivants :</p>
+
+                <ul>
+                    <li>Droit d’accès</li>
+                    <li>Droit de rectification</li>
+                    <li>Droit de suppression</li>
+                    <li>Droit d’opposition</li>
+                    <li>Droit à la portabilité</li>
+                </ul>
+
+                <p>Dans le cadre pédagogique, ces droits peuvent être exercés directement en envoyant une demande à l'email : <a href="mailto:irving.cazaban@ynov.com">irving.cazaban@ynov.com</a></p>
+
+                <h2>Contact</h2>
+
+                <p>Pour toute question relative aux données personnelles, envoyer un email à : <a href="mailto:irving.cazaban@ynov.com">irving.cazaban@ynov.com</a></p>
+            </section>
+        </main>
+
+        <footer>
+            <div class="conteneur">
+                <div>
+                    <img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey">
+                </div>
+
+                <ul>
+                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
+                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+
+                    {% if is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('app_profil') }}">Mon profil</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
+                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                    {% endif %}
+                </ul>
+
+                <ul>
+                    <li><a href="{{ path('app_mentions_legales') }}">Mentions légales</a></li>
+                    <li><a href="{{ path('app_politique_de_confidentialite') }}">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+
+            <div class="credit">
+                <p>Site développé par Irving Cazaban</p>
+            </div>
+        </footer>
+    </body>
+{% endblock %}

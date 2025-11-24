@@ -137,9 +137,11 @@ header {
     transform: translateX(-50%);
 }
 
-.profil header .desktop, .profil header .mobile, .reservation header .desktop, .reservation header .mobile {
-    margin: auto;
+.accueil header .desktop a {
+    color: white;
+}
 
+.profil header .desktop, .profil header .mobile, .reservation header .desktop, .reservation header .mobile, .legal header .desktop, .legal header .mobile {
     @media (min-width: 769px) {
         .profil img {
             filter: invert(1);
@@ -149,4 +151,12 @@ header {
     .burger img {
         filter: invert(1);
     }
+}
+
+.profil header .desktop, .reservation header .desktop, .legal header .desktop {
+    margin: 0 auto 50px;
+}
+
+.profil header .mobile, .reservation header .mobile, .legal header .mobile {
+    margin: 0 auto 25px;
 }

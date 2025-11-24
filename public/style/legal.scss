@@ -1,0 +1,22 @@
+.legal {
+    main {
+        width: 90%;
+        margin: auto;
+
+        h2 {
+            text-align: left;
+            margin: 50px 0 10px;
+        }
+
+        ul {
+            list-style: inside;
+            margin-bottom: 25px;
+        }
+    }
+
+    &.politique-de-confidentialite {
+        ul {
+            margin-top: 25px;
+        }
+    }
+}

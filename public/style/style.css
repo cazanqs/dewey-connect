@@ -51,6 +51,12 @@ button {
   padding: 5px 20px;
   margin: 50px auto;
 }
+@media (max-width: 768px) {
+  button {
+    border-width: 2px;
+    padding: 5px 10px;
+  }
+}
 button::after {
   content: "";
   width: 15px;
@@ -155,8 +161,16 @@ button.white::after {
   background-color: blue;
 }
 
+.message {
+  font-size: 20px;
+}
+@media (max-width: 768px) {
+  .message {
+    font-size: 15px;
+  }
+}
+
 .message p, .message a {
-  font-size: 15px;
   color: white;
 }
 
@@ -166,7 +180,6 @@ button.white::after {
 }
 
 form div.formulaire li, form div#reservation li, .profil form li {
-  font-size: 15px;
   list-style: none;
   background-color: red;
 }
@@ -298,16 +311,65 @@ header .mobile.ouvert nav {
   transform: translateX(-50%);
 }
 
-.profil header .desktop, .profil header .mobile, .reservation header .desktop, .reservation header .mobile {
-  margin: auto;
+.accueil header .desktop a {
+  color: white;
 }
+
 @media (min-width: 769px) {
-  .profil header .desktop .profil img, .profil header .mobile .profil img, .reservation header .desktop .profil img, .reservation header .mobile .profil img {
+  .profil header .desktop .profil img, .profil header .mobile .profil img, .reservation header .desktop .profil img, .reservation header .mobile .profil img, .legal header .desktop .profil img, .legal header .mobile .profil img {
     filter: invert(1);
   }
 }
-.profil header .desktop .burger img, .profil header .mobile .burger img, .reservation header .desktop .burger img, .reservation header .mobile .burger img {
+.profil header .desktop .burger img, .profil header .mobile .burger img, .reservation header .desktop .burger img, .reservation header .mobile .burger img, .legal header .desktop .burger img, .legal header .mobile .burger img {
   filter: invert(1);
+}
+
+.profil header .desktop, .reservation header .desktop, .legal header .desktop {
+  margin: 0 auto 50px;
+}
+
+.profil header .mobile, .reservation header .mobile, .legal header .mobile {
+  margin: 0 auto 25px;
+}
+
+footer .conteneur {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  border-top: solid 1px #33b698;
+  padding: 50px 0;
+  margin: 50px auto 0;
+}
+@media (max-width: 768px) {
+  footer .conteneur {
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+footer .conteneur div {
+  width: 10%;
+}
+@media (max-width: 768px) {
+  footer .conteneur div {
+    width: 25%;
+  }
+}
+footer .conteneur div img {
+  width: 100%;
+}
+footer .conteneur ul {
+  list-style: none;
+}
+footer .conteneur ul a {
+  color: black;
+  text-decoration: none;
+}
+footer .credit {
+  width: 100%;
+  color: white;
+  text-align: center;
+  background-color: #33b698;
+  padding: 10px 0;
 }
 
 .accueil a {
@@ -520,39 +582,6 @@ header .mobile.ouvert nav {
   color: white;
 }
 
-.reservation main {
-  width: 75%;
-  margin: auto;
-}
-.reservation main .trajet {
-  width: fit-content;
-  color: white;
-  background-color: #33b698;
-  margin: 50px auto 0;
-}
-.reservation main .trajet img {
-  filter: invert(1);
-}
-.reservation main .trajet label {
-  display: none;
-}
-.reservation main .trajet #reservation {
-  width: fit-content;
-  margin: 0 auto 35px;
-}
-.reservation main .trajet #reservation select {
-  color: white;
-  border: solid 2px white;
-  appearance: none;
-  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
-  background-position: right 10px center;
-  background-size: 20px;
-  padding: 10px 40px 10px 10px;
-}
-.reservation main .trajet #reservation select:focus {
-  outline-color: black;
-}
-
 .authentification section {
   position: absolute;
   top: 50%;
@@ -695,6 +724,39 @@ header .mobile.ouvert nav {
 .authentification.inscription .conditions div label {
   display: block;
   color: white;
+}
+
+.reservation main {
+  width: 75%;
+  margin: auto;
+}
+.reservation main .trajet {
+  width: fit-content;
+  color: white;
+  background-color: #33b698;
+  margin: 50px auto 0;
+}
+.reservation main .trajet img {
+  filter: invert(1);
+}
+.reservation main .trajet label {
+  display: none;
+}
+.reservation main .trajet #reservation {
+  width: fit-content;
+  margin: 0 auto 35px;
+}
+.reservation main .trajet #reservation select {
+  color: white;
+  border: solid 2px white;
+  appearance: none;
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  padding: 10px 40px 10px 10px;
+}
+.reservation main .trajet #reservation select:focus {
+  outline-color: black;
 }
 
 .profil main {
@@ -929,6 +991,32 @@ header .mobile.ouvert nav {
 }
 .profil main .conteneur .informations .grid a {
   text-decoration: none;
+}
+.profil.index footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .profil.index footer {
+    position: relative;
+  }
+}
+
+.legal main {
+  width: 90%;
+  margin: auto;
+}
+.legal main h2 {
+  text-align: left;
+  margin: 50px 0 10px;
+}
+.legal main ul {
+  list-style: inside;
+  margin-bottom: 25px;
+}
+.legal.politique-de-confidentialite ul {
+  margin-top: 25px;
 }
 
 /*# sourceMappingURL=style.css.map */
