@@ -23,23 +23,33 @@ final class AccueilController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$this->getUser()) {
                 $this->addFlash('erreur', 'Veuillez vous connecter pour créer un trajet.');
-                
+
                 return $this->redirectToRoute('app_login');
             }
 
-            try {
-                $trajet->setUtilisateur($this->getUser());
+            $date = $trajet->getDateEtHeure();
 
-                $entityManager->persist($trajet);
-                $entityManager->flush();
-                
-                $this->addFlash('success', 'Votre trajet a été créé avec succès !');
-                
-            } catch (\Exception $e) {
-                $this->addFlash('erreur', 'Une erreur est survenue lors de la création du trajet, veuillez réessayer.');
+            $siegesLibres = $trajet->getSiegesLibres();
+
+            if (!$date || $date <= new \DateTime()) {
+                $this->addFlash('erreur', 'Veuillez renseigner une date et une heure qui ne sont pas encore passées.');
+            } elseif ($siegesLibres === null || $siegesLibres <= 0) {
+                $this->addFlash('erreur', 'Veuillez renseigner au minimum 1 siège libre.');
+            } else {
+                try {
+                    $trajet->setUtilisateur($this->getUser());
+
+                    $entityManager->persist($trajet);
+                    $entityManager->flush();
+
+                    $this->addFlash('success', 'Votre trajet a été créé avec succès !');
+
+                } catch (\Exception $e) {
+                    $this->addFlash('erreur', 'Une erreur est survenue lors de la création du trajet, veuillez réessayer.');
+                }
+
+                return $this->redirectToRoute('app_accueil');
             }
-            
-            return $this->redirectToRoute('app_accueil');
         }
 
         $trajetsRepository = $entityManager->getRepository(Trajet::class);

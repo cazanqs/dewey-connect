@@ -6,6 +6,7 @@ use App\Repository\TrajetRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TrajetRepository::class)]
 class Trajet
@@ -15,20 +16,27 @@ class Trajet
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: "Le point de départ est obligatoire.")]
     #[ORM\Column(length: 255)]
     private ?string $point_de_depart = null;
 
+    #[Assert\NotBlank(message: "La destination est obligatoire.")]
     #[ORM\Column(length: 255)]
     private ?string $destination = null;
 
+    #[Assert\NotNull(message: "La date et l'heure sont obligatoires.")]
+    #[Assert\GreaterThan('now', message: "La date et l'heure ne doivent pas être encore passées.")]
     #[ORM\Column]
     private ?\DateTime $date_et_heure = null;
 
+    #[Assert\NotNull(message: "Le nombre de sièges libres est obligatoire.")]
+    #[Assert\Positive(message: "Le nombre de sièges libres doit être supérieur à 0.")]
     #[ORM\Column]
     private ?int $sieges_libres = null;
 
     #[ORM\ManyToOne(inversedBy: 'trajets')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull(message: "Un utilisateur doit être associé au trajet.")]
     private ?Utilisateur $utilisateur = null;
 
     /**
@@ -100,7 +108,7 @@ class Trajet
         return $this->utilisateur;
     }
 
-    public function setUtilisateur(?utilisateur $utilisateur): static
+    public function setUtilisateur(?Utilisateur $utilisateur): static
     {
         $this->utilisateur = $utilisateur;
 
