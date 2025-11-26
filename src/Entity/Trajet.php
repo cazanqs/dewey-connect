@@ -17,26 +17,26 @@ class Trajet
     private ?int $id = null;
 
     #[Assert\NotBlank(message: "Le point de départ est obligatoire.")]
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $point_de_depart = null;
 
     #[Assert\NotBlank(message: "La destination est obligatoire.")]
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $destination = null;
 
     #[Assert\NotNull(message: "La date et l'heure sont obligatoires.")]
     #[Assert\GreaterThan('now', message: "La date et l'heure ne doivent pas être encore passées.")]
-    #[ORM\Column]
+    #[ORM\Column(type: "datetime", nullable: false)]
     private ?\DateTime $date_et_heure = null;
 
     #[Assert\NotNull(message: "Le nombre de sièges libres est obligatoire.")]
     #[Assert\Positive(message: "Le nombre de sièges libres doit être supérieur à 0.")]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer', nullable: false)]
     private ?int $sieges_libres = null;
 
+    #[Assert\NotNull(message: "Un utilisateur doit être associé au trajet.")]
     #[ORM\ManyToOne(inversedBy: 'trajets')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotNull(message: "Un utilisateur doit être associé au trajet.")]
     private ?Utilisateur $utilisateur = null;
 
     /**
@@ -103,7 +103,7 @@ class Trajet
         return $this;
     }
 
-    public function getUtilisateur(): ?utilisateur
+    public function getUtilisateur(): ?Utilisateur
     {
         return $this->utilisateur;
     }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReservationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -13,13 +14,17 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[Assert\NotNull(message: "Le nombre de sièges réservés est obligatoire.")]
+    #[Assert\Positive(message: "Le nombre de sièges réservés doit être supérieur à 0.")]
+    #[ORM\Column(type: 'integer', nullable: false)]
     private ?int $sieges_reserves = null;
 
+    #[Assert\NotNull(message: "Un trajet doit être associé à la réservation.")]
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Trajet $trajet = null;
 
+    #[Assert\NotNull(message: "Un utilisateur doit être associé à la réservation.")]
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisateur = null;
@@ -41,24 +46,24 @@ class Reservation
         return $this;
     }
 
-    public function getTrajet(): ?trajet
+    public function getTrajet(): ?Trajet
     {
         return $this->trajet;
     }
 
-    public function setTrajet(?trajet $trajet): static
+    public function setTrajet(?Trajet $trajet): static
     {
         $this->trajet = $trajet;
 
         return $this;
     }
 
-    public function getUtilisateur(): ?utilisateur
+    public function getUtilisateur(): ?Utilisateur
     {
         return $this->utilisateur;
     }
 
-    public function setUtilisateur(?utilisateur $utilisateur): static
+    public function setUtilisateur(?Utilisateur $utilisateur): static
     {
         $this->utilisateur = $utilisateur;
 

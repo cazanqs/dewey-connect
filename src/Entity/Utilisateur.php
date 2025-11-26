@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -20,7 +21,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180, nullable: false)]
+
     private ?string $email = null;
 
     /**
@@ -32,13 +34,16 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-    #[ORM\Column]
+    #[Assert\NotBlank(message: 'Le mot de passe est obligatoire.')]
+    #[ORM\Column(nullable: false)]
     private ?string $password = null;
 
-    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Le prénom est obligatoire.')]
+    #[ORM\Column(length: 100, nullable: false)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Le nom de famille est obligatoire.')]
+    #[ORM\Column(length: 100, nullable: false)]
     private ?string $nom_de_famille = null;
 
     #[ORM\Column(length: 20, nullable: true)]
@@ -47,7 +52,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Trajet>
      */
-    #[ORM\OneToMany(targetEntity: Trajet::class, mappedBy: 'utilsateur')]
+    #[ORM\OneToMany(targetEntity: Trajet::class, mappedBy: 'utilisateur')]
     private Collection $trajets;
 
     /**
@@ -180,7 +185,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->trajets->contains($trajet)) {
             $this->trajets->add($trajet);
-            $trajet->setUtilsateur($this);
+            $trajet->setUtilisateur($this);
         }
 
         return $this;
@@ -190,8 +195,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->trajets->removeElement($trajet)) {
             // set the owning side to null (unless already changed)
-            if ($trajet->getUtilsateur() === $this) {
-                $trajet->setUtilsateur(null);
+            if ($trajet->getUtilisateur() === $this) {
+                $trajet->setUtilisateur(null);
             }
         }
 
