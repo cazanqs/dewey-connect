@@ -34,7 +34,6 @@ class Trajet
     #[ORM\Column(type: 'integer', nullable: false)]
     private ?int $sieges_libres = null;
 
-    #[Assert\NotNull(message: "Un utilisateur doit être associé au trajet.")]
     #[ORM\ManyToOne(inversedBy: 'trajets')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisateur = null;

@@ -19,12 +19,10 @@ class Reservation
     #[ORM\Column(type: 'integer', nullable: false)]
     private ?int $sieges_reserves = null;
 
-    #[Assert\NotNull(message: "Un trajet doit être associé à la réservation.")]
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Trajet $trajet = null;
 
-    #[Assert\NotNull(message: "Un utilisateur doit être associé à la réservation.")]
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisateur = null;

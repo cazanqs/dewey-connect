@@ -20,35 +20,37 @@ final class AccueilController extends AbstractController
         $form = $this->createForm(TrajetType::class, $trajet);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             if (!$this->getUser()) {
                 $this->addFlash('erreur', 'Veuillez vous connecter pour créer un trajet.');
 
                 return $this->redirectToRoute('app_login');
             }
 
-            $date = $trajet->getDateEtHeure();
+            $trajet->setUtilisateur($this->getUser());
 
-            $siegesLibres = $trajet->getSiegesLibres();
+            if ($form->isValid()) {
+                $date = $trajet->getDateEtHeure();
 
-            if (!$date || $date <= new \DateTime()) {
-                $this->addFlash('erreur', 'Veuillez renseigner une date et une heure qui ne sont pas encore passées.');
-            } elseif ($siegesLibres === null || $siegesLibres <= 0) {
-                $this->addFlash('erreur', 'Veuillez renseigner au minimum 1 siège libre.');
-            } else {
-                try {
-                    $trajet->setUtilisateur($this->getUser());
+                $siegesLibres = $trajet->getSiegesLibres();
 
-                    $entityManager->persist($trajet);
-                    $entityManager->flush();
+                if (!$date || $date <= new \DateTime()) {
+                    $this->addFlash('erreur', 'Veuillez renseigner une date et une heure qui ne sont pas encore passées.');
+                } elseif ($siegesLibres === null || $siegesLibres <= 0) {
+                    $this->addFlash('erreur', 'Veuillez renseigner au minimum 1 siège libre.');
+                } else {
+                    try {
+                        $entityManager->persist($trajet);
+                        $entityManager->flush();
 
-                    $this->addFlash('success', 'Votre trajet a été créé avec succès !');
+                        $this->addFlash('success', 'Votre trajet a été créé avec succès !');
 
-                } catch (\Exception $e) {
-                    $this->addFlash('erreur', 'Une erreur est survenue lors de la création du trajet, veuillez réessayer.');
+                    } catch (\Exception $e) {
+                        $this->addFlash('erreur', 'Une erreur est survenue lors de la création du trajet, veuillez réessayer.');
+                    }
+
+                    return $this->redirectToRoute('app_accueil');
                 }
-
-                return $this->redirectToRoute('app_accueil');
             }
         }
 

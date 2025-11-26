@@ -45,11 +45,6 @@ class ProfilType extends AbstractType
             ->add('telephone', null, [
                 'label' => 'Numéro de téléphone',
                 'attr' => ['placeholder' => 'Numéro de téléphone'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer votre numéro de téléphone.',
-                    ]),
-                ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'Nouveau mot de passe (optionnel)',

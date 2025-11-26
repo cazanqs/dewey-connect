@@ -23,7 +23,10 @@
                     <p><strong>Adresse email :</strong> {{ utilisateur.email }}</p>
                     <p><strong>Prénom :</strong> {{ utilisateur.prenom }}</p>
                     <p><strong>Nom de famille :</strong> {{ utilisateur.nomDeFamille }}</p>
-                    <p><strong>Numéro de téléphone :</strong> {{ utilisateur.telephone }}</p>
+
+                    {% if utilisateur.telephone %}
+                        <p><strong>Numéro de téléphone :</strong> {{ utilisateur.telephone }}</p>
+                    {% endif %}
                 </div>
 
                 <div class="modifier">
