@@ -53,4 +53,14 @@ footer {
         background-color: $vert;
         padding: 10px 0;
     }
+
+    &.profil {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        @media (max-width: 768px) {
+            position: relative;
+        }
+    }
 }

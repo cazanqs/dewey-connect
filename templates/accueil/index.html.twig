@@ -3,83 +3,48 @@
 {% block title %}Accueil{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="accueil">
-        {% for type, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="message {{ type }}">
-                    <p>{{ message }}</p>
+    <main class="accueil">
+        <section class="banniere">
+            <h1>Dewey Connect<br>Des trajets partagés, des liens renforcés</h1>
+
+            <div><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></div>
+        </section>
+
+        <section id="creer-un-trajet">
+            <h2>Créer un trajet</h2>
+
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+
+                {% if is_granted('ROLE_USER') %}
+                    <input type="hidden" name="utilisateur" value="{{ app.user.id }}">
+                    
+                    <button type="submit">Créer le trajet</button>
+                {% else %}
+                    <button type="submit">Créer le trajet</button>
+                {% endif %}
+            {{ form_end(form) }}
+        </section>
+
+        <section class="texte-defilant">
+            <div class="animation">
+                <div class="textes">
+                    <p>DEWEY CONNECT</p>
+                    <p>DEWEY CONNECT</p>
+                    <p>DEWEY CONNECT</p>
+                    <p>DEWEY CONNECT</p>
+                    <p>DEWEY CONNECT</p>
+                    <p>DEWEY CONNECT</p>
+                    <p>DEWEY CONNECT</p>
+                    <p>DEWEY CONNECT</p>
+                    <p>DEWEY CONNECT</p>
+                    <p>DEWEY CONNECT</p>
                 </div>
-            {% endfor %}
-        {% endfor %}
-
-        <header>
-            <div class="desktop">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-blanc.svg') }}" alt="Logotype Agence Dewey"></a>
-                
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
             </div>
+        </section>
 
-            <div class="mobile">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-blanc.svg') }}" alt="Logotype Agence Dewey"></a>
-
-                <div class="burger">
-                    <img src="{{ asset('images/burger.svg') }}" alt="Menu burger">
-                </div>
-
-                <div class="croix">
-                    <img src="{{ asset('images/croix.svg') }}" alt="Croix">
-                </div>
-
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <section class="banniere">
-                <h1>Dewey Connect<br>Des trajets partagés, des liens renforcés</h1>
-
-                <div><img src="{{ asset('images/banniere.jpg') }}" alt="Image de fond"></div>
-            </section>
-
-            <section id="creer-un-trajet">
-                <h2>Créer un trajet</h2>
-
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-
-                    {% if is_granted('ROLE_USER') %}
-                        <input type="hidden" name="utilisateur" value="{{ app.user.id }}">
-                        
-                        <button type="submit">Créer le trajet</button>
-                    {% else %}
-                        <button type="submit">Créer le trajet</button>
-                    {% endif %}
-                {{ form_end(form) }}
-            </section>
-
-            <section class="texte-defilant">
+        <section id="voir-les-trajets-disponibles">
+            <div class="texte-defilant">
                 <div class="animation">
                     <div class="textes">
                         <p>DEWEY CONNECT</p>
@@ -94,109 +59,61 @@
                         <p>DEWEY CONNECT</p>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section id="voir-les-trajets-disponibles">
-                <div class="texte-defilant">
-                    <div class="animation">
-                        <div class="textes">
-                            <p>DEWEY CONNECT</p>
-                            <p>DEWEY CONNECT</p>
-                            <p>DEWEY CONNECT</p>
-                            <p>DEWEY CONNECT</p>
-                            <p>DEWEY CONNECT</p>
-                            <p>DEWEY CONNECT</p>
-                            <p>DEWEY CONNECT</p>
-                            <p>DEWEY CONNECT</p>
-                            <p>DEWEY CONNECT</p>
-                            <p>DEWEY CONNECT</p>
+            <div class="trajets">
+                {% for trajet in trajets %}
+                    <div class="trajet">
+                        <div class="icone">
+                            <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
+
+                            <div>
+                                <p>{{ trajet.pointDeDepart }}</p>
+                                <p>{{ trajet.destination }}</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="trajets">
-                    {% for trajet in trajets %}
-                        <div class="trajet">
-                            <div class="icone">
-                                <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
+                        <div class="icone">
+                            <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un utilisateur">
+                            
+                            <p>{{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
+                        </div>
 
-                                <div>
-                                    <p>{{ trajet.pointDeDepart }}</p>
-                                    <p>{{ trajet.destination }}</p>
-                                </div>
-                            </div>
+                        <div class="icone">
+                            <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
 
-                            <div class="icone">
-                                <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un utilisateur">
-                                
-                                <p>{{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
-                            </div>
+                            <p>{{ trajet.dateEtHeure|date('d/m/Y | H:i') }}</p>
+                        </div>
 
-                            <div class="icone">
-                                <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
-
-                                <p>{{ trajet.dateEtHeure|date('d/m/Y | H:i') }}</p>
-                            </div>
-
-                            <div class="icone">
-                                <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
-                                
-                                {% if trajet.siegesLibres > 1 %}
-                                    <p>Il reste encore {{ trajet.siegesLibres }} places</p>
-                                {% elseif trajet.siegesLibres == 1 %}
-                                    <p>Il reste encore {{ trajet.siegesLibres }} place</p>
-                                {% else %}
-                                    <p>Complet</p>
-                                {% endif %}
-                            </div>
-                            {% if is_granted('ROLE_USER') %}
-                                {% if trajet.siegesLibres >= 1 and trajet.utilisateur.id != app.user.id %}
-                                    <a href="{{ path('app_reservation', {'id': trajet.id}) }}"><button>Réserver</button></a>
-                                {% else %}
-                                    <button class="invalide">Réserver</button>
-                                {% endif %}
+                        <div class="icone">
+                            <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
+                            
+                            {% if trajet.siegesLibres > 1 %}
+                                <p>Il reste encore {{ trajet.siegesLibres }} places</p>
+                            {% elseif trajet.siegesLibres == 1 %}
+                                <p>Il reste encore {{ trajet.siegesLibres }} place</p>
                             {% else %}
-                                {% if trajet.siegesLibres >= 1 %}
-                                    <a href="{{ path('app_login') }}"><button type="button">Réserver</button></a>
-                                {% else %}
-                                    <button class="invalide">Réserver</button>
-                                {% endif %}
+                                <p>Complet</p>
                             {% endif %}
                         </div>
-                    {% else %}
-                        <p class="vide">Aucun trajet disponible pour le moment.</p>
-                    {% endfor %}
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="conteneur">
-                <div>
-                    <img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey">
-                </div>
-
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                    {% if is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('app_profil') }}">Mon profil</a></li>
-                    {% else %}
-                        <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                    {% endif %}
-                </ul>
-
-                <ul>
-                    <li><a href="{{ path('app_mentions_legales') }}">Mentions légales</a></li>
-                    <li><a href="{{ path('app_politique_de_confidentialite') }}">Politique de confidentialité</a></li>
-                </ul>
+                        {% if is_granted('ROLE_USER') %}
+                            {% if trajet.siegesLibres >= 1 and trajet.utilisateur.id != app.user.id %}
+                                <a href="{{ path('app_reservation', {'id': trajet.id}) }}"><button>Réserver</button></a>
+                            {% else %}
+                                <button class="invalide">Réserver</button>
+                            {% endif %}
+                        {% else %}
+                            {% if trajet.siegesLibres >= 1 %}
+                                <a href="{{ path('app_login') }}"><button type="button">Réserver</button></a>
+                            {% else %}
+                                <button class="invalide">Réserver</button>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <p class="vide">Aucun trajet disponible pour le moment.</p>
+                {% endfor %}
             </div>
-
-            <div class="credit">
-                <p>Site développé par Irving Cazaban</p>
-            </div>
-        </footer>
-    </body>
+        </section>
+    </main>
 {% endblock %}

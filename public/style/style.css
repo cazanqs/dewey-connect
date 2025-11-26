@@ -213,13 +213,13 @@ header .desktop ul, header .mobile ul {
   align-items: center;
   list-style: none;
 }
-header .desktop a, header .mobile a {
+header .desktop ul a, header .mobile ul a {
   font-weight: bold;
   color: black;
   text-decoration: none;
 }
 @media (max-width: 768px) {
-  header .desktop a, header .mobile a {
+  header .desktop ul a, header .mobile ul a {
     color: white;
   }
 }
@@ -228,6 +228,9 @@ header .desktop .profil, header .mobile .profil {
 }
 header .desktop .profil img, header .mobile .profil img {
   width: 100%;
+}
+header .desktop {
+  margin: 0 auto 50px;
 }
 @media (max-width: 768px) {
   header .desktop {
@@ -242,6 +245,7 @@ header .desktop ul {
 }
 header .mobile {
   position: relative;
+  margin: 0 auto 25px;
 }
 @media (min-width: 769px) {
   header .mobile {
@@ -249,14 +253,13 @@ header .mobile {
   }
 }
 header .mobile .logotype {
-  width: 25%;
+  width: 30%;
 }
 header .mobile .burger, header .mobile .croix {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  height: 25px;
-  width: 25px;
+  width: 30px;
   color: white;
   line-height: 0;
 }
@@ -304,32 +307,26 @@ header .mobile.ouvert .croix {
 header .mobile.ouvert nav {
   display: block;
 }
-
-.accueil header .desktop, .accueil header .mobile {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.accueil header .desktop a {
-  color: white;
-}
-
-@media (min-width: 769px) {
-  .profil header .desktop .profil img, .profil header .mobile .profil img, .reservation header .desktop .profil img, .reservation header .mobile .profil img, .legal header .desktop .profil img, .legal header .mobile .profil img {
-    filter: invert(1);
-  }
-}
-.profil header .desktop .burger img, .profil header .mobile .burger img, .reservation header .desktop .burger img, .reservation header .mobile .burger img, .legal header .desktop .burger img, .legal header .mobile .burger img {
+header .mobile.ouvert .profil img {
   filter: invert(1);
 }
 
-.profil header .desktop, .reservation header .desktop, .legal header .desktop {
-  margin: 0 auto 50px;
+header.accueil .desktop, header.accueil .mobile {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
 }
 
-.profil header .mobile, .reservation header .mobile, .legal header .mobile {
-  margin: 0 auto 25px;
+header.accueil .desktop a {
+  color: white;
+}
+header.accueil .desktop .profil img {
+  filter: invert(1);
+}
+
+header.accueil .burger img {
+  filter: invert(1);
 }
 
 footer .conteneur {
@@ -382,20 +379,30 @@ footer .credit {
   background-color: #33b698;
   padding: 10px 0;
 }
+footer.profil {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  footer.profil {
+    position: relative;
+  }
+}
 
-.accueil a {
+main.accueil a {
   text-decoration: none;
 }
-.accueil .banniere {
+main.accueil .banniere {
   position: relative;
   height: 90vh;
 }
 @media (max-width: 768px) {
-  .accueil .banniere {
+  main.accueil .banniere {
     height: 75vh;
   }
 }
-.accueil .banniere h1 {
+main.accueil .banniere h1 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -405,17 +412,17 @@ footer .credit {
   z-index: 1;
 }
 @media (max-width: 768px) {
-  .accueil .banniere h1 {
+  main.accueil .banniere h1 {
     width: 75%;
   }
 }
-.accueil .banniere h1.burger {
+main.accueil .banniere h1.burger {
   z-index: 0;
 }
-.accueil .banniere div {
+main.accueil .banniere div {
   height: 100%;
 }
-.accueil .banniere div::before {
+main.accueil .banniere div::before {
   content: "";
   position: absolute;
   top: 0;
@@ -424,24 +431,24 @@ footer .credit {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.75);
 }
-.accueil .banniere img {
+main.accueil .banniere img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.accueil #creer-un-trajet {
+main.accueil #creer-un-trajet {
   width: 90%;
   margin: 100px auto 50px;
 }
 @media (max-width: 768px) {
-  .accueil #creer-un-trajet {
+  main.accueil #creer-un-trajet {
     margin: 50px auto 25px;
   }
 }
-.accueil #creer-un-trajet h2 {
+main.accueil #creer-un-trajet h2 {
   margin-bottom: 50px;
 }
-.accueil #creer-un-trajet #trajet {
+main.accueil #creer-un-trajet #trajet {
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -450,69 +457,69 @@ footer .credit {
   padding: 10px;
 }
 @media (max-width: 768px) {
-  .accueil #creer-un-trajet #trajet {
+  main.accueil #creer-un-trajet #trajet {
     flex-direction: column;
     border-radius: 25px;
   }
 }
-.accueil #creer-un-trajet #trajet div {
+main.accueil #creer-un-trajet #trajet div {
   width: 25%;
 }
 @media (max-width: 768px) {
-  .accueil #creer-un-trajet #trajet div {
+  main.accueil #creer-un-trajet #trajet div {
     width: 100%;
   }
 }
-.accueil #creer-un-trajet #trajet div label {
+main.accueil #creer-un-trajet #trajet div label {
   display: none;
 }
-.accueil #creer-un-trajet #trajet div input {
+main.accueil #creer-un-trajet #trajet div input {
   height: 50px;
   width: 100%;
   border: none;
   padding: 0 10px;
   box-sizing: border-box;
 }
-.accueil #creer-un-trajet #trajet div input:focus {
+main.accueil #creer-un-trajet #trajet div input:focus {
   outline-color: black;
 }
-.accueil #creer-un-trajet #trajet div:first-of-type input {
+main.accueil #creer-un-trajet #trajet div:first-of-type input {
   border-radius: 25px 0 0 25px;
 }
 @media (max-width: 768px) {
-  .accueil #creer-un-trajet #trajet div:first-of-type input {
+  main.accueil #creer-un-trajet #trajet div:first-of-type input {
     border-radius: 25px 25px 0 0;
   }
 }
-.accueil #creer-un-trajet #trajet div:last-of-type input {
+main.accueil #creer-un-trajet #trajet div:last-of-type input {
   border-radius: 0 25px 25px 0;
 }
 @media (max-width: 768px) {
-  .accueil #creer-un-trajet #trajet div:last-of-type input {
+  main.accueil #creer-un-trajet #trajet div:last-of-type input {
     border-radius: 0 0 25px 25px;
   }
 }
-.accueil #creer-un-trajet button {
+main.accueil #creer-un-trajet button {
   margin-bottom: 0;
 }
-.accueil .texte-defilant {
+main.accueil .texte-defilant {
   padding-top: 50px;
   overflow: hidden;
 }
 @media (max-width: 768px) {
-  .accueil .texte-defilant {
+  main.accueil .texte-defilant {
     padding-top: 25px;
   }
 }
-.accueil .texte-defilant .animation {
+main.accueil .texte-defilant .animation {
   display: flex;
   animation: text-defilant 30s linear infinite;
 }
-.accueil .texte-defilant .animation .textes {
+main.accueil .texte-defilant .animation .textes {
   display: flex;
   flex-shrink: 0;
 }
-.accueil .texte-defilant .animation .textes p {
+main.accueil .texte-defilant .animation .textes p {
   display: flex;
   align-items: center;
   gap: 50px;
@@ -521,13 +528,13 @@ footer .credit {
   margin-left: 50px;
 }
 @media (max-width: 768px) {
-  .accueil .texte-defilant .animation .textes p {
+  main.accueil .texte-defilant .animation .textes p {
     gap: 25px;
     font-size: 25px;
     margin-left: 25px;
   }
 }
-.accueil .texte-defilant .animation .textes p::after {
+main.accueil .texte-defilant .animation .textes p::after {
   content: "";
   height: 25px;
   width: 25px;
@@ -535,7 +542,7 @@ footer .credit {
   border-radius: 100%;
 }
 @media (max-width: 768px) {
-  .accueil .texte-defilant .animation .textes p::after {
+  main.accueil .texte-defilant .animation .textes p::after {
     height: 15px;
     width: 15px;
   }
@@ -548,31 +555,31 @@ footer .credit {
     transform: translateX(-100%);
   }
 }
-.accueil section.texte-defilant p {
+main.accueil section.texte-defilant p {
   color: #33b698;
 }
-.accueil section.texte-defilant p::after {
+main.accueil section.texte-defilant p::after {
   background-color: #33b698;
 }
-.accueil #voir-les-trajets-disponibles {
+main.accueil #voir-les-trajets-disponibles {
   background-color: #33b698;
   padding-bottom: 100px;
 }
 @media (max-width: 768px) {
-  .accueil #voir-les-trajets-disponibles {
+  main.accueil #voir-les-trajets-disponibles {
     padding-bottom: 50px;
   }
 }
-.accueil #voir-les-trajets-disponibles .texte-defilant {
+main.accueil #voir-les-trajets-disponibles .texte-defilant {
   rotate: 180deg;
 }
-.accueil #voir-les-trajets-disponibles .texte-defilant p {
+main.accueil #voir-les-trajets-disponibles .texte-defilant p {
   color: white;
 }
-.accueil #voir-les-trajets-disponibles .texte-defilant p::after {
+main.accueil #voir-les-trajets-disponibles .texte-defilant p::after {
   background-color: white;
 }
-.accueil #voir-les-trajets-disponibles .trajets {
+main.accueil #voir-les-trajets-disponibles .trajets {
   width: 90%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -580,16 +587,16 @@ footer .credit {
   margin: 50px auto 0;
 }
 @media (max-width: 768px) {
-  .accueil #voir-les-trajets-disponibles .trajets {
+  main.accueil #voir-les-trajets-disponibles .trajets {
     grid-template-columns: 1fr;
     gap: 25px;
     margin-top: 25px;
   }
 }
-.accueil #voir-les-trajets-disponibles .trajets .trajet {
+main.accueil #voir-les-trajets-disponibles .trajets .trajet {
   background-color: white;
 }
-.accueil #voir-les-trajets-disponibles .vide {
+main.accueil #voir-les-trajets-disponibles .vide {
   color: white;
 }
 
@@ -737,27 +744,27 @@ footer .credit {
   color: white;
 }
 
-.reservation main {
+.reservation {
   width: 75%;
   margin: auto;
 }
-.reservation main .trajet {
+.reservation .trajet {
   width: fit-content;
   color: white;
   background-color: #33b698;
   margin: 50px auto 0;
 }
-.reservation main .trajet img {
+.reservation .trajet img {
   filter: invert(1);
 }
-.reservation main .trajet label {
+.reservation .trajet label {
   display: none;
 }
-.reservation main .trajet #reservation {
+.reservation .trajet #reservation {
   width: fit-content;
   margin: 0 auto 35px;
 }
-.reservation main .trajet #reservation select {
+.reservation .trajet #reservation select {
   color: white;
   border: solid 2px white;
   appearance: none;
@@ -766,43 +773,43 @@ footer .credit {
   background-size: 20px;
   padding: 10px 40px 10px 10px;
 }
-.reservation main .trajet #reservation select:focus {
+.reservation .trajet #reservation select:focus {
   outline-color: black;
 }
 
-.profil main {
+.profil {
   width: 75%;
   margin: auto;
 }
 @media (max-width: 768px) {
-  .profil main {
+  .profil {
     width: 90%;
   }
 }
-.profil main .conteneur {
+.profil .conteneur {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur {
+  .profil .conteneur {
     flex-direction: column;
     margin-top: 25px;
   }
 }
-.profil main .conteneur .navigation {
+.profil .conteneur .navigation {
   height: fit-content;
   width: 25%;
   background-color: #33b698;
   border-radius: 25px;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .navigation {
+  .profil .conteneur .navigation {
     width: 100%;
     margin-bottom: 25px;
   }
 }
-.profil main .conteneur .navigation ul {
+.profil .conteneur .navigation ul {
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -812,19 +819,19 @@ footer .credit {
   margin: auto;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .navigation ul {
+  .profil .conteneur .navigation ul {
     padding: 25px 10px;
   }
 }
-.profil main .conteneur .navigation ul a {
+.profil .conteneur .navigation ul a {
   color: white;
 }
-.profil main .conteneur .navigation ul a.deconnexion {
+.profil .conteneur .navigation ul a.deconnexion {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.profil main .conteneur .navigation ul a.deconnexion::before {
+.profil .conteneur .navigation ul a.deconnexion::before {
   content: "";
   height: 15px;
   width: 15px;
@@ -833,15 +840,15 @@ footer .credit {
   background-position: center;
   background-repeat: no-repeat;
 }
-.profil main .conteneur .informations {
+.profil .conteneur .informations {
   width: 70%;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .informations {
+  .profil .conteneur .informations {
     width: 100%;
   }
 }
-.profil main .conteneur .informations .centre {
+.profil .conteneur .informations .centre {
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -849,76 +856,76 @@ footer .credit {
   margin: auto;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .informations .centre {
+  .profil .conteneur .informations .centre {
     width: 100%;
   }
 }
-.profil main .conteneur .informations .centre p {
+.profil .conteneur .informations .centre p {
   width: fit-content;
 }
-.profil main .conteneur .informations .centre button {
+.profil .conteneur .informations .centre button {
   margin: 25px auto 0;
 }
-.profil main .conteneur .informations .centre form {
+.profil .conteneur .informations .centre form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.profil main .conteneur .informations .centre form div {
+.profil .conteneur .informations .centre form div {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-.profil main .conteneur .informations .centre form div input, .profil main .conteneur .informations .centre form div select {
+.profil .conteneur .informations .centre form div input, .profil .conteneur .informations .centre form div select {
   border: solid 2px #33b698;
   padding: 10px;
 }
-.profil main .conteneur .informations .centre form div input:focus, .profil main .conteneur .informations .centre form div select:focus {
+.profil .conteneur .informations .centre form div input:focus, .profil .conteneur .informations .centre form div select:focus {
   outline-color: black;
 }
-.profil main .conteneur .informations .centre form div select {
+.profil .conteneur .informations .centre form div select {
   appearance: none;
   background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2333b698' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat;
   background-position: right 10px center;
   background-size: 20px;
   padding-right: 40px;
 }
-.profil main .conteneur .informations .centre form div.nom {
+.profil .conteneur .informations .centre form div.nom {
   flex-direction: row;
   gap: 10px;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .informations .centre form div.nom {
+  .profil .conteneur .informations .centre form div.nom {
     flex-direction: column;
   }
 }
-.profil main .conteneur .informations .centre.largeur {
+.profil .conteneur .informations .centre.largeur {
   width: 70%;
 }
-.profil main .conteneur .informations .centre.largeur #trajet {
+.profil .conteneur .informations .centre.largeur #trajet {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.profil main .conteneur .informations .centre.row {
+.profil .conteneur .informations .centre.row {
   width: 100%;
   flex-direction: row;
   gap: 25px;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .informations .centre.row {
+  .profil .conteneur .informations .centre.row {
     flex-direction: column;
   }
 }
-.profil main .conteneur .informations .centre.row form {
+.profil .conteneur .informations .centre.row form {
   width: 70%;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .informations .centre.row form {
+  .profil .conteneur .informations .centre.row form {
     width: 100%;
   }
 }
-.profil main .conteneur .informations .centre.row .liste {
+.profil .conteneur .informations .centre.row .liste {
   height: fit-content;
   width: 30%;
   background-color: #33b698;
@@ -926,58 +933,58 @@ footer .credit {
   padding: 25px;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .informations .centre.row .liste {
+  .profil .conteneur .informations .centre.row .liste {
     width: 75%;
     margin: auto;
   }
 }
-.profil main .conteneur .informations .centre.row .liste h2 {
+.profil .conteneur .informations .centre.row .liste h2 {
   font-size: 20px;
   color: white;
 }
-.profil main .conteneur .informations .centre.row .liste ul {
+.profil .conteneur .informations .centre.row .liste ul {
   list-style: inside;
   margin: 25px 0;
 }
-.profil main .conteneur .informations .centre.row .liste ul li {
+.profil .conteneur .informations .centre.row .liste ul li {
   color: white;
 }
-.profil main .conteneur .informations .centre.row .liste p {
+.profil .conteneur .informations .centre.row .liste p {
   color: white;
   margin: auto;
 }
-.profil main .conteneur .informations .modifier {
+.profil .conteneur .informations .modifier {
   display: flex;
   justify-content: center;
   gap: 25px;
   margin-top: 25px;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .informations .modifier {
+  .profil .conteneur .informations .modifier {
     flex-direction: column;
     align-items: center;
   }
 }
-.profil main .conteneur .informations .modifier a {
+.profil .conteneur .informations .modifier a {
   color: black;
 }
-.profil main .conteneur .informations .grid {
+.profil .conteneur .informations .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 25px;
 }
 @media (max-width: 768px) {
-  .profil main .conteneur .informations .grid {
+  .profil .conteneur .informations .grid {
     grid-template-columns: 1fr;
   }
 }
-.profil main .conteneur .informations .grid .trajet {
+.profil .conteneur .informations .grid .trajet {
   position: relative;
   color: white;
   background-color: #33b698;
   padding: 60px 25px 25px;
 }
-.profil main .conteneur .informations .grid .trajet .statut {
+.profil .conteneur .informations .grid .trajet .statut {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -985,44 +992,34 @@ footer .credit {
   border-radius: 25px;
   padding: 2.5px;
 }
-.profil main .conteneur .informations .grid .trajet .statut p {
+.profil .conteneur .informations .grid .trajet .statut p {
   font-size: 15px;
   color: white;
   border-radius: 25px;
   padding: 5px 10px;
 }
-.profil main .conteneur .informations .grid .trajet .statut .a-venir {
+.profil .conteneur .informations .grid .trajet .statut .a-venir {
   background-color: #33b698;
 }
-.profil main .conteneur .informations .grid .trajet .statut .effectue {
+.profil .conteneur .informations .grid .trajet .statut .effectue {
   background-color: red;
 }
-.profil main .conteneur .informations .grid .trajet img {
+.profil .conteneur .informations .grid .trajet img {
   filter: invert(1);
 }
-.profil main .conteneur .informations .grid a {
+.profil .conteneur .informations .grid a {
   text-decoration: none;
 }
-.profil.index footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-@media (max-width: 768px) {
-  .profil.index footer {
-    position: relative;
-  }
-}
 
-.legal main {
+.legal {
   width: 90%;
   margin: auto;
 }
-.legal main h2 {
+.legal h2 {
   text-align: left;
   margin: 50px 0 10px;
 }
-.legal main ul {
+.legal ul {
   list-style: inside;
   margin-bottom: 25px;
 }

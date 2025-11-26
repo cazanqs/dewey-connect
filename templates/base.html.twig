@@ -22,5 +22,19 @@
         {% endblock %}
     </head>
 
-    {% block body %}{% endblock %}
+    <body>
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="message {{ type }}">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% include 'navigation/header.html.twig' %}
+
+        {% block body %}{% endblock %}
+
+        {% include 'navigation/footer.html.twig' %}
+    </body>
 </html>

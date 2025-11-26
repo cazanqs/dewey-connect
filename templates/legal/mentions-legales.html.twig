@@ -3,122 +3,47 @@
 {% block title %}Mentions légales{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="legal">
-        <header>
-            <div class="desktop">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-                
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+    <main class="legal">
+        <section>
+            <h1>Mentions légales</h1>
 
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
+            <h2>Site</h2>
 
-            <div class="mobile">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+            <p><strong>Nom :</strong> Dewey Connect</p>
+            <p><strong>Type de service :</strong> Application interne permettant la mise en relation de collaborateurs pour du covoiturage.</p>
+            <p><strong>URL :</strong> (à compléter)</p>
 
-                <div class="burger">
-                    <img src="{{ asset('images/burger.svg') }}" alt="Menu burger">
-                </div>
+            <h2>Éditeur du site et responsable de publication</h2>
 
-                <div class="croix">
-                    <img src="{{ asset('images/croix.svg') }}" alt="Croix">
-                </div>
+            <ul>
+                <li><strong>Nom :</strong> Irving Cazaban</li>
+                <li><strong>Email :</strong> <a href="mailto:irving.cazaban@ynov.com">irving.cazaban@ynov.com</a></li>
+            </ul>
 
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+            <p>La création du site s’inscrit dans le cadre de l’obtention du titre RNCP37873.</p>
+            <p>Le site n’a aucune vocation commerciale et n’est accessible que dans un cadre d’évaluation technique.</p>
+            
+            <h2>Hébergeur</h2>
 
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-        </header>
+            <ul>
+                <li><strong>Nom :</strong> OVH</li>
+                <li><strong>Adresse :</strong> 2 Rue Kellermann, 59100 Roubaix</li>
+                <li><strong>URL :</strong> <a href="https://www.ovhcloud.com/fr/">https://www.ovhcloud.com/fr/</a></li>
 
-        <main>
-            <section>
-                <h1>Mentions légales</h1>
+            <h2>Propriété intellectuelle</h2>
 
-                <h2>Site</h2>
+            <p>L’ensemble du contenu (textes, éléments graphiques, code, images, structure du site, fonctionnalités…) est protégé par les lois relatives à la propriété intellectuelle.</p>
+            <p>Toute reproduction ou représentation, même partielle, est interdite sans autorisation.</p>
 
-                <p><strong>Nom :</strong> Dewey Connect</p>
-                <p><strong>Type de service :</strong> Application interne permettant la mise en relation de collaborateurs pour du covoiturage.</p>
-                <p><strong>URL :</strong> (à compléter)</p>
+            <h2>Limitations de responsabilité</h2>
 
-                <h2>Éditeur du site et responsable de publication</h2>
+            <p>Le site Dewey Connect est un projet pédagogique et peut contenir des erreurs, dysfonctionnements ou interruptions de service.</p>
+            <p>L’éditeur ne peut être tenu responsable des dommages directs ou indirects liés à l’utilisation du site.</p>
+            <p>Les trajets et informations saisis sont fictifs et ne doivent en aucun cas être utilisés dans un cadre réel.</p>
 
-                <ul>
-                    <li><strong>Nom :</strong> Irving Cazaban</li>
-                    <li><strong>Email :</strong> <a href="mailto:irving.cazaban@ynov.com">irving.cazaban@ynov.com</a></li>
-                </ul>
+            <h2>Données personnelles</h2>
 
-                <p>La création du site s’inscrit dans le cadre de l’obtention du titre RNCP37873.</p>
-                <p>Le site n’a aucune vocation commerciale et n’est accessible que dans un cadre d’évaluation technique.</p>
-                
-                <h2>Hébergeur</h2>
-
-                <ul>
-                    <li><strong>Nom :</strong> OVH</li>
-                    <li><strong>Adresse :</strong> 2 Rue Kellermann, 59100 Roubaix</li>
-                    <li><strong>URL :</strong> <a href="https://www.ovhcloud.com/fr/">https://www.ovhcloud.com/fr/</a></li>
-
-                <h2>Propriété intellectuelle</h2>
-
-                <p>L’ensemble du contenu (textes, éléments graphiques, code, images, structure du site, fonctionnalités…) est protégé par les lois relatives à la propriété intellectuelle.</p>
-                <p>Toute reproduction ou représentation, même partielle, est interdite sans autorisation.</p>
-
-                <h2>Limitations de responsabilité</h2>
-
-                <p>Le site Dewey Connect est un projet pédagogique et peut contenir des erreurs, dysfonctionnements ou interruptions de service.</p>
-                <p>L’éditeur ne peut être tenu responsable des dommages directs ou indirects liés à l’utilisation du site.</p>
-                <p>Les trajets et informations saisis sont fictifs et ne doivent en aucun cas être utilisés dans un cadre réel.</p>
-
-                <h2>Données personnelles</h2>
-
-                <p>Voir la <a href="{{ path('app_politique_de_confidentialite') }}">politique de confidentialité</a>.</p>
-            </section>
-        </main>
-
-        <footer>
-            <div class="conteneur">
-                <div>
-                    <img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey">
-                </div>
-
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                    {% if is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('app_profil') }}">Mon profil</a></li>
-                    {% else %}
-                        <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                    {% endif %}
-                </ul>
-
-                <ul>
-                    <li><a href="{{ path('app_mentions_legales') }}">Mentions légales</a></li>
-                    <li><a href="{{ path('app_politique_de_confidentialite') }}">Politique de confidentialité</a></li>
-                </ul>
-            </div>
-
-            <div class="credit">
-                <p>Site développé par Irving Cazaban</p>
-            </div>
-        </footer>
-    </body>
+            <p>Voir la <a href="{{ path('app_politique_de_confidentialite') }}">politique de confidentialité</a>.</p>
+        </section>
+    </main>
 {% endblock %}

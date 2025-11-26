@@ -3,139 +3,64 @@
 {% block title %}Réserver le trajet{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="reservation">
-        <header>
-            <div class="desktop">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-                
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+    <main class="reservation">
+        <h1>Réserver le trajet</h1>
 
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
+        <a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles" class="annuler">Annuler la réservation</a>
 
-            <div class="mobile">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+        <div class="trajet">
+            <div class="icone">
+                <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
 
-                <div class="burger">
-                    <img src="{{ asset('images/burger.svg') }}" alt="Menu burger">
-                </div>
-
-                <div class="croix">
-                    <img src="{{ asset('images/croix.svg') }}" alt="Croix">
-                </div>
-
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <h1>Réserver le trajet</h1>
-
-            <a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles" class="annuler">Annuler la réservation</a>
-
-            <div class="trajet">
-                <div class="icone">
-                    <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
-
-                    <div>
-                        <p>{{ trajet.pointDeDepart }}</p>
-                        <p>{{ trajet.destination }}</p>
-                    </div>
-                </div>
-
-                <div class="icone">
-                    <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un utilisateur">
-
-                    <p>{{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
-                </div>
-
-                <div class="icone">
-                    <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
-
-                    <p>{{ trajet.dateEtHeure|date('d/m/Y H:i') }}</p>
-                </div>
-
-                <div class="icone">
-                    <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
-
-                    {% if trajet.siegesLibres > 1 %}
-                        <p>Il reste encore {{ trajet.siegesLibres }} places</p>
-                    {% elseif trajet.siegesLibres == 1 %}
-                        <p>Il reste encore {{ trajet.siegesLibres }} place</p>
-                    {% else %}
-                        <p>Complet</p>
-                    {% endif %}
-                </div>
-
-                {% if reservationExistante %}
-                    <div class="message information">
-                        {% if reservationExistante.siegesReserves == 1 %}
-                            <p>Vous avez déjà réservé {{ reservationExistante.siegesReserves }} siège pour ce trajet.</p>
-                        {% else %}
-                            <p>Vous avez déjà réservé {{ reservationExistante.siegesReserves }} sièges pour ce trajet.</p>
-                        {% endif %}
-
-                        <a href="{{ path('app_profil_reservation_modifier', {id: reservationExistante.id}) }}">Modifier ma réservation</a>
-                    </div>
-                {% endif %}
-
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    
-                    <div class="form-actions">
-                        <button type="submit" class="white">Réserver</button>
-                    </div>
-                {{ form_end(form) }}
-            </div>
-        </main>
-
-        <footer>
-            <div class="conteneur">
                 <div>
-                    <img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey">
+                    <p>{{ trajet.pointDeDepart }}</p>
+                    <p>{{ trajet.destination }}</p>
                 </div>
+            </div>
 
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+            <div class="icone">
+                <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un utilisateur">
 
-                    {% if is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('app_profil') }}">Mon profil</a></li>
+                <p>{{ trajet.utilisateur.prenom }} {{ trajet.utilisateur.nomDeFamille }}</p>
+            </div>
+
+            <div class="icone">
+                <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
+
+                <p>{{ trajet.dateEtHeure|date('d/m/Y H:i') }}</p>
+            </div>
+
+            <div class="icone">
+                <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
+
+                {% if trajet.siegesLibres > 1 %}
+                    <p>Il reste encore {{ trajet.siegesLibres }} places</p>
+                {% elseif trajet.siegesLibres == 1 %}
+                    <p>Il reste encore {{ trajet.siegesLibres }} place</p>
+                {% else %}
+                    <p>Complet</p>
+                {% endif %}
+            </div>
+
+            {% if reservationExistante %}
+                <div class="message information">
+                    {% if reservationExistante.siegesReserves == 1 %}
+                        <p>Vous avez déjà réservé {{ reservationExistante.siegesReserves }} siège pour ce trajet.</p>
                     {% else %}
-                        <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                        <p>Vous avez déjà réservé {{ reservationExistante.siegesReserves }} sièges pour ce trajet.</p>
                     {% endif %}
-                </ul>
 
-                <ul>
-                    <li><a href="{{ path('app_mentions_legales') }}">Mentions légales</a></li>
-                    <li><a href="{{ path('app_politique_de_confidentialite') }}">Politique de confidentialité</a></li>
-                </ul>
-            </div>
+                    <a href="{{ path('app_profil_reservation_modifier', {id: reservationExistante.id}) }}">Modifier ma réservation</a>
+                </div>
+            {% endif %}
 
-            <div class="credit">
-                <p>Site développé par Irving Cazaban</p>
-            </div>
-        </footer>
-    </body>
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                
+                <div class="form-actions">
+                    <button type="submit" class="white">Réserver</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </main>
 {% endblock %}

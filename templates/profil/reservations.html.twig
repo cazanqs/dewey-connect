@@ -3,166 +3,83 @@
 {% block title %}Mes réservations{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="profil">
-        {% for type, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="message {{ type }}">
-                    <p>{{ message }}</p>
-                </div>
-            {% endfor %}
-        {% endfor %}
+    <main class="profil">
+        <h1>Mes réservations</h1>
 
-        <header>
-            <div class="desktop">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-                
+        <div class="conteneur">
+            <section class="navigation">
                 <nav>
                     <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
+                        <li><a href="{{ path('app_profil') }}">Mes informations</a></li>
+                        <li><a href="{{ path('app_profil_trajets') }}">Mes trajets</a></li>
+                        <li><a href="{{ path('app_profil_reservations') }}" class="actif">Mes réservations</a></li>
+                        <li><a href="{{ path('app_logout') }}" class="deconnexion">Se déconnecter</a></li>
                     </ul>
                 </nav>
-            </div>
+            </section>
 
-            <div class="mobile">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-
-                <div class="burger">
-                    <img src="{{ asset('images/burger.svg') }}" alt="Menu burger">
-                </div>
-
-                <div class="croix">
-                    <img src="{{ asset('images/croix.svg') }}" alt="Croix">
-                </div>
-
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <h1>Mes réservations</h1>
-
-            <div class="conteneur">
-                <section class="navigation">
-                    <nav>
-                        <ul>
-                            <li><a href="{{ path('app_profil') }}">Mes informations</a></li>
-                            <li><a href="{{ path('app_profil_trajets') }}">Mes trajets</a></li>
-                            <li><a href="{{ path('app_profil_reservations') }}" class="actif">Mes réservations</a></li>
-                            <li><a href="{{ path('app_logout') }}" class="deconnexion">Se déconnecter</a></li>
-                        </ul>
-                    </nav>
-                </section>
-
-                <section class="informations">
-                    {% if reservations is not empty %}
-                        <div class="grid">
-                            {% for reservation in reservations %}
-                                <div class="trajet">
-                                    <div class="statut">
-                                        {% if reservation.trajet.dateEtHeure > date() %}
-                                            <p class="a-venir">À venir</p>
-                                        {% else %}
-                                            <p class="effectue">Effectué</p>
-                                        {% endif %}
-                                    </div>
-
-                                    <div class="icone">
-                                        <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
-
-                                        <div>
-                                            <p>{{ reservation.trajet.pointDeDepart }}</p>
-                                            <p>{{ reservation.trajet.destination }}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="icone">
-                                        <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un conducteur">
-                                        
-                                        <p>{{ reservation.trajet.utilisateur.prenom }} {{ reservation.trajet.utilisateur.nomDeFamille }}</p>
-                                    </div>
-
-                                    <div class="icone">
-                                        <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
-
-                                        <p>{{ reservation.trajet.dateEtHeure|date('d/m/Y à H:i') }}</p>
-                                    </div>
-
-                                    <div class="icone">
-                                        <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
-                                        
-                                        {% if reservation.siegesReserves > 1 %}
-                                            <p>{{ reservation.siegesReserves }} sièges réservés</p>
-                                        {% else %}
-                                            <p>{{ reservation.siegesReserves }} siège réservé</p>
-                                        {% endif %}
-                                    </div>
-
+            <section class="informations">
+                {% if reservations is not empty %}
+                    <div class="grid">
+                        {% for reservation in reservations %}
+                            <div class="trajet">
+                                <div class="statut">
                                     {% if reservation.trajet.dateEtHeure > date() %}
-                                        <div class="modifier">
-                                            <a href="{{ path('app_profil_reservation_modifier', {'id': reservation.id}) }}">
-                                                <button class="white">Modifier</button>
-                                            </a>
-
-                                            <a href="{{ path('app_profil_reservation_supprimer', {'id': reservation.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">
-                                                <button class="white">Supprimer</button>
-                                            </a>
-                                        </div>
+                                        <p class="a-venir">À venir</p>
+                                    {% else %}
+                                        <p class="effectue">Effectué</p>
                                     {% endif %}
                                 </div>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <p class="vide">Vous n'avez effectué aucune réservation pour le moment.</p>
-                    {% endif %}
-                </section>
-            </div>
-        </main>
 
-        <footer>
-            <div class="conteneur">
-                <div>
-                    <img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey">
-                </div>
+                                <div class="icone">
+                                    <img src="{{ asset('images/parcours.svg') }}" alt="Icône d'un parcours">
 
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
+                                    <div>
+                                        <p>{{ reservation.trajet.pointDeDepart }}</p>
+                                        <p>{{ reservation.trajet.destination }}</p>
+                                    </div>
+                                </div>
 
-                    {% if is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('app_profil') }}">Mon profil</a></li>
-                    {% else %}
-                        <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                    {% endif %}
-                </ul>
+                                <div class="icone">
+                                    <img src="{{ asset('images/volant.svg') }}" alt="Icône d'un conducteur">
+                                    
+                                    <p>{{ reservation.trajet.utilisateur.prenom }} {{ reservation.trajet.utilisateur.nomDeFamille }}</p>
+                                </div>
 
-                <ul>
-                    <li><a href="{{ path('app_mentions_legales') }}">Mentions légales</a></li>
-                    <li><a href="{{ path('app_politique_de_confidentialite') }}">Politique de confidentialité</a></li>
-                </ul>
-            </div>
+                                <div class="icone">
+                                    <img src="{{ asset('images/date-et-heure.svg') }}" alt="Icône d'un calendrier">
 
-            <div class="credit">
-                <p>Site développé par Irving Cazaban</p>
-            </div>
-        </footer>
-    </body>
+                                    <p>{{ reservation.trajet.dateEtHeure|date('d/m/Y à H:i') }}</p>
+                                </div>
+
+                                <div class="icone">
+                                    <img src="{{ asset('images/sieges-libres.svg') }}" alt="Icône d'un passager">
+                                    
+                                    {% if reservation.siegesReserves > 1 %}
+                                        <p>{{ reservation.siegesReserves }} sièges réservés</p>
+                                    {% else %}
+                                        <p>{{ reservation.siegesReserves }} siège réservé</p>
+                                    {% endif %}
+                                </div>
+
+                                {% if reservation.trajet.dateEtHeure > date() %}
+                                    <div class="modifier">
+                                        <a href="{{ path('app_profil_reservation_modifier', {'id': reservation.id}) }}">
+                                            <button class="white">Modifier</button>
+                                        </a>
+
+                                        <a href="{{ path('app_profil_reservation_supprimer', {'id': reservation.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">
+                                            <button class="white">Supprimer</button>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="vide">Vous n'avez effectué aucune réservation pour le moment.</p>
+                {% endif %}
+            </section>
+        </div>
+    </main>
 {% endblock %}

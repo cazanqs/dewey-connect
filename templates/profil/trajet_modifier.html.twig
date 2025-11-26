@@ -3,136 +3,61 @@
 {% block title %}Modifier un trajet{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="profil">
-        <header>
-            <div class="desktop">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-                
+    <main class="profil">
+        <h1>Modifier un trajet</h1>
+
+        <a href="{{ path('app_profil_trajets') }}" class="annuler">Annuler la modification</a>
+
+        <div class="conteneur">
+            <section class="navigation">
                 <nav>
                     <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
+                        <li><a href="{{ path('app_profil') }}">Mes informations</a></li>
+                        <li><a href="{{ path('app_profil_trajets') }}">Mes trajets</a></li>
+                        <li><a href="{{ path('app_profil_reservations') }}">Mes réservations</a></li>
+                        <li><a href="{{ path('app_logout') }}" class="deconnexion">Se déconnecter</a></li>
                     </ul>
                 </nav>
-            </div>
+            </section>
 
-            <div class="mobile">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
+            <section class="informations">
+                <div class="centre row">
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        
+                        <button type="submit">Enregistrer</button>
+                    {{ form_end(form) }}
 
-                <div class="burger">
-                    <img src="{{ asset('images/burger.svg') }}" alt="Menu burger">
-                </div>
+                    {% if trajet.reservations is not empty %}
+                        <div class="liste">
+                            {% if trajet.reservations|length > 1 %}
+                                <h2>Réservations correspondantes</h2>
+                            {% else %}
+                                <h2>Réservation correspondante</h2>
+                            {% endif %}
 
-                <div class="croix">
-                    <img src="{{ asset('images/croix.svg') }}" alt="Croix">
-                </div>
-
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <h1>Modifier un trajet</h1>
-
-            <a href="{{ path('app_profil_trajets') }}" class="annuler">Annuler la modification</a>
-
-            <div class="conteneur">
-                <section class="navigation">
-                    <nav>
-                        <ul>
-                            <li><a href="{{ path('app_profil') }}">Mes informations</a></li>
-                            <li><a href="{{ path('app_profil_trajets') }}">Mes trajets</a></li>
-                            <li><a href="{{ path('app_profil_reservations') }}">Mes réservations</a></li>
-                            <li><a href="{{ path('app_logout') }}" class="deconnexion">Se déconnecter</a></li>
-                        </ul>
-                    </nav>
-                </section>
-
-                <section class="informations">
-                    <div class="centre row">
-                        {{ form_start(form) }}
-                            {{ form_widget(form) }}
-                            
-                            <button type="submit">Enregistrer</button>
-                        {{ form_end(form) }}
-
-                        {% if trajet.reservations is not empty %}
-                            <div class="liste">
-                                {% if trajet.reservations|length > 1 %}
-                                    <h2>Réservations correspondantes</h2>
-                                {% else %}
-                                    <h2>Réservation correspondante</h2>
-                                {% endif %}
-
-                                <ul>
-                                    {% for reservation in trajet.reservations %}
-                                        {% if reservation.siegesReserves > 1 %}
-                                            <li>{{ reservation.utilisateur.prenom }} {{ reservation.utilisateur.nomDeFamille }} | {{ reservation.siegesReserves }} sièges</li>
-                                        {% else %}
-                                            <li>{{ reservation.utilisateur.prenom }} {{ reservation.utilisateur.nomDeFamille }} | {{ reservation.siegesReserves }} siège</li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-
-                                {% set siegesReserves = 0 %}
-
+                            <ul>
                                 {% for reservation in trajet.reservations %}
-                                    {% set siegesReserves = siegesReserves + reservation.siegesReserves %}
+                                    {% if reservation.siegesReserves > 1 %}
+                                        <li>{{ reservation.utilisateur.prenom }} {{ reservation.utilisateur.nomDeFamille }} | {{ reservation.siegesReserves }} sièges</li>
+                                    {% else %}
+                                        <li>{{ reservation.utilisateur.prenom }} {{ reservation.utilisateur.nomDeFamille }} | {{ reservation.siegesReserves }} siège</li>
+                                    {% endif %}
                                 {% endfor %}
+                            </ul>
 
-                                <p>Sièges réservés : {{ siegesReserves }}</p>
-                            </div>
-                        {% endif %}
+                            {% set siegesReserves = 0 %}
+
+                            {% for reservation in trajet.reservations %}
+                                {% set siegesReserves = siegesReserves + reservation.siegesReserves %}
+                            {% endfor %}
+
+                            <p>Sièges réservés : {{ siegesReserves }}</p>
                         </div>
-                    </div>
-                </section>
-            </div>
-        </main>
-
-        <footer>
-            <div class="conteneur">
-                <div>
-                    <img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey">
-                </div>
-
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                    {% if is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('app_profil') }}">Mon profil</a></li>
-                    {% else %}
-                        <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
                     {% endif %}
-                </ul>
-
-                <ul>
-                    <li><a href="{{ path('app_mentions_legales') }}">Mentions légales</a></li>
-                    <li><a href="{{ path('app_politique_de_confidentialite') }}">Politique de confidentialité</a></li>
-                </ul>
-            </div>
-
-            <div class="credit">
-                <p>Site développé par Irving Cazaban</p>
-            </div>
-        </footer>
-    </body>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 {% endblock %}

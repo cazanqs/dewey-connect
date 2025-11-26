@@ -3,117 +3,34 @@
 {% block title %}Mon profil{{ parent() }}{% endblock %}
 
 {% block body %}
-    <body class="profil index">
-        {% for type, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="message {{ type }}">
-                    <p>{{ message }}</p>
-                </div>
-            {% endfor %}
-        {% endfor %}
+    <main class="profil">
+        <h1>Mes informations</h1>
 
-        <header>
-            <div class="desktop">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-                
+        <div class="conteneur">
+            <section class="navigation">
                 <nav>
                     <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
+                        <li><a href="{{ path('app_profil') }}">Mes informations</a></li>
+                        <li><a href="{{ path('app_profil_trajets') }}">Mes trajets</a></li>
+                        <li><a href="{{ path('app_profil_reservations') }}">Mes réservations</a></li>
+                        <li><a href="{{ path('app_logout') }}" class="deconnexion">Se déconnecter</a></li>
                     </ul>
                 </nav>
-            </div>
+            </section>
 
-            <div class="mobile">
-                <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey"></a>
-
-                <div class="burger">
-                    <img src="{{ asset('images/burger.svg') }}" alt="Menu burger">
+            <section class="informations">
+                <div class="centre">
+                    <p><strong>Adresse email :</strong> {{ utilisateur.email }}</p>
+                    <p><strong>Prénom :</strong> {{ utilisateur.prenom }}</p>
+                    <p><strong>Nom de famille :</strong> {{ utilisateur.nomDeFamille }}</p>
+                    <p><strong>Numéro de téléphone :</strong> {{ utilisateur.telephone }}</p>
                 </div>
 
-                <div class="croix">
-                    <img src="{{ asset('images/croix.svg') }}" alt="Croix">
+                <div class="modifier">
+                    <a href="{{ path('app_profil_modifier') }}">Modifier mes informations</a>
+                    <a href="{{ path('app_profil_modifier') }}">Modifier mon mot de passe</a>
                 </div>
-
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                        <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="profil"><a href="{{ path('app_profil') }}"><img src="{{ asset('images/profil.svg') }}" alt="Icône profil"></a></li>
-                        {% else %}
-                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <h1>Mes informations</h1>
-
-            <div class="conteneur">
-                <section class="navigation">
-                    <nav>
-                        <ul>
-                            <li><a href="{{ path('app_profil') }}">Mes informations</a></li>
-                            <li><a href="{{ path('app_profil_trajets') }}">Mes trajets</a></li>
-                            <li><a href="{{ path('app_profil_reservations') }}">Mes réservations</a></li>
-                            <li><a href="{{ path('app_logout') }}" class="deconnexion">Se déconnecter</a></li>
-                        </ul>
-                    </nav>
-                </section>
-
-                <section class="informations">
-                    <div class="centre">
-                        <p><strong>Adresse email :</strong> {{ utilisateur.email }}</p>
-                        <p><strong>Prénom :</strong> {{ utilisateur.prenom }}</p>
-                        <p><strong>Nom de famille :</strong> {{ utilisateur.nomDeFamille }}</p>
-                        <p><strong>Numéro de téléphone :</strong> {{ utilisateur.telephone }}</p>
-                    </div>
-
-                    <div class="modifier">
-                        <a href="{{ path('app_profil_modifier') }}">Modifier mes informations</a>
-                        <a href="{{ path('app_profil_modifier') }}">Modifier mon mot de passe</a>
-                    </div>
-                </section>
-            </div>
-        </main>
-
-        <footer>
-            <div class="conteneur">
-                <div>
-                    <img src="{{ asset('images/logotype-noir.svg') }}" alt="Logotype Agence Dewey">
-                </div>
-
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}#creer-un-trajet">Créer un trajet</a></li>
-                    <li><a href="{{ path('app_accueil') }}#voir-les-trajets-disponibles">Voir les trajets disponibles</a></li>
-
-                    {% if is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('app_profil') }}">Mon profil</a></li>
-                    {% else %}
-                        <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                    {% endif %}
-                </ul>
-
-                <ul>
-                    <li><a href="{{ path('app_mentions_legales') }}">Mentions légales</a></li>
-                    <li><a href="{{ path('app_politique_de_confidentialite') }}">Politique de confidentialité</a></li>
-                </ul>
-            </div>
-
-            <div class="credit">
-                <p>Site développé par Irving Cazaban</p>
-            </div>
-        </footer>
-    </body>
+            </section>
+        </div>
+    </main>
 {% endblock %}
