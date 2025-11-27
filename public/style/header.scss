@@ -137,6 +137,11 @@ header {
     }
 }
 
+.scroll {
+    position: fixed;
+    width: 100%;
+}
+
 header.accueil .desktop, header.accueil .mobile {
     position: absolute;
     left: 50%;

@@ -324,6 +324,11 @@ header .mobile.ouvert .profil img {
   filter: invert(1);
 }
 
+.scroll {
+  position: fixed;
+  width: 100%;
+}
+
 header.accueil .desktop, header.accueil .mobile {
   position: absolute;
   left: 50%;
@@ -451,11 +456,13 @@ main.accueil .banniere img {
 }
 main.accueil #creer-un-trajet {
   width: 90%;
-  margin: 100px auto 50px;
+  padding: 100px 0 50px;
+  margin: auto;
 }
 @media (max-width: 768px) {
   main.accueil #creer-un-trajet {
-    margin: 50px auto 25px;
+    padding: 50px 0 25px;
+    margin: auto;
   }
 }
 main.accueil #creer-un-trajet h2 {

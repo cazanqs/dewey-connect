@@ -59,13 +59,8 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('telephone', null, [
-                'label' => 'Téléphone',
-                'attr' => ['placeholder' => 'Numéro de téléphone'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer votre téléphone.',
-                    ]),
-                ],
+                'label' => 'Numéro de téléphone (optionnel)',
+                'attr' => ['placeholder' => 'Numéro de téléphone (optionnel)'],
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
