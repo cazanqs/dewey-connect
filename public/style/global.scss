@@ -168,6 +168,10 @@ button {
     &.information {
         background-color: blue;
     }
+
+    &.invisible {
+        animation: transition-inverse .25s ease-in forwards;
+    }
 }
 
 .message {
@@ -201,5 +205,17 @@ form div.formulaire li, form div#reservation li, .profil form li {
     to {
         transform: translateX(0);
         opacity: 1;
+    }
+}
+
+@keyframes transition-inverse {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
     }
 }

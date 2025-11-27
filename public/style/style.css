@@ -160,6 +160,9 @@ button.white::after {
 .message.information, form div.formulaire li.information, form div#reservation li.information, .profil form li.information {
   background-color: blue;
 }
+.message.invisible, form div.formulaire li.invisible, form div#reservation li.invisible, .profil form li.invisible {
+  animation: transition-inverse 0.25s ease-in forwards;
+}
 
 .message {
   font-size: 20px;
@@ -192,6 +195,16 @@ form div.formulaire li, form div#reservation li, .profil form li {
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+@keyframes transition-inverse {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
   }
 }
 header .desktop, header .mobile {
