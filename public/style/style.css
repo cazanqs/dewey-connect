@@ -809,6 +809,9 @@ main.accueil #voir-les-trajets-disponibles .vide {
 .reservation .trajet #reservation select:focus {
   outline-color: black;
 }
+.reservation .trajet #reservation select option {
+  color: black;
+}
 
 .profil {
   width: 75%;

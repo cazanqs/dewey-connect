@@ -34,6 +34,10 @@ $vert: #33b698;
                 &:focus {
                     outline-color: black;
                 }
+
+                option {
+                    color: black;
+                }
             }
         }
     }
