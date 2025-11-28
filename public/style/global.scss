@@ -5,6 +5,22 @@ $vert: #33b698;
     padding: 0;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+
+    &.scroll {
+        position: fixed;
+        width: 100%;
+    }
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 h1, h2, h3, h4, h5, h6, p, a, li, button, label, input {
     font-family: "DM Sans", sans-serif;
 }
@@ -145,7 +161,7 @@ button {
 }
 
 .message, form div.formulaire li, form div#reservation li, .profil form li {
-    position: absolute;
+    position: fixed;
     top: 25px;
     right: 25px;
     font-size: 15px;

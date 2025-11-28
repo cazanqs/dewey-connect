@@ -34,23 +34,16 @@ final class AccueilController extends AbstractController
 
                 $siegesLibres = $trajet->getSiegesLibres();
 
-                if (!$date || $date <= new \DateTime()) {
-                    $this->addFlash('erreur', 'Veuillez renseigner une date et une heure qui ne sont pas encore passées.');
-                } elseif ($siegesLibres === null || $siegesLibres <= 0) {
-                    $this->addFlash('erreur', 'Veuillez renseigner au minimum 1 siège libre.');
-                } else {
-                    try {
-                        $entityManager->persist($trajet);
-                        $entityManager->flush();
+                try {
+                    $entityManager->persist($trajet);
+                    $entityManager->flush();
 
-                        $this->addFlash('success', 'Votre trajet a été créé avec succès !');
-
-                    } catch (\Exception $e) {
-                        $this->addFlash('erreur', 'Une erreur est survenue lors de la création du trajet, veuillez réessayer.');
-                    }
-
-                    return $this->redirectToRoute('app_accueil');
+                    $this->addFlash('success', 'Votre trajet a été créé avec succès !');
+                } catch (\Exception $e) {
+                    $this->addFlash('erreur', 'Une erreur est survenue lors de la création du trajet, veuillez réessayer.');
                 }
+
+                return $this->redirectToRoute('app_accueil');
             }
         }
 
@@ -58,6 +51,7 @@ final class AccueilController extends AbstractController
 
         $trajets = $trajetsRepository->createQueryBuilder('t')
             ->where('t.date_et_heure > :now')
+            ->andWhere('t.sieges_libres > 0')
             ->setParameter('now', new \DateTime())
             ->orderBy('t.date_et_heure', 'ASC')
             ->getQuery()

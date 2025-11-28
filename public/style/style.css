@@ -4,6 +4,21 @@
   padding: 0;
 }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+body.scroll {
+  position: fixed;
+  width: 100%;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 h1, h2, h3, h4, h5, h6, p, a, li, button, label, input {
   font-family: "DM Sans", sans-serif;
 }
@@ -139,7 +154,7 @@ button.white::after {
 }
 
 .message, form div.formulaire li, form div#reservation li, .profil form li {
-  position: absolute;
+  position: fixed;
   top: 25px;
   right: 25px;
   font-size: 15px;
@@ -324,11 +339,6 @@ header .mobile.ouvert .profil img {
   filter: invert(1);
 }
 
-.scroll {
-  position: fixed;
-  width: 100%;
-}
-
 header.accueil .desktop, header.accueil .mobile {
   position: absolute;
   left: 50%;
@@ -351,42 +361,55 @@ footer .conteneur {
   width: 90%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-top: solid 1px #33b698;
   padding: 50px 0;
-  margin: 50px auto 0;
+  margin: 75px auto 0;
 }
 @media (max-width: 768px) {
   footer .conteneur {
     flex-direction: column;
     gap: 25px;
     padding: 25px 0;
-    margin: 25px auto 0;
+    margin: 50px auto 0;
   }
 }
-footer .conteneur div {
+footer .conteneur .logotype {
   width: 10%;
 }
 @media (max-width: 768px) {
-  footer .conteneur div {
-    width: 25%;
+  footer .conteneur .logotype {
+    width: 30%;
   }
 }
-footer .conteneur div img {
+footer .conteneur .logotype img {
   width: 100%;
 }
-footer .conteneur ul {
+footer .conteneur .pages {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 768px) {
+  footer .conteneur .pages {
+    width: 100%;
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+footer .conteneur .pages ul {
   display: flex;
   flex-direction: column;
   gap: 5px;
   list-style: none;
 }
-footer .conteneur ul a {
+footer .conteneur .pages ul a {
   font-weight: bold;
   color: black;
   text-decoration: none;
 }
 @media (max-width: 768px) {
-  footer .conteneur ul a {
+  footer .conteneur .pages ul a {
     font-size: 17.5px;
   }
 }
@@ -396,16 +419,6 @@ footer .credit {
   text-align: center;
   background-color: #33b698;
   padding: 10px 0;
-}
-footer.profil {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-@media (max-width: 768px) {
-  footer.profil {
-    position: relative;
-  }
 }
 
 main.accueil a {

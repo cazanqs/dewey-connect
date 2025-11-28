@@ -19,7 +19,8 @@ final class ReservationController extends AbstractController
         $utilisateur = $this->getUser();
 
         if (!$utilisateur) {
-            $this->addFlash('error', 'Vous devez être connecté pour effectuer une réservation.');
+            $this->addFlash('erreur', 'Veuillez vous connecter pour effectuer une réservation.');
+
             return $this->redirectToRoute('app_login');
         }
 

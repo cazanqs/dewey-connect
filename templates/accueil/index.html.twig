@@ -104,7 +104,7 @@
                             {% endif %}
                         {% else %}
                             {% if trajet.siegesLibres >= 1 %}
-                                <a href="{{ path('app_login') }}"><button type="button">Réserver</button></a>
+                                <a href="{{ path('app_login', {'from': 'reservation'}) }}"><button type="button">Réserver</button></a>
                             {% else %}
                                 <button class="invalide">Réserver</button>
                             {% endif %}

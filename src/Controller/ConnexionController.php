@@ -6,15 +6,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Request;
 
 class ConnexionController extends AbstractController
 {
     #[Route(path: '/connexion', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
             $this->addFlash('information', 'Vous êtes déjà connecté.');
             return $this->redirectToRoute('app_accueil');
+        }
+
+        if ($request->query->get('from') === 'reservation') {
+            $this->addFlash('erreur', 'Veuillez vous connecter pour pouvoir réserver un trajet.');
         }
 
         $erreur = $authenticationUtils->getLastAuthenticationError();
