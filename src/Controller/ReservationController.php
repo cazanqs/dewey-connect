@@ -8,13 +8,14 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Trajet;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\ReservationRepository;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 
 final class ReservationController extends AbstractController
 {
     #[Route('/reservation/{id}', name: 'app_reservation')]
-    public function index(Trajet $trajet, Request $request, EntityManagerInterface $entityManager): Response
+    public function index(Trajet $trajet, Request $request, EntityManagerInterface $entityManager, ReservationRepository $reservationRepository): Response
     {
         $utilisateur = $this->getUser();
 
@@ -24,10 +25,7 @@ final class ReservationController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        $reservationExistante = $entityManager->getRepository(Reservation::class)->findOneBy([
-            'utilisateur' => $utilisateur,
-            'trajet' => $trajet
-        ]);
+        $reservationExistante = $reservationRepository->findOneByUtilisateurEtTrajet($utilisateur, $trajet);
 
         $reservation = new Reservation();
         $reservation->setTrajet($trajet);

@@ -6,9 +6,6 @@ use App\Entity\Reservation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<Reservation>
- */
 class ReservationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -16,28 +13,28 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
-    //    /**
-    //     * @return Reservation[] Returns an array of Reservation objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findOneByUtilisateurEtTrajet($utilisateur, $trajet): ?Reservation
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->andWhere('r.utilisateur = :utilisateur')
+            ->andWhere('r.trajet = :trajet')
+            ->setParameter('utilisateur', $utilisateur)
+            ->setParameter('trajet', $trajet)
+            ->setMaxResults(1);
 
-    //    public function findOneBySomeField($value): ?Reservation
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    public function findByUtilisateurTriesParDate($utilisateur, \DateTimeInterface $maintenant): array
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.trajet', 't')
+            ->where('r.utilisateur = :utilisateur')
+            ->setParameter('utilisateur', $utilisateur)
+            ->addOrderBy('CASE WHEN t.date_et_heure >= :maintenant THEN 0 ELSE 1 END', 'ASC')
+            ->addOrderBy('t.date_et_heure', 'ASC')
+            ->setParameter('maintenant', $maintenant)
+            ->getQuery()
+            ->getResult();
+    }
 }

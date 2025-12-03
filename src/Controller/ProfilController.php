@@ -92,14 +92,9 @@ final class ProfilController extends AbstractController
                 return $this->redirectToRoute('app_login');
             }
 
-            $trajets = $trajetRepository->createQueryBuilder('t')
-                ->where('t.utilisateur = :utilisateur')
-                ->setParameter('utilisateur', $utilisateur)
-                ->addOrderBy('CASE WHEN t.date_et_heure >= :now THEN 0 ELSE 1 END', 'ASC')
-                ->addOrderBy('t.date_et_heure', 'ASC')
-                ->setParameter('now', new \DateTime())
-                ->getQuery()
-                ->getResult();
+            $maintenant = new \DateTimeImmutable();
+            
+            $trajets = $trajetRepository->findByUtilisateurTriesParDate($utilisateur, $maintenant);
 
             return $this->render('profil/trajets.html.twig', [
                 'utilisateur' => $utilisateur,
@@ -222,15 +217,9 @@ final class ProfilController extends AbstractController
                 return $this->redirectToRoute('app_login');
             }
 
-            $reservations = $reservationRepository->createQueryBuilder('r')
-                ->join('r.trajet', 't')
-                ->where('r.utilisateur = :utilisateur')
-                ->setParameter('utilisateur', $utilisateur)
-                ->addOrderBy('CASE WHEN t.date_et_heure >= :now THEN 0 ELSE 1 END', 'ASC')
-                ->addOrderBy('t.date_et_heure', 'ASC')
-                ->setParameter('now', new \DateTime())
-                ->getQuery()
-                ->getResult();
+            $maintenant = new \DateTimeImmutable();
+            
+            $reservations = $reservationRepository->findByUtilisateurTriesParDate($utilisateur, $maintenant);
 
             return $this->render('profil/reservations.html.twig', [
                 'utilisateur' => $utilisateur,

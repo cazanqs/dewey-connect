@@ -7,13 +7,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\TrajetRepository;
 use App\Entity\Trajet;
 use App\Form\TrajetType;
 
 final class AccueilController extends AbstractController
 {
     #[Route('/', name: 'app_accueil')]
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, TrajetRepository $trajetRepository): Response
     {
         $trajet = new Trajet();
 
@@ -47,15 +48,9 @@ final class AccueilController extends AbstractController
             }
         }
 
-        $trajetsRepository = $entityManager->getRepository(Trajet::class);
-
-        $trajets = $trajetsRepository->createQueryBuilder('t')
-            ->where('t.date_et_heure > :now')
-            ->andWhere('t.sieges_libres > 0')
-            ->setParameter('now', new \DateTime())
-            ->orderBy('t.date_et_heure', 'ASC')
-            ->getQuery()
-            ->getResult();
+        $maintenant = new \DateTimeImmutable();
+        
+        $trajets = $trajetRepository->findFutursTrajetsLibres($maintenant);
 
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',

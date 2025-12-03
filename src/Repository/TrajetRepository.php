@@ -6,9 +6,6 @@ use App\Entity\Trajet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<Trajet>
- */
 class TrajetRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -16,28 +13,26 @@ class TrajetRepository extends ServiceEntityRepository
         parent::__construct($registry, Trajet::class);
     }
 
-    //    /**
-    //     * @return Trajet[] Returns an array of Trajet objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('t.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findFutursTrajetsLibres(\DateTimeInterface $maintenant): array
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.date_et_heure > :maintenant')
+            ->andWhere('t.sieges_libres > 0')
+            ->setParameter('maintenant', $maintenant)
+            ->orderBy('t.date_et_heure', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
-    //    public function findOneBySomeField($value): ?Trajet
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findByUtilisateurTriesParDate($utilisateur, \DateTimeInterface $maintenant): array
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.utilisateur = :utilisateur')
+            ->setParameter('utilisateur', $utilisateur)
+            ->addOrderBy('CASE WHEN t.date_et_heure >= :maintenant THEN 0 ELSE 1 END', 'ASC')
+            ->addOrderBy('t.date_et_heure', 'ASC')
+            ->setParameter('maintenant', $maintenant)
+            ->getQuery()
+            ->getResult();
+    }
 }
